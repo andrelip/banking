@@ -1,6 +1,4 @@
-# Banking
-
-[![CircleCI](https://circleci.com/gh/andrelip/banking.svg?style=svg)](https://circleci.com/gh/andrelip/banking)
+# Banking [![CircleCI](https://circleci.com/gh/andrelip/banking.svg?style=svg)](https://circleci.com/gh/andrelip/banking) [![Coverage Status](https://coveralls.io/repos/github/andrelip/banking/badge.svg?branch=master)](https://coveralls.io/github/andrelip/banking?branch=master)
 
 To start your Phoenix server:
 

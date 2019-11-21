@@ -52,3 +52,7 @@ jobs:
 
       - store_test_results:
           path: _build/test/lib/banking
+
+      - run: 
+          name: check test coverage
+          command: mix coveralls && mix coveralls.post -t $COVERALLS_REPO_TOKEN  -b ${CIRCLE_BRANCH} -m "`git log -1 --pretty=%B`" -n circleci -c "`git log -1 --pretty=format:'%an'`"

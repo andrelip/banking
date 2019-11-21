@@ -16,9 +16,9 @@ defmodule Banking.Accountmanagement.Registration do
     field :document_type, :string
   end
 
-  def changeset(struct, params) do
+  def changeset(struct, attrs) do
     struct
-    |> cast(params, @required_fields)
+    |> cast(attrs, @required_fields)
     |> validate_required(@required_fields)
     |> validate_email
     |> validate_name

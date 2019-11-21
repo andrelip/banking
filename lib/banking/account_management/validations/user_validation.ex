@@ -4,10 +4,10 @@ defmodule Banking.Accounts.UserValidation do
 
   alias Banking.AccountManagement.User
 
-  def validate_email(changeset) do
+  def validate_email(changeset, key \\ :email) do
     changeset
-    |> validate_format(:email, ~r/@/)
-    |> validate_length(:email, min: 5, max: 320)
+    |> validate_format(key, ~r/@/)
+    |> validate_length(key, min: 5, max: 320)
   end
 
   def validate_name(changeset) do
@@ -23,6 +23,7 @@ defmodule Banking.Accounts.UserValidation do
 
   def validate_document_type(changeset) do
     allowed_documents = User.allowed_documents()
+
     changeset
     |> validate_inclusion(:document_type, allowed_documents)
   end
@@ -46,8 +47,11 @@ defmodule Banking.Accounts.UserValidation do
     minimum_date = Timex.today() |> Timex.shift(years: -age)
 
     case Date.compare(birthdate, minimum_date) do
-      :gt -> add_error(changeset, :birth_date, gettext("should have more than %{age} anos.", age: age))
-      _ -> changeset
+      :gt ->
+        add_error(changeset, :birth_date, gettext("should have more than %{age} anos.", age: age))
+
+      _ ->
+        changeset
     end
   end
 

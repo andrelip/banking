@@ -2,15 +2,16 @@ defmodule Banking.AccountManagement.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Banking.AccountManagement.Account
+  alias Banking.Accountmanagement.Password
 
   @valid_attrs [
-      :name,
-      :birthdate,
-      :password,
-      :pending_email,
-      :document_type,
-      :document_id
-    ]
+    :name,
+    :birthdate,
+    :password,
+    :pending_email,
+    :document_type,
+    :document_id
+  ]
 
   schema "users" do
     field :birthdate, :date
@@ -28,6 +29,24 @@ defmodule Banking.AccountManagement.User do
 
   def allowed_documents() do
     ["cpf", "rg", "passport", "cnpj"]
+  end
+
+  def create_changeset(attrs, skip_validation: true) do
+    %__MODULE__{}
+    |> cast(attrs, @valid_attrs)
+    |> validate_required(@valid_attrs)
+    |> hash_password
+  end
+
+  def hash_password(changeset) do
+    IO.inspect(changeset.changes[:password])
+    IO.inspect(Password.hash(changeset.changes[:password]))
+    IO.inspect("AEIOU")
+
+    case changeset.changes[:password] do
+      nil -> changeset
+      pw -> changeset |> put_change(:password_hash, Password.hash(pw))
+    end
   end
 
   @doc false

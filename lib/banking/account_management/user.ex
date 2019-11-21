@@ -16,6 +16,10 @@ defmodule Banking.AccountManagement.User do
     timestamps()
   end
 
+  def allowed_documents() do
+    ["cpf", "rg", "passport", "cnpj"]
+  end
+
   @doc false
   def changeset(user, attrs) do
     user

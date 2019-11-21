@@ -20,3 +20,7 @@ For the propose of this project, there are some conveniences. Please check them 
     * Accounts status are enabled just after creation
     * No document validation
     * No distinction between business and personal account
+
+
+## Assumptions
+    * Password Confirmation should be handled by the client.

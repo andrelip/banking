@@ -4,7 +4,7 @@ Tasks:
 
 - [x] Define the Account bounded context and the public api (of module)
 - [ ] Define the JSON api's
-- [ ] Define Account related schemas (inc. account types)
+- [X] Define Account related schemas
 - [ ] Prepare validations
 - [ ] Install Argon2 for Password Hashing
 - [ ] Install Guardian for authentication and JWT

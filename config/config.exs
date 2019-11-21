@@ -15,4 +15,9 @@ config :logger, :console,
 
 config :phoenix, :json_library, Jason
 
+config :argon2_elixir,
+  t_cost: 8,
+  m_cost: 17,
+  argon_type: 2
+
 import_config "#{Mix.env()}.exs"

@@ -3,12 +3,22 @@ defmodule Banking.AccountManagement.User do
   import Ecto.Changeset
   alias Banking.AccountManagement.Account
 
+  @valid_attrs [
+      :name,
+      :birthdate,
+      :password,
+      :pending_email,
+      :document_type,
+      :document_id
+    ]
+
   schema "users" do
     field :birthdate, :date
     field :document_id, :string
     field :document_type, :string
     field :email, :string
     field :name, :string
+    field :password, :string, virtual: true
     field :password_hash, :string
     field :pending_email, :string
     belongs_to :account, Account
@@ -23,23 +33,7 @@ defmodule Banking.AccountManagement.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [
-      :name,
-      :birthdate,
-      :password_hash,
-      :email,
-      :pending_email,
-      :document_type,
-      :document_id
-    ])
-    |> validate_required([
-      :name,
-      :birthdate,
-      :password_hash,
-      :email,
-      :pending_email,
-      :document_type,
-      :document_id
-    ])
+    |> cast(attrs, @valid_attrs)
+    |> validate_required(@valid_attrs)
   end
 end

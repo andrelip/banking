@@ -21,6 +21,20 @@ defmodule Banking.AccountManagement.Account do
     account
     |> cast(attrs, [:public_id, :status])
     |> validate_required([:public_id, :status])
-    |> validate_inclusion(:status, @statuses)
+  end
+
+  def create_changeset() do
+    %__MODULE__{}
+    |> change(%{})
+    |> put_public_id
+    |> put_default_status
+  end
+
+  defp put_public_id(changeset) do
+    changeset |> put_change(:public_id, Ecto.UUID.generate())
+  end
+
+  defp put_default_status(changeset) do
+    changeset |> put_change(:status, "pending")
   end
 end

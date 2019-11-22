@@ -1,4 +1,4 @@
-defmodule Banking.Accounts.UserValidation do
+defmodule Banking.AccountManagement.UserValidation do
   import BankingWeb.Gettext
   import Ecto.Changeset
 

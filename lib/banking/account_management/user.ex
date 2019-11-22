@@ -1,6 +1,7 @@
 defmodule Banking.AccountManagement.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import BankingWeb.Gettext
   alias Banking.AccountManagement.Account
   alias Banking.Accountmanagement.Password
   alias Banking.AccountManagement.EmailVerification
@@ -33,10 +34,16 @@ defmodule Banking.AccountManagement.User do
     ["cpf", "rg", "passport", "cnpj"]
   end
 
-  def create_changeset(attrs, skip_validation: true) do
+  def create_changeset(account, attrs) do
+    # verify all constraints
     %__MODULE__{}
     |> cast(attrs, @valid_attrs)
+    |> put_assoc(:account, account)
     |> validate_required(@valid_attrs)
+    |> unique_constraint(:document_id,
+      name: :users_document_type_document_id_index,
+      message: gettext("document_id should be unique for each document_type")
+    )
     |> hash_password
     |> maybe_put_email_verification_code
   end

@@ -1,5 +1,6 @@
 defmodule Banking.Account.UserTest do
   use Banking.DataCase
+  alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.User
 
   @valid_user %{
@@ -13,7 +14,8 @@ defmodule Banking.Account.UserTest do
   }
 
   test "with valid attrs" do
-    changeset = User.create_changeset(@valid_user, skip_validation: true)
+    account = Account.create_changeset() |> Repo.insert!()
+    changeset = User.create_changeset(account, @valid_user)
     assert changeset.changes[:password_hash]
     assert changeset.changes[:pending_email]
     assert changeset.changes[:email_verification_code]

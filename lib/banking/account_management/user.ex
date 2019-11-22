@@ -3,6 +3,7 @@ defmodule Banking.AccountManagement.User do
   import Ecto.Changeset
   alias Banking.AccountManagement.Account
   alias Banking.Accountmanagement.Password
+  alias Banking.AccountManagement.EmailVerification
 
   @valid_attrs [
     :name,
@@ -22,6 +23,7 @@ defmodule Banking.AccountManagement.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :pending_email, :string
+    field :email_verification_code, :string
     belongs_to :account, Account
 
     timestamps()
@@ -36,13 +38,21 @@ defmodule Banking.AccountManagement.User do
     |> cast(attrs, @valid_attrs)
     |> validate_required(@valid_attrs)
     |> hash_password
+    |> maybe_put_email_verification_code
+  end
+
+  defp maybe_put_email_verification_code(changeset) do
+    case changeset.changes[:pending_email] do
+      nil ->
+        changeset
+
+      _email ->
+        token = EmailVerification.random_token()
+        changeset |> put_change(:email_verification_code, token)
+    end
   end
 
   def hash_password(changeset) do
-    IO.inspect(changeset.changes[:password])
-    IO.inspect(Password.hash(changeset.changes[:password]))
-    IO.inspect("AEIOU")
-
     case changeset.changes[:password] do
       nil -> changeset
       pw -> changeset |> put_change(:password_hash, Password.hash(pw))

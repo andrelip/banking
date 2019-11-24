@@ -11,10 +11,16 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+## Conveniences
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+For the propose of this project, there are some conveniences. Please check them before using in production:
+
+    * Single account per user
+    * Single document requirement per use
+    * Accounts status are enabled just after creation
+    * No document validation
+    * No distinction between business and personal account
+
+
+## Assumptions
+    * Password Confirmation should be handled by the client.

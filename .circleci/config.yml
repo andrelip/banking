@@ -24,6 +24,11 @@ jobs:
             - v1-build-cache-{{ .Branch }}
             - v1-build-cache
       - run: mix do deps.get, deps.compile, compile --warnings-as-errors
+
+      - run:
+          name: Running Dialyzer
+          command: MIX_ENV=dev mix dialyzer
+
       - save_cache:
           key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
           paths: "deps"
@@ -46,13 +51,13 @@ jobs:
 
       - run:
           name: Run credo tests
-          command: mix credo -a --ignore todo
+          command: mix credo -a --strict --ignore todo
 
       - run: mix test
 
       - store_test_results:
           path: _build/test/lib/banking
 
-      - run: 
+      - run:
           name: check test coverage
           command: mix coveralls && mix coveralls.post -t $COVERALLS_REPO_TOKEN  -b ${CIRCLE_BRANCH} -m "`git log -1 --pretty=%B`" -n circleci -c "`git log -1 --pretty=format:'%an'`"

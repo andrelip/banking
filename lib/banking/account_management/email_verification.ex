@@ -1,6 +1,7 @@
 defmodule Banking.AccountManagement.EmailVerification do
   @moduledoc false
 
+  alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.User
   alias Banking.Repo
   alias Ecto.Multi
@@ -15,20 +16,25 @@ defmodule Banking.AccountManagement.EmailVerification do
   end
 
   @spec validate_email(User.t()) ::
-          {:ok, User.t()} | {:error, :account_not_found}
+          {:ok, %{account: Account.t(), user: User.t()}} | {:error, <<_::152>>}
   def validate_email(%User{pending_email: nil}),
     do: {:error, "no email to confirm"}
 
   def validate_email(user) do
     account = user |> Repo.preload(:account) |> Map.get(:account)
 
-    Multi.new()
-    |> Multi.update(
-      :user,
-      change(user, %{email: user.pending_email, pending_email: nil})
-    )
-    |> maybe_update_account(account)
-    |> Repo.transaction()
+    {:ok, result} =
+      Multi.new()
+      |> Multi.update(
+        :user,
+        change(user, %{email: user.pending_email, pending_email: nil})
+      )
+      |> maybe_update_account(account)
+      |> Repo.transaction()
+
+    user = result.user
+    account = result[:account] || user |> Repo.preload(:account) |> Map.get(:account)
+    {:ok, %{account: account, user: user}}
   end
 
   defp maybe_update_account(multi, account) do

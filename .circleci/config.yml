@@ -25,7 +25,9 @@ jobs:
             - v1-build-cache
       - run: mix do deps.get, deps.compile, compile --warnings-as-errors
 
-      - run: mix dialyzer
+      - run:
+          name: Running Dialyzer
+          command: MIX_ENV=dev mix dialyzer
 
       - save_cache:
           key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}

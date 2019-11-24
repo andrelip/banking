@@ -55,6 +55,7 @@ defmodule Banking.AccountManagementTest do
   test "#verify_password" do
     {:ok, %{account: _, user: user}} = AccountManagement.create(@valid_attrs)
     assert AccountManagement.verify_password(user, @valid_attrs.password)
+    refute AccountManagement.verify_password(user, "123")
   end
 
   test "#get" do

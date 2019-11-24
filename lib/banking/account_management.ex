@@ -64,10 +64,16 @@ defmodule Banking.AccountManagement do
   If the user has a pending confirmation account associated then this account
   will be activated.
   """
+  @spec validate_email(User.t()) ::
+          {:ok, %{account: Account.t(), user: User.t()}} | {:error, <<_::152>>}
   def validate_email(user) do
     EmailVerification.validate_email(user)
   end
 
+  @doc """
+  Verifies the hashed password from the user against the raw password
+  """
+  @spec verify_password(User.t(), String.t()) :: true | false
   def verify_password(user, password) do
     Password.verify_password(password, user.password_hash)
   end

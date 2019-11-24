@@ -47,7 +47,8 @@ defmodule Banking.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:timex, "~> 3.5"},
-      {:argon2_elixir, "~> 2.0"}
+      {:argon2_elixir, "~> 2.0"},
+      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -10,6 +10,19 @@ defmodule Banking.AccountManagement.User do
   alias Banking.AccountManagement.EmailVerification
   alias Banking.AccountManagement.Password
 
+  @type t :: %__MODULE__{
+          birthdate: Date.t(),
+          document_id: String.t(),
+          document_type: String.t(),
+          email: String.t(),
+          name: String.t(),
+          password: String.t(),
+          password_hash: String.t(),
+          pending_email: String.t(),
+          email_verification_code: String.t(),
+          account: Account.t()
+        }
+
   @valid_attrs [
     :name,
     :birthdate,

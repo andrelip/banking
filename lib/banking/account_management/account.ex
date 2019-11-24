@@ -4,7 +4,7 @@ defmodule Banking.AccountManagement.Account do
 
   @statuses ["pending_registration", "active", "inative"]
 
-  @type t :: %{
+  @type t :: %__MODULE__{
           public_id: String.t(),
           status: String.t()
         }

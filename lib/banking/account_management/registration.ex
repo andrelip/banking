@@ -9,6 +9,15 @@ defmodule Banking.AccountManagement.Registration do
 
   @required_fields [:name, :email, :password, :birthdate, :document_id, :document_type]
 
+  @type t :: %__MODULE__{
+          name: String.t(),
+          email: String.t(),
+          password: String.t(),
+          birthdate: String.t(),
+          document_id: String.t(),
+          document_type: String.t()
+        }
+
   @primary_key false
   embedded_schema do
     field :name, :string
@@ -62,15 +71,4 @@ defmodule Banking.AccountManagement.Registration do
       User.create_changeset(account, params)
     end)
   end
-
-  # def register_user(params) do
-  #   chset = changeset(%Registration{}, params)
-
-  #   Multi.new()
-  #   |> Multi.run(:registration, &apply_registration(&1, chset))
-  #   |> Multi.run(:user, fn ops ->
-  #     Repo.insert(to_user_changeset(%User{}, ops.registration))
-  #   end)
-  #   |> Repo.transaction()
-  # end
 end

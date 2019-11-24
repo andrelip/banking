@@ -1,4 +1,4 @@
-defmodule Banking.Accountmanagement.Registration do
+defmodule Banking.AccountManagement.Registration do
   use Ecto.Schema
   import Ecto.Changeset
 

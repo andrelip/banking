@@ -1,6 +1,6 @@
 defmodule Banking.Account.RegistrationTest do
   use Banking.DataCase
-  alias Banking.Accountmanagement.Registration
+  alias Banking.AccountManagement.Registration
   alias Banking.AccountManagement.User
 
   @valid_user %{

@@ -3,7 +3,7 @@ defmodule Banking.AccountManagement.User do
   import Ecto.Changeset
   import BankingWeb.Gettext
   alias Banking.AccountManagement.Account
-  alias Banking.Accountmanagement.Password
+  alias Banking.AccountManagement.Password
   alias Banking.AccountManagement.EmailVerification
 
   @valid_attrs [

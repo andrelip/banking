@@ -7,6 +7,7 @@ defmodule Banking.AccountManagement do
   alias Banking.AccountManagement.Registration
   alias Banking.AccountManagement.User
   alias Banking.AccountManagement.EmailVerification
+  alias Banking.AccountManagement.Password
   alias Banking.Repo
 
   import Ecto.Changeset, only: [change: 2]
@@ -65,5 +66,9 @@ defmodule Banking.AccountManagement do
   """
   def validate_email(user) do
     EmailVerification.validate_email(user)
+  end
+
+  def verify_password(user, password) do
+    Password.verify_password(password, user.password_hash)
   end
 end

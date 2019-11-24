@@ -34,8 +34,6 @@ defmodule Banking.Account.UserTest do
     assert changeset.valid?
   end
 
-  test "#create when no p"
-
   # Testing only constraints since the main validation happens on Registration
   describe "#create with failing constraings" do
     setup do

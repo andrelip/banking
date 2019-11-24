@@ -16,13 +16,6 @@ defmodule Banking.AccountManagement.Account do
     timestamps()
   end
 
-  @doc false
-  def changeset(account, attrs) do
-    account
-    |> cast(attrs, [:public_id, :status])
-    |> validate_required([:public_id, :status])
-  end
-
   def create_changeset() do
     %__MODULE__{}
     |> change(%{})

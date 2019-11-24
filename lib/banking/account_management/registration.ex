@@ -63,6 +63,7 @@ defmodule Banking.AccountManagement.Registration do
     |> validate_document_id
     |> validate_document_type
     |> validate_birthdate(18)
+    |> validate_password
   end
 
   defp to_multi(params) do

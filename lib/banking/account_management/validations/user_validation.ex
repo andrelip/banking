@@ -50,7 +50,11 @@ defmodule Banking.AccountManagement.UserValidation do
 
     case Date.compare(birthdate, minimum_date) do
       :gt ->
-        add_error(changeset, :birth_date, gettext("should have more than %{age} anos.", age: age))
+        add_error(
+          changeset,
+          :birth_date,
+          gettext("should have more than %{age} years old.", age: age)
+        )
 
       _ ->
         changeset

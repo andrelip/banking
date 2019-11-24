@@ -46,32 +46,23 @@ defmodule Banking.AccountManagement.User do
       name: :users_document_type_document_id_index,
       message: gettext("document_id should be unique for each document_type")
     )
+    |> check_constraint(:birthdate,
+      name: :user_most_have_more_than_18,
+      message: gettext("should have more than 18 years old.")
+    )
     |> hash_password
-    |> maybe_put_email_verification_code
+    |> put_email_verification_code
   end
 
-  defp maybe_put_email_verification_code(changeset) do
-    case changeset.changes[:pending_email] do
-      nil ->
-        changeset
-
-      _email ->
-        token = EmailVerification.random_token()
-        changeset |> put_change(:email_verification_code, token)
-    end
+  defp put_email_verification_code(changeset) do
+    token = EmailVerification.random_token()
+    changeset |> put_change(:email_verification_code, token)
   end
 
-  def hash_password(changeset) do
+  defp hash_password(changeset) do
     case changeset.changes[:password] do
       nil -> changeset
       pw -> changeset |> put_change(:password_hash, Password.hash(pw))
     end
-  end
-
-  @doc false
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, @valid_attrs)
-    |> validate_required(@valid_attrs)
   end
 end

@@ -1,4 +1,6 @@
 defmodule Banking.AccountManagement.User do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
   import BankingWeb.Gettext

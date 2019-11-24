@@ -1,8 +1,8 @@
 defmodule Banking.AccountManagement.Account do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
-
-  @statuses ["pending_registration", "active", "inative"]
 
   @type t :: %__MODULE__{
           public_id: String.t(),

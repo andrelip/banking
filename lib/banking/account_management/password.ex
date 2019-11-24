@@ -1,4 +1,6 @@
 defmodule Banking.AccountManagement.Password do
+  @moduledoc false
+
   def hash(raw_password) do
     Argon2.hash_pwd_salt(raw_password)
   end

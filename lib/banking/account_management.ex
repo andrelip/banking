@@ -4,7 +4,6 @@ defmodule Banking.AccountManagement do
   alias Banking.AccountManagement.User
   alias Banking.AccountManagement.EmailVerification
   alias Banking.Repo
-  alias Ecto.Multi
 
   import Ecto.Changeset, only: [change: 2]
 
@@ -23,7 +22,7 @@ defmodule Banking.AccountManagement do
 
   @spec disable(Account.t()) :: Account.t()
   def disable(account) do
-    account |> change(status: "desativated") |> Repo.update!()
+    account |> change(status: "inactive") |> Repo.update!()
   end
 
   @spec enable(Account.t()) :: Account.t()

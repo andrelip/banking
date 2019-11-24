@@ -1,4 +1,6 @@
 defmodule Banking.AccountManagement.EmailVerification do
+  @moduledoc false
+
   alias Banking.AccountManagement.User
   alias Banking.Repo
   alias Ecto.Multi

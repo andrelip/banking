@@ -1,4 +1,6 @@
 defmodule Banking.AccountManagement.Registration do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -63,7 +65,7 @@ defmodule Banking.AccountManagement.Registration do
     |> validate_birthdate(18)
   end
 
-  defp to_multi(params \\ %{}) do
+  defp to_multi(params) do
     Ecto.Multi.new()
     |> Ecto.Multi.insert(:account, Account.create_changeset())
     |> Ecto.Multi.insert(:user, fn %{account: account} ->

@@ -2,11 +2,13 @@ defmodule Banking.AccountManagement.User do
   @moduledoc false
 
   use Ecto.Schema
+
   import Ecto.Changeset
   import BankingWeb.Gettext
+
   alias Banking.AccountManagement.Account
-  alias Banking.AccountManagement.Password
   alias Banking.AccountManagement.EmailVerification
+  alias Banking.AccountManagement.Password
 
   @valid_attrs [
     :name,
@@ -32,7 +34,7 @@ defmodule Banking.AccountManagement.User do
     timestamps()
   end
 
-  def allowed_documents() do
+  def allowed_documents do
     ["cpf", "rg", "passport", "cnpj"]
   end
 

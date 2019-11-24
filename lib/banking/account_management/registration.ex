@@ -2,12 +2,13 @@ defmodule Banking.AccountManagement.Registration do
   @moduledoc false
 
   use Ecto.Schema
+
+  import Banking.AccountManagement.UserValidation
   import Ecto.Changeset
 
-  alias Banking.Repo
   alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.User
-  import Banking.AccountManagement.UserValidation
+  alias Banking.Repo
 
   @required_fields [:name, :email, :password, :birthdate, :document_id, :document_type]
 

@@ -4,10 +4,10 @@ defmodule Banking.AccountManagement do
   and account administration.
   """
   alias Banking.AccountManagement.Account
-  alias Banking.AccountManagement.Registration
-  alias Banking.AccountManagement.User
   alias Banking.AccountManagement.EmailVerification
   alias Banking.AccountManagement.Password
+  alias Banking.AccountManagement.Registration
+  alias Banking.AccountManagement.User
   alias Banking.Repo
 
   import Ecto.Changeset, only: [change: 2]

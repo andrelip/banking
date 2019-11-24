@@ -16,7 +16,7 @@ defmodule Banking.AccountManagement.Account do
     timestamps()
   end
 
-  def create_changeset() do
+  def create_changeset do
     %__MODULE__{}
     |> change(%{})
     |> put_public_id

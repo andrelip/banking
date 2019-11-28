@@ -33,7 +33,6 @@ defmodule Banking.BankTest do
     end
 
     test "should be greater than 0" do
-      bank = SpecialAccounts.bank_reserves()
       account = Seeds.create_account(4, 0)
       {:error, :bank_transaction, changeset, _} = Bank.add_bonus(account, 0)
 
@@ -43,7 +42,7 @@ defmodule Banking.BankTest do
 
   describe "#withdrawal" do
     test "should reduce money from account and adds to cashout register" do
-      cashout_register = SpecialAccounts.cashout()
+      _cashout_register = SpecialAccounts.cashout()
       account = Seeds.create_account(4, 1000)
 
       {:ok, _data} = Bank.withdrawal(account, 100)
@@ -56,7 +55,7 @@ defmodule Banking.BankTest do
     end
 
     test "amount should be greater than 0" do
-      cashout_register = SpecialAccounts.cashout()
+      SpecialAccounts.cashout()
       account = Seeds.create_account(4, 1000)
 
       {:error, :bank_transaction, changeset, _} = Bank.withdrawal(account, 0)
@@ -64,7 +63,6 @@ defmodule Banking.BankTest do
     end
 
     test "balance should never be negative" do
-      cashout_register = SpecialAccounts.cashout()
       account = Seeds.create_account(4, 1000)
 
       assert {:error, :reduce_from_source, :balance_should_be_positive, _} =
@@ -98,7 +96,7 @@ defmodule Banking.BankTest do
       account1 = Seeds.create_account(4, 1000)
       account2 = Seeds.create_account(5, 1000)
 
-      {:error, :bank_transaction, changeset, _} = Bank.transfer(account1, account2, 0)
+      {:error, :bank_transaction, _changeset, _} = Bank.transfer(account1, account2, 0)
     end
   end
 end

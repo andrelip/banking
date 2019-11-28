@@ -6,12 +6,14 @@ defmodule Banking.AccountManagement.Account do
 
   @type t :: %__MODULE__{
           public_id: String.t(),
-          status: String.t()
+          status: String.t(),
+          balance: Decimal.t()
         }
 
   schema "accounts" do
     field :public_id, Ecto.UUID
     field :status, :string
+    field :balance, :decimal
 
     timestamps()
   end

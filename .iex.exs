@@ -1,6 +1,8 @@
 alias Banking.Repo
-alias Banking.AccountManagement.User
+alias Banking.AccountManagement.Account
+alias Banking.Bank
 import Ecto.Query
 import Ecto.Changeset, only: [change: 2]
 
-user = from(u in User, order_by: [asc: u.id], preload: [:account], limit: 1) |> Repo.one()
+a1 = Repo.get(Account, 1)
+a2 = Repo.get(Account, 2)

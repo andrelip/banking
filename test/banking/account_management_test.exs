@@ -90,14 +90,33 @@ defmodule Banking.AccountManagementTest do
     assert account.status == "active"
   end
 
-  test "#validate_email" do
-    {:ok, %{account: account, user: user}} = AccountManagement.create(@valid_attrs)
-    assert account.status == "pending"
-    assert user.email == nil
-    assert user.pending_email == @valid_attrs.email
-    {:ok, %{account: account, user: user}} = AccountManagement.validate_email(user)
-    assert account.status == "active"
-    assert user.email == @valid_attrs.email
-    assert user.pending_email == nil
+  describe "#validate_email" do
+    test "should activate pending accounts" do
+      {:ok, %{account: account, user: user}} = AccountManagement.create(@valid_attrs)
+      assert account.status == "pending"
+
+      {:ok, %{account: account}} = AccountManagement.validate_email(user)
+      assert account.status == "active"
+    end
+
+    test "should not activate disabled accounts" do
+      {:ok, %{account: account, user: user}} = AccountManagement.create(@valid_attrs)
+
+      account |> change(%{status: "disabled"}) |> Repo.update!()
+      user = Repo.get(User, user.id)
+
+      {:ok, %{account: account}} = AccountManagement.validate_email(user)
+      assert account.status == "disabled"
+    end
+
+    test "should move pending_email to email" do
+      {:ok, %{user: user}} = AccountManagement.create(@valid_attrs)
+      assert user.email == nil
+      assert user.pending_email == @valid_attrs.email
+
+      {:ok, %{user: user}} = AccountManagement.validate_email(user)
+      assert user.email == @valid_attrs.email
+      assert user.pending_email == nil
+    end
   end
 end

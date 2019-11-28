@@ -5,6 +5,7 @@ defmodule Banking.AccountManagement.User do
 
   import Ecto.Changeset
   import BankingWeb.Gettext
+  import Banking.AccountManagement.UserValidation
 
   alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.EmailVerification
@@ -51,6 +52,8 @@ defmodule Banking.AccountManagement.User do
     ["cpf", "rg", "passport", "cnpj"]
   end
 
+  # The focus here is to handle the constraints
+  # Avoid duplicating validations that are already present on Registration
   def create_changeset(account, attrs) do
     # verify all constraints
     %__MODULE__{}
@@ -67,6 +70,16 @@ defmodule Banking.AccountManagement.User do
     )
     |> hash_password
     |> put_email_verification_code
+  end
+
+  # changes that are available to the end user
+  def public_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:password, :birthdate])
+    |> hash_password
+    |> validate_birthdate(18)
+    |> validate_password
+    |> hash_password
   end
 
   defp put_email_verification_code(changeset) do

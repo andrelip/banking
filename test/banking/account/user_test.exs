@@ -34,6 +34,21 @@ defmodule Banking.Account.UserTest do
     assert changeset.valid?
   end
 
+  test "#public_changeset" do
+    create_account()
+
+    changeset =
+      %User{}
+      |> User.public_changeset(%{password: @valid_user.password, birthdate: ~D[1999-01-01]})
+
+    changeset_without_password =
+      %User{}
+      |> User.public_changeset(%{birthdate: ~D[1999-01-01]})
+
+    assert changeset.valid?
+    assert changeset_without_password.valid?
+  end
+
   # Testing only constraints since the main validation happens on Registration
   describe "#create with failing constraings" do
     setup do

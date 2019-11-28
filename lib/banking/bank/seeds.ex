@@ -1,4 +1,5 @@
 defmodule Banking.Bank.Seeds do
+  @moduledoc false
   def coldstart do
     production()
 

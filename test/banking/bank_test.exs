@@ -1,14 +1,14 @@
 defmodule Banking.BankTest do
   use Banking.DataCase
 
+  alias Banking.AccountManagement.Account
   alias Banking.Bank
   alias Banking.Bank.Seeds
   alias Banking.Bank.SpecialAccounts
-  alias Banking.AccountManagement.Account
   alias Decimal, as: D
 
   setup do
-    Banking.Bank.Seeds.coldstart()
+    Seeds.coldstart()
     :ok
   end
 

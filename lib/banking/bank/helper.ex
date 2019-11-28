@@ -2,9 +2,9 @@ defmodule Banking.Bank.Helper do
   @moduledoc false
 
   import Ecto.Query
-  alias Banking.Repo
   alias Banking.AccountManagement.Account
   alias Banking.Bank.Transaction
+  alias Banking.Repo
 
   def write_transaction(source, target, amount) do
     %{source_id: source.id, target_id: target.id, amount: amount}

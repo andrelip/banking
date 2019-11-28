@@ -23,11 +23,7 @@ defmodule Banking.Bank.Helper do
       e in Postgrex.Error ->
         case e.postgres.constraint do
           "balance_should_be_positive" -> {:error, :balance_should_be_positive}
-          _ -> e
         end
-
-      e ->
-        {:error, e}
     end
   end
 end

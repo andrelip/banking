@@ -20,4 +20,6 @@ config :argon2_elixir,
   m_cost: 17,
   argon_type: 2
 
+config :banking, :environment, Mix.env()
+
 import_config "#{Mix.env()}.exs"

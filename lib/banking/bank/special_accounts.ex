@@ -9,4 +9,8 @@ defmodule Banking.Bank.SpecialAccounts do
   def cashout do
     Repo.get(Account, 2)
   end
+
+  def fees do
+    Repo.get(Account, 3)
+  end
 end

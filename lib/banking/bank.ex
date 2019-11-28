@@ -4,6 +4,7 @@ defmodule Banking.Bank do
   transactions.
   """
   alias Banking.Repo
+  alias Banking.Bank.SpecialAccounts
   import Banking.Bank.Helper, only: [write_transaction: 3, change_account_balance: 2]
 
   def transfer(source, target, amount) do
@@ -19,12 +20,12 @@ defmodule Banking.Bank do
   end
 
   def withdrawal(source, amount) do
-    transaction_changeset = write_transaction(source, source, amount)
-    subtract_from_source = fn _, _ -> change_account_balance(source, -amount) end
+    cashout_register = SpecialAccounts.cashout()
+    transfer(source, cashout_register, amount)
+  end
 
-    Ecto.Multi.new()
-    |> Ecto.Multi.insert(:bank_transaction, transaction_changeset)
-    |> Ecto.Multi.run(:subtract_from_source, subtract_from_source)
-    |> Repo.transaction()
+  def add_bonus(target, amount) do
+    bank_reserves = SpecialAccounts.bank_reserves()
+    transfer(bank_reserves, target, amount)
   end
 end

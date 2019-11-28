@@ -2,6 +2,7 @@ defmodule Banking.Bank.Transaction do
   use Ecto.Schema
   import Ecto.Changeset
   alias Banking.Repo
+  alias Ecto.UUID
 
   @required_params [:amount, :source_id, :target_id]
 
@@ -9,6 +10,7 @@ defmodule Banking.Bank.Transaction do
     field :amount, :decimal
     field :source_id, :id
     field :target_id, :id
+    field :public_id, UUID
 
     timestamps()
   end
@@ -18,5 +20,6 @@ defmodule Banking.Bank.Transaction do
     |> cast(attrs, @required_params)
     |> validate_required(@required_params)
     |> validate_number(:amount, greater_than: 0)
+    |> put_change(:public_id, UUID.generate())
   end
 end

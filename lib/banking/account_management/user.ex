@@ -60,6 +60,7 @@ defmodule Banking.AccountManagement.User do
     |> cast(attrs, @valid_attrs)
     |> put_assoc(:account, account)
     |> validate_required(@valid_attrs)
+    |> unique_constraint(:email)
     |> unique_constraint(:document_id,
       name: :users_document_type_document_id_index,
       message: gettext("document_id should be unique for each document_type")

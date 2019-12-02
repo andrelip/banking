@@ -1,9 +1,9 @@
 defmodule Banking.Bank.Seeds do
-  alias Banking.Repo
-  alias Banking.AccountManagement.Account
-
-  import Ecto.Query
   @moduledoc false
+
+  alias Banking.AccountManagement.Account
+  alias Banking.Repo
+
   def coldstart do
     production()
 

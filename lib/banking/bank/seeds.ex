@@ -1,12 +1,23 @@
 defmodule Banking.Bank.Seeds do
+  alias Banking.Repo
+  alias Banking.AccountManagement.Account
+
+  import Ecto.Query
   @moduledoc false
   def coldstart do
     production()
 
     case Application.get_env(:banking, :environment) do
-      :dev -> dev_only()
-      _ -> nil
+      :dev ->
+        dev_only()
+
+      _ ->
+        nil
     end
+
+    # Adjust the sequence position since we are hardcoding the id
+    count = Repo.aggregate(Account, :count, :id)
+    Repo.query("SELECT setval('accounts_id_seq', #{count}, true);")
   end
 
   defp production do
@@ -21,7 +32,7 @@ defmodule Banking.Bank.Seeds do
   end
 
   def create_account(id, ammount, type \\ "special") do
-    %Banking.AccountManagement.Account{
+    %Account{
       id: id,
       public_id: Ecto.UUID.generate(),
       balance: Decimal.new(ammount),

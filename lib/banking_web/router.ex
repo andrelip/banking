@@ -13,14 +13,20 @@ defmodule BankingWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :graphql do
+    plug :accepts, ["json"]
+  end
+
+  scope "/" do
+    pipe_through :graphql
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BankingWeb.GraphQL.Schema
+    forward "/graphql", Absinthe.Plug, schema: BankingWeb.GraphQL.Schema
+  end
+
   scope "/", BankingWeb do
     pipe_through :browser
 
     get "/", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", BankingWeb do
-  #   pipe_through :api
-  # end
 end

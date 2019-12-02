@@ -1,0 +1,33 @@
+mutation CreateAccount(
+  $name: String!
+  $birthdate: String!
+  $password: String!
+  $documentId: String!
+  $documentType: String!
+  $email: String!
+) {
+  createAccount(
+    name: $name
+    birthdate: $birthdate
+    password: $password
+    documentId: $documentId
+    documentType: $documentType
+    email: $email
+  ) {
+    ... on ValidationErrors {
+      __typename
+      errors {
+        field
+        message
+      }
+    }
+
+    ... on User {
+      __typename
+      name
+      email
+      pendingEmail
+      birthdate
+    }
+  }
+}

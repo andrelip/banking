@@ -50,7 +50,8 @@ defmodule Banking.MixProject do
       {:argon2_elixir, "~> 2.0"},
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
       {:absinthe, "~> 1.4"},
-      {:absinthe_plug, "~> 1.4"}
+      {:absinthe_plug, "~> 1.4"},
+      {:wormwood, "~> 0.1.0", only: [:test], runtime: false}
     ]
   end
 

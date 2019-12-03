@@ -36,6 +36,20 @@ defmodule Banking.SessionTest do
     assert session.id == Banking.Session.get(session.id) |> Map.get(:id)
   end
 
+  test "#to_jwt" do
+    user = create_user()
+    {:ok, session} = Banking.Session.create(user, "0.0.0.0")
+    {:ok, jwt, claims} = Banking.Session.to_jwt(session)
+    assert String.length(jwt) > 20
+    assert claims["sub"] == "#{session.id}"
+  end
+
+  test "#create_jwt" do
+    user = create_user()
+    {:ok, jwt, _claims} = Banking.Session.create_jwt(user, "0.0.0.0")
+    assert String.length(jwt) > 20
+  end
+
   defp create_user do
     {:ok, %{user: user}} = AccountManagement.create(struct(Registration, @valid_user))
     user

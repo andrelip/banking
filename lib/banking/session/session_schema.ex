@@ -1,4 +1,6 @@
 defmodule Banking.Session.SessionSchema do
+  @moduledoc false
+
   alias Banking.AccountManagement.User
 
   use Ecto.Schema

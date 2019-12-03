@@ -22,4 +22,9 @@ config :argon2_elixir,
 
 config :banking, :environment, Mix.env()
 
+config :banking, Banking.Session.Guardian,
+  issuer: "banking",
+  ttl: {2, :days},
+  secret_key: "/uHX/oQ4CmwgGTR0u+adav4dmj4mk+aKJ/nyNWH0P0RhJLyrAfLJtBhB2m2P7I/z"
+
 import_config "#{Mix.env()}.exs"

@@ -51,7 +51,8 @@ defmodule Banking.MixProject do
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
-      {:wormwood, "~> 0.1.0", only: [:test], runtime: false}
+      {:wormwood, "~> 0.1.0", only: [:test], runtime: false},
+      {:guardian, "~> 2.0"}
     ]
   end
 

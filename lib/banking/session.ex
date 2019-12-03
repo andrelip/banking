@@ -1,8 +1,19 @@
 defmodule Banking.Session do
-  alias Banking.Session.SessionSchema
   alias Banking.Repo
+  alias Banking.Session.Guardian
+  alias Banking.Session.SessionSchema
 
   import Ecto.Query
+
+  def create_jwt(user, ip_address, opts \\ %{}) do
+    with {:ok, session} <- create(user, ip_address, opts) do
+      to_jwt(session)
+    end
+  end
+
+  def to_jwt(session) do
+    session |> Guardian.encode_and_sign()
+  end
 
   def create(user, ip_address, opts \\ %{}) do
     changeset = SessionSchema.create_changeset(user, ip_address, opts)

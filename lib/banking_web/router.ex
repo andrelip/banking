@@ -15,6 +15,8 @@ defmodule BankingWeb.Router do
 
   pipeline :graphql do
     plug :accepts, ["json"]
+    plug BankingWeb.GraphQL.Plug.Pipeline
+    plug BankingWeb.GraphQL.Plugs.Context
   end
 
   scope "/" do

@@ -43,6 +43,18 @@ defmodule Banking.AccountManagement do
   def get_by_public_id(uuid), do: Repo.get_by(Account, %{public_id: uuid})
 
   @doc """
+  Get the account by the public available UUID
+  """
+  @spec get_by_public_id(Ecto.UUID.t()) :: Account.t() | nil
+  def get_user_by_email(email), do: Repo.get_by(User, %{email: email})
+
+  @doc """
+  Get the account by the public available UUID
+  """
+  @spec get_by_public_id(Ecto.UUID.t()) :: Account.t() | nil
+  def get_user_by_pending_email(email), do: Repo.get_by(User, %{pending_email: email})
+
+  @doc """
   Block a given account
   """
   @spec disable(Account.t()) :: Account.t()

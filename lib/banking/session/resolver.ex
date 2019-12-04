@@ -5,14 +5,14 @@ defmodule Banking.Session.Resolver do
 
   import BankingWeb.ErrorHelpers, only: [translate_error: 1]
 
-  def sign_in(data, _) do
+  def sign_in(data, %{context: %{remote_ip: remote_ip}}) do
     %{email: email, password: password} = data
 
     with {:find_user_by_email, user} when user != nil <-
            {:find_user_by_email, AccountManagement.get_user_by_email(email)},
          {:verify_password, true} <-
            {:verify_password, AccountManagement.verify_password(user, password)},
-         {:ok, jwt, _claims} <- Session.create_jwt(user, "0.0.0.0") do
+         {:ok, jwt, _claims} <- Session.create_jwt(user, remote_ip) do
       {:ok, jwt}
     else
       {:find_user_by_email, nil} -> _sign_in_with_pending_email(email)

@@ -52,7 +52,8 @@ defmodule Banking.MixProject do
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:wormwood, "~> 0.1.0", only: [:test], runtime: false},
-      {:guardian, "~> 2.0"}
+      {:guardian, "~> 2.0"},
+      {:remote_ip, "~> 0.2.0"}
     ]
   end
 

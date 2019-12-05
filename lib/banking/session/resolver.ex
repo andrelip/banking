@@ -3,8 +3,6 @@ defmodule Banking.Session.Resolver do
   alias Banking.Session
   @moduledoc false
 
-  import BankingWeb.ErrorHelpers, only: [translate_error: 1]
-
   def sign_in(data, %{context: %{remote_ip: remote_ip}}) do
     %{email: email, password: password} = data
 

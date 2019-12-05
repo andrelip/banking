@@ -15,7 +15,7 @@ defmodule Banking.Bank.Seeds do
 
         fix_sequence_id()
 
-        sample_user_with_account
+        sample_user_with_account()
 
       _ ->
         nil
@@ -36,7 +36,7 @@ defmodule Banking.Bank.Seeds do
     _sample_account2 = create_account(5, 1_000, "active")
   end
 
-  defp sample_user_with_account do
+  defp sample_user_with_account() do
     {:ok, %{user: user}} =
       %Registration{
         name: "User Test",

@@ -6,8 +6,10 @@ defmodule BankingWeb.GraphQL.Plugs.ContextTest do
   alias Banking.AccountManagement.User
   alias Banking.Session
 
+  @opts Context.init([])
+
   test "should add remote_ip to absinthe context" do
-    conn = build_conn() |> Context.call(%{})
+    conn = build_conn() |> Context.call(@opts)
 
     assert get_in(conn.private, [:absinthe, :context, :remote_ip]) == "127.0.0.1"
   end
@@ -20,7 +22,7 @@ defmodule BankingWeb.GraphQL.Plugs.ContextTest do
       build_conn()
       |> put_req_header("authorization", "Bearer #{jwt}")
       |> Pipeline.call(%{})
-      |> Context.call(%{})
+      |> Context.call(@opts)
 
     assert %User{} = get_in(conn.private, [:absinthe, :context, :current_user])
   end

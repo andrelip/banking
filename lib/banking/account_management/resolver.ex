@@ -22,7 +22,7 @@ defmodule Banking.AccountManagement.Resolver do
     {:ok, user}
   end
 
-  def me(_args, _), do: {:error, "you must be signed in"}
+  def me(_args, _), do: {:error, "you must be logged in"}
 
   defp translate(errors) do
     Enum.map(errors, fn {field, error} ->

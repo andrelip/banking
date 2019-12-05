@@ -1,7 +1,7 @@
-defmodule BankingWeb.GraphQL.CreateAccountTest do
+defmodule BankingWeb.GraphQL.Mutations.CreateAccountTest do
   use Banking.DataCase
   use Wormwood.GQLCase
-  load_gql(BankingWeb.GraphQL.Schema, "test/banking_web/graphql/create_account.gql")
+  load_gql(BankingWeb.GraphQL.Schema, "test/banking_web/graphql/gql/create_account.gql")
 
   @valid_user %{
     birthdate: "2000-01-01",

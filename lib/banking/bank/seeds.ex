@@ -37,15 +37,18 @@ defmodule Banking.Bank.Seeds do
   end
 
   defp sample_user_with_account do
-    %Registration{
-      name: "User Test",
-      email: "user@test.com",
-      password: "veRylonGAnd$Tr0ngPasSwrd",
-      birthdate: ~D[2000-01-01],
-      document_id: "000.000.000-00",
-      document_type: "cpf"
-    }
-    |> AccountManagement.create
+    {:ok, %{user: user}} =
+      %Registration{
+        name: "User Test",
+        email: "user@test.com",
+        password: "veRylonGAnd$Tr0ngPasSwrd",
+        birthdate: ~D[2000-01-01],
+        document_id: "000.000.000-00",
+        document_type: "cpf"
+      }
+      |> AccountManagement.create()
+
+    AccountManagement.validate_email(user)
   end
 
   defp fix_sequence_id do

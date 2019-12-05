@@ -1,4 +1,4 @@
-defmodule BankingWeb.GraphQL.Plug.Pipeline do
+defmodule BankingWeb.GraphQL.Plugs.Pipeline do
   use Guardian.Plug.Pipeline,
     otp_app: :banking,
     error_handler: ComboWeb.GraphQL.SessionErrorHandler,

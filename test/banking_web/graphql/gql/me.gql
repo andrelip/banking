@@ -1,0 +1,8 @@
+query {
+  me {
+    birthdate
+    email
+    name
+    pendingEmail
+  }
+}

@@ -48,7 +48,12 @@ defmodule Banking.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:timex, "~> 3.5"},
       {:argon2_elixir, "~> 2.0"},
-      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
+      {:absinthe, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
+      {:wormwood, "~> 0.1.0", only: [:test], runtime: false},
+      {:guardian, "~> 2.0"},
+      {:remote_ip, "~> 0.2.0"}
     ]
   end
 

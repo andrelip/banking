@@ -16,7 +16,7 @@ defmodule Banking.AccountManagement.Registration do
           name: String.t(),
           email: String.t(),
           password: String.t(),
-          birthdate: String.t(),
+          birthdate: Date.t(),
           document_id: String.t(),
           document_type: String.t()
         }

@@ -1,12 +1,28 @@
 defmodule Banking.Bank.Seeds do
   @moduledoc false
+
+  alias Banking.AccountManagement
+  alias Banking.AccountManagement.Account
+  alias Banking.AccountManagement.Registration
+  alias Banking.Repo
+
   def coldstart do
     production()
 
     case Application.get_env(:banking, :environment) do
-      :dev -> dev_only()
-      _ -> nil
+      :dev ->
+        dev_only()
+
+        fix_sequence_id()
+
+        sample_user_with_account()
+
+      _ ->
+        nil
     end
+
+    # Adjust the sequence position since we are hardcoding the id
+    fix_sequence_id()
   end
 
   defp production do
@@ -20,8 +36,28 @@ defmodule Banking.Bank.Seeds do
     _sample_account2 = create_account(5, 1_000, "active")
   end
 
+  defp sample_user_with_account do
+    {:ok, %{user: user}} =
+      %Registration{
+        name: "User Test",
+        email: "user@test.com",
+        password: "veRylonGAnd$Tr0ngPasSwrd",
+        birthdate: ~D[2000-01-01],
+        document_id: "000.000.000-00",
+        document_type: "cpf"
+      }
+      |> AccountManagement.create()
+
+    AccountManagement.validate_email(user)
+  end
+
+  defp fix_sequence_id do
+    count = Repo.aggregate(Account, :count, :id)
+    Repo.query("SELECT setval('accounts_id_seq', #{count}, true);")
+  end
+
   def create_account(id, ammount, type \\ "special") do
-    %Banking.AccountManagement.Account{
+    %Account{
       id: id,
       public_id: Ecto.UUID.generate(),
       balance: Decimal.new(ammount),

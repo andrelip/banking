@@ -6,7 +6,7 @@ defmodule Banking.AccountManagement.UserValidation do
 
   alias Banking.AccountManagement.User
 
-  # TODO duplicated email validation
+  # TODO should not allow second_email if a real email exists
   def validate_email(changeset, key \\ :email) do
     changeset
     |> validate_format(key, ~r/@/)
@@ -61,4 +61,6 @@ defmodule Banking.AccountManagement.UserValidation do
         changeset
     end
   end
+
+  def validate_birthdate(changeset, _), do: changeset
 end

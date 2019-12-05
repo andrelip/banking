@@ -3,6 +3,7 @@ defmodule Banking.Account.RegistrationTest do
   alias Banking.AccountManagement.Registration
   alias Banking.AccountManagement.User
 
+  # TODO refactor this overused struct
   @valid_user %{
     birthdate: ~D[2000-01-01],
     document_id: "123-456-789-91",

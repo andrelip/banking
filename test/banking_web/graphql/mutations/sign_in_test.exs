@@ -3,6 +3,7 @@ defmodule BankingWeb.GraphQL.Mutations.SignInTest do
   use Wormwood.GQLCase
 
   alias Banking.AccountManagement.Fixtures
+  alias Banking.Session.Guardian
 
   load_gql(BankingWeb.GraphQL.Schema, "test/banking_web/graphql/gql/sign_in.gql")
 
@@ -23,7 +24,7 @@ defmodule BankingWeb.GraphQL.Mutations.SignInTest do
     {:ok, data} = query_gql(variables: valid_variables, context: %{:remote_ip => "127.0.0.1"})
 
     jwt = get_in(data, [:data, "signIn"])
-    {:ok, claims} = Banking.Session.Guardian.decode_and_verify(jwt)
+    {:ok, claims} = Guardian.decode_and_verify(jwt)
     assert claims["aud"] == "banking"
   end
 

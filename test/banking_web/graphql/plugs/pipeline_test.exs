@@ -1,9 +1,10 @@
 defmodule BankingWeb.GraphQL.Plugs.PipelineTest do
   use BankingWeb.ConnCase
-  alias BankingWeb.GraphQL.Plugs.Pipeline
-  alias Banking.AccountManagement.User
+
   alias Banking.AccountManagement.Fixtures
+  alias Banking.AccountManagement.User
   alias Banking.Session
+  alias BankingWeb.GraphQL.Plugs.Pipeline
 
   test "should verify header and load resource" do
     {:ok, %{user: user}} = Fixtures.create_user_with_account(%{}, validate_email: true)

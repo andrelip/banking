@@ -13,7 +13,7 @@ defmodule Banking.AccountManagement.Fixtures do
     document_type: "cpf"
   }
 
-  def create_user_with_account() do
+  def create_user_with_account do
     create_user_with_account(%{}, [])
   end
 

@@ -1,10 +1,11 @@
 defmodule BankingWeb.GraphQL.Plugs.ContextTest do
   use BankingWeb.ConnCase
-  alias BankingWeb.GraphQL.Plugs.Context
-  alias BankingWeb.GraphQL.Plugs.Pipeline
+
   alias Banking.AccountManagement.Fixtures
   alias Banking.AccountManagement.User
   alias Banking.Session
+  alias BankingWeb.GraphQL.Plugs.Context
+  alias BankingWeb.GraphQL.Plugs.Pipeline
 
   @opts Context.init([])
 

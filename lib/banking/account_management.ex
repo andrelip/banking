@@ -45,13 +45,13 @@ defmodule Banking.AccountManagement do
   @doc """
   Get the account by the public available UUID
   """
-  @spec get_by_public_id(Ecto.UUID.t()) :: Account.t() | nil
+  @spec get_user_by_email(String.t()) :: User.t() | nil
   def get_user_by_email(email), do: Repo.get_by(User, %{email: email})
 
   @doc """
   Get the account by the public available UUID
   """
-  @spec get_by_public_id(Ecto.UUID.t()) :: Account.t() | nil
+  @spec get_user_by_pending_email(String.t()) :: User.t() | nil
   def get_user_by_pending_email(email), do: Repo.get_by(User, %{pending_email: email})
 
   @doc """

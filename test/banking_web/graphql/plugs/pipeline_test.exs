@@ -25,17 +25,6 @@ defmodule BankingWeb.GraphQL.Plugs.PipelineTest do
       |> put_req_header("authorization", "Bearer badtoken")
       |> Pipeline.call(%{})
 
-    expected_msg =
-      %{
-        "errors" => [
-          %{
-            "extensions" => %{"code" => 401, "status_code" => "invalid_token"},
-            "message" => "Session expired or invalid"
-          }
-        ]
-      }
-      |> Jason.encode!()
-
-    assert conn.resp_body == expected_msg
+    assert get_in(conn.private, [:auth_error]) == :token_is_invalid_or_expired
   end
 end

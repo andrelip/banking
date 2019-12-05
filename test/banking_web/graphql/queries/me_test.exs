@@ -26,10 +26,20 @@ defmodule BankingWeb.GraphQL.MeTest do
            }
   end
 
-  test "should sign in user with invalid attrs" do
+  test "should not return user when not authenticated" do
     {:ok, %{data: data, errors: errors}} = query_gql(context: %{:remote_ip => "127.0.0.1"})
 
     assert data == %{"me" => nil}
     assert get_in(errors, [Access.at(0), :message]) == "you must be logged in"
+  end
+
+  test "should not return user when token has expired" do
+    {:ok, %{data: data, errors: errors}} =
+      query_gql(
+        context: %{:remote_ip => "127.0.0.1", auth_error: "token is invalid or has expired"}
+      )
+
+    assert data == %{"me" => nil}
+    assert get_in(errors, [Access.at(0), :message]) == "token is invalid or has expired"
   end
 end

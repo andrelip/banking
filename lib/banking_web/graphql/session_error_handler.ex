@@ -1,23 +1,17 @@
 defmodule ComboWeb.GraphQL.SessionErrorHandler do
+  @moduledoc """
+  Behaviour for creating error handlers for Guardian.Plug.Pipeline.
+  """
+
   import Plug.Conn
 
   @behaviour Guardian.Plug.ErrorHandler
 
   @impl Guardian.Plug.ErrorHandler
+  @doc """
+  Intercepts
+  """
   def auth_error(conn, {_error_type, _reason}, _opts) do
-    response = build_error_response("Session invalid or expired", 401, :invalid_token)
-
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(401, response)
-    |> halt()
-  end
-
-  def build_error_response(message, code, status_code) do
-    extensions = %{code: code, status_code: status_code}
-    errors = [%{message: message, extensions: extensions}]
-
-    Map.put(%{}, :errors, errors)
-    |> Jason.encode!()
+    conn |> put_private(:auth_error, :token_is_invalid_or_expired)
   end
 end

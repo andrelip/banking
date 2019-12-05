@@ -22,6 +22,8 @@ defmodule Banking.AccountManagement.Resolver do
     {:ok, user}
   end
 
+  def me(_args, %{context: %{auth_error: auth_error}}), do: {:error, auth_error}
+
   def me(_args, _), do: {:error, "you must be logged in"}
 
   defp translate(errors) do

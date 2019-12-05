@@ -26,4 +26,15 @@ defmodule BankingWeb.GraphQL.Plugs.ContextTest do
 
     assert %User{} = get_in(conn.private, [:absinthe, :context, :current_user])
   end
+
+  test "should add auth_error to contextwhen bad token is provided" do
+    conn =
+      build_conn()
+      |> put_req_header("authorization", "Bearer badtoken")
+      |> Pipeline.call(%{})
+      |> Context.call(@opts)
+
+    assert get_in(conn.private, [:absinthe, :context, :auth_error]) ==
+             "token is invalid or has expired"
+  end
 end

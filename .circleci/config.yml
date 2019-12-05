@@ -23,6 +23,9 @@ jobs:
           keys:
             - v1-build-cache-{{ .Branch }}
             - v1-build-cache
+      - restore_cache:
+          keys:
+            - v1-dialyzer
       - run: mix do deps.get, deps.compile, compile --warnings-as-errors
 
       - run:
@@ -44,6 +47,9 @@ jobs:
       - save_cache:
           key: v1-build-cache
           paths: "_build"
+      - save_cache:
+          key: v1-dialyzer
+          paths: "priv/plts"
 
       - run:
           name: Wait for DB

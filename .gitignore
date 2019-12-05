@@ -34,3 +34,6 @@ npm-debug.log
 /priv/static/
 .elixir_ls/
 cover/excoveralls.html
+
+/priv/plts/*.plt
+/priv/plts/*.plt.hash

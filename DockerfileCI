@@ -1,0 +1,14 @@
+FROM alpine:3.10
+
+RUN apk add --update --no-cache bash openssl curl
+
+WORKDIR /banking
+
+COPY _build/prod/rel/banking ./
+
+RUN chown -R nobody: /banking
+USER nobody
+
+ENV HOME=/banking
+
+CMD ["bin/banking", "start"]

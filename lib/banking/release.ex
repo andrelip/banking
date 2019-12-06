@@ -1,5 +1,5 @@
 defmodule Banking.Release do
-  @docmodule false
+  @moduledoc false
 
   @app :banking
 

@@ -1,6 +1,57 @@
 version: 2
 jobs:
-  build:
+  build_release:
+    docker:
+      - image: elixir:1.9.4-alpine
+        environment:
+          MIX_ENV: prod
+    working_directory: /banking
+    steps:
+      - checkout
+      - run: apk add --update alpine-sdk
+      - run: mix local.hex --force
+      - run: mix local.rebar --force
+
+      - restore_cache: &deps_cache
+          keys:
+            - &deps_key v1-prod-deps-cache-{{ checksum "mix.lock" }}
+      - restore_cache: &build_cache
+          keys:
+            - &build_key v2-prod-build-cache-{{ .Branch }}
+      - run: mix do deps.get --only prod, deps.compile, compile
+      - save_cache:
+          key: *deps_key
+          paths: deps
+      - save_cache:
+          key: *build_key
+          paths: _build
+      - run: mix release
+      - save_cache: &release_cache
+          key: v1-prod-compile-cache-{{ .Revision }}
+          paths: /banking/_build/prod/rel
+
+  build_image:
+    docker:
+      - image: docker:18.06.0-ce
+    working_directory: /banking
+    steps:
+      - checkout
+      - restore_cache: *release_cache
+
+      - run: ls
+      - run: pwd
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - run:
+          name: Build and publish Docker image
+          command: |
+            docker build --tag andrelip/banking:$CIRCLE_SHA1 --file DockerfileCI .
+            docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
+            docker push andrelip/banking:$CIRCLE_SHA1
+            docker tag andrelip/banking:$CIRCLE_SHA1 andrelip/banking:latest
+            docker push andrelip/banking:latest
+
+  test:
     docker:
       - image: circleci/elixir:1.9.4
         environment:
@@ -67,3 +118,13 @@ jobs:
       - run:
           name: check test coverage
           command: mix coveralls && mix coveralls.post -t $COVERALLS_REPO_TOKEN  -b ${CIRCLE_BRANCH} -m "`git log -1 --pretty=%B`" -n circleci -c "`git log -1 --pretty=format:'%an'` -sha `git rev-parse HEAD`"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_release
+      - build_image:
+          requires:
+            - build_release
+      - test

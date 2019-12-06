@@ -6,7 +6,8 @@
     "lib/banking_web.ex",
     "lib/banking_web/router.ex",
     "lib/banking_web/gettext.ex",
-    "lib/banking/bank/seeds.ex"
+    "lib/banking/bank/seeds.ex",
+    "lib/banking/release.ex"
   ],
   "coverage_options": {
     "treat_no_relevant_lines_as_covered": true,

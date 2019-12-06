@@ -89,4 +89,11 @@ defmodule Banking.AccountManagement do
   def verify_password(user, password) do
     Password.verify_password(password, user.password_hash)
   end
+
+  @doc """
+  Get account of a given User
+  """
+  def account_from_user(user) do
+    user |> Repo.preload([:account]) |> Map.get(:account)
+  end
 end

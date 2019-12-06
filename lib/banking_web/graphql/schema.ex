@@ -3,6 +3,7 @@ defmodule BankingWeb.GraphQL.Schema do
 
   use Absinthe.Schema
   alias Banking.AccountManagement.Resolver, as: AccountsManagementResolver
+  alias Banking.Bank.Resolver, as: BankResolver
   alias Banking.Session.Resolver, as: SessionResolver
 
   import_types(Absinthe.Type.Custom)
@@ -29,6 +30,19 @@ defmodule BankingWeb.GraphQL.Schema do
       arg(:document_type, :string)
 
       resolve(&AccountsManagementResolver.register/2)
+    end
+
+    field :transfer, :boolean do
+      arg(:target_account_public_id, :string)
+      arg(:amount, :integer)
+
+      resolve(&BankResolver.transfer/2)
+    end
+
+    field :withdrawal, :boolean do
+      arg(:amount, :integer)
+
+      resolve(&BankResolver.withdrawal/2)
     end
 
     field :sign_in, :string do

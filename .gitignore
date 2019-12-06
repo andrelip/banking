@@ -37,3 +37,5 @@ cover/excoveralls.html
 
 /priv/plts/*.plt
 /priv/plts/*.plt.hash
+/priv/keys/
+/tmp/

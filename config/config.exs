@@ -27,4 +27,8 @@ config :banking, Banking.Session.Guardian,
   ttl: {2, :days},
   secret_key: "/uHX/oQ4CmwgGTR0u+adav4dmj4mk+aKJ/nyNWH0P0RhJLyrAfLJtBhB2m2P7I/z"
 
+config :banking, Banking.Mailer,
+  support_email: "support@test.com.br",
+  adapter: Bamboo.LocalAdapter
+
 import_config "#{Mix.env()}.exs"

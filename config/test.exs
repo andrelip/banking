@@ -16,3 +16,7 @@ config :logger, level: :warn
 config :argon2_elixir,
   t_cost: 1,
   m_cost: 8
+
+config :banking, Banking.Mailer,
+  support_email: "support@test.com.br",
+  adapter: Bamboo.TestAdapter

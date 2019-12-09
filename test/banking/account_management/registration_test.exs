@@ -1,4 +1,4 @@
-defmodule Banking.Account.RegistrationTest do
+defmodule Banking.AccountManagement.RegistrationTest do
   use Banking.DataCase
   alias Banking.AccountManagement.Registration
   alias Banking.AccountManagement.User

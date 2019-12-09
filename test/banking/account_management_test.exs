@@ -70,10 +70,17 @@ defmodule Banking.AccountManagementTest do
     assert AccountManagement.get_by_public_id(Ecto.UUID.generate()) == nil
   end
 
-  test "#disable" do
-    {:ok, %{account: account, user: _}} = AccountManagement.create(@valid_attrs)
-    account = AccountManagement.disable(account)
-    assert account.status == "inactive"
+  test "#users_with_pending_email?" do
+    {:ok, _} = AccountManagement.create(@valid_attrs)
+    {:ok, %{user: user}} = AccountManagement.create(%{@valid_attrs | document_id: "new12345"})
+    assert true = AccountManagement.users_with_pending_email?(user.pending_email)
+  end
+
+  test "#get_user_by_pending_email_code" do
+    {:ok, %{user: user}} = AccountManagement.create(@valid_attrs)
+
+    assert %User{} =
+             AccountManagement.get_user_by_pending_email_code(user.email_verification_code)
   end
 
   test "#enable" do
@@ -117,6 +124,7 @@ defmodule Banking.AccountManagementTest do
       {:ok, %{user: user}} = AccountManagement.validate_email(user)
       assert user.email == @valid_attrs.email
       assert user.pending_email == nil
+      assert user.email_verification_code == nil
     end
   end
 end

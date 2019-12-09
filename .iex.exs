@@ -6,5 +6,4 @@ alias Banking.Bank.Transaction
 import Ecto.Query
 import Ecto.Changeset, only: [change: 2]
 
-a1 = Repo.get(Account, 4)
-a2 = Repo.get(Account, 5)
+u1 = Repo.get(User, 1) |> Repo.preload([:account])

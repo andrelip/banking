@@ -51,3 +51,20 @@ config :banking, BankingWeb.Endpoint,
     cacertfile: System.get_env("BANKING_INTERMEDIATE_CERTFILE_PATH"),
     compress: true
   ]
+
+sender_email =
+  System.get_env("BANKING_SUPPORT_EMAIL") ||
+    raise """
+    Specify the support sender key with the env BANKING_SUPPORT_EMAIL
+    """
+
+send_api_key =
+  System.get_env("SENDGRID_API_KEY") ||
+    raise """
+    Specify the sendgrid API KEY or edit releases.exs to fit your needs
+    """
+
+config :banking, Banking.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  support_email: sender_email,
+  api_key: send_api_key

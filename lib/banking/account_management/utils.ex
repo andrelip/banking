@@ -10,4 +10,12 @@ defmodule Banking.Utils do
       end)
     end)
   end
+
+  @spec inline_errors(Ecto.Changeset.t()) :: String.t()
+  def inline_errors(changeset) do
+    changeset
+    |> translate_errors
+    |> Enum.map(fn {field, msg} -> "#{String.capitalize(Atom.to_string(field))} #{msg}" end)
+    |> Enum.join("/n")
+  end
 end

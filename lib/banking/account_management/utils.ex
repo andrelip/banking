@@ -10,4 +10,11 @@ defmodule Banking.Utils do
       end)
     end)
   end
+
+  def inline_errors(changeset) do
+    changeset
+    |> translate_errors
+    |> Enum.map(fn {field, msg} -> "#{String.capitalize(Atom.to_string(field))} #{msg}" end)
+    |> Enum.join("/n")
+  end
 end

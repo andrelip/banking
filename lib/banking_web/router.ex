@@ -30,5 +30,6 @@ defmodule BankingWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/verify_email/:code", EmailVerificationController, :update
   end
 end

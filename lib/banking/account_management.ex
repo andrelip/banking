@@ -11,6 +11,7 @@ defmodule Banking.AccountManagement do
   alias Banking.Repo
 
   import Ecto.Changeset, only: [change: 2]
+  import Ecto.Query
 
   @doc """
   Register a user with the following fields:
@@ -49,10 +50,24 @@ defmodule Banking.AccountManagement do
   def get_user_by_email(email), do: Repo.get_by(User, %{email: email})
 
   @doc """
-  Get the account by the public available UUID
+  Get the account by the pending email field
   """
-  @spec get_user_by_pending_email(String.t()) :: User.t() | nil
-  def get_user_by_pending_email(email), do: Repo.get_by(User, %{pending_email: email})
+  @spec users_with_pending_email?(String.t()) :: User.t() | nil
+  def users_with_pending_email?(email) do
+    count = from(u in User, where: u.pending_email == ^email, select: count(u.id)) |> Repo.one()
+
+    case count do
+      0 -> false
+      _ -> true
+    end
+  end
+
+  @doc """
+  Get the account by the pending email verification code
+  """
+  @spec get_user_by_pending_email_code(String.t()) :: User.t() | nil
+  def get_user_by_pending_email_code(email),
+    do: Repo.get_by(User, %{email_verification_code: email})
 
   @doc """
   Block a given account

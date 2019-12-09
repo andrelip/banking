@@ -1,8 +1,9 @@
 defmodule Banking.AccountManagement.EmailConfirmationTest do
   use Banking.DataCase
+
   alias Banking.AccountManagement.Emails.VerifyEmail
-  alias Banking.AccountManagement.User
   alias Banking.AccountManagement.Fixtures
+  alias Banking.AccountManagement.User
 
   test "should format email properly if user has pending_email" do
     {:ok, %{user: user}} = Fixtures.create_user_with_account()

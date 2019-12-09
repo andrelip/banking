@@ -1,4 +1,8 @@
 defmodule Banking.AccountManagement.Emails.VerifyEmail do
+  @moduledoc """
+  Builder for email confirmation
+  """
+
   import Bamboo.Email
   alias Banking.AccountManagement.User
 

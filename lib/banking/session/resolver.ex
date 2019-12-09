@@ -19,9 +19,9 @@ defmodule Banking.Session.Resolver do
   end
 
   defp _sign_in_with_pending_email(email) do
-    case AccountManagement.get_user_by_pending_email(email) do
-      nil -> {:error, "user not found with this email"}
-      _user -> {:error, "you need to validate this email"}
+    case AccountManagement.users_with_pending_email?(email) do
+      false -> {:error, "user not found with this email"}
+      true -> {:error, "you need to validate this email"}
     end
   end
 end

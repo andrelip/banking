@@ -1,0 +1,31 @@
+version: "2"
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: andrelip/banking
+  release:
+    ports:
+      - 80:4000
+      - 443:4001
+    environment:
+      - PG_USERNAME=postgres
+      - PG_PASSWORD=postgres
+      - PG_HOSTNAME=postgres
+      - PG_DATABASE=banking_prod
+      - SECRET_KEY_BASE=1U2WsfOcA5jpOx3jl3mWgxkjjV2azjD6XotW4+q2VLzartZBNjWzmVWBLJ44vUZS
+      - GUARDIAN_SECRET_KEY=8CRTQ+dRagxfZhQ2IfrlyDxZ/5QGpCyZT97To9/FNArSPtDrqDgyzQzmZYuVuTJl
+    image: andrelip/banking:latest
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:10
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+
+volumes:
+  db-data:

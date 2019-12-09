@@ -3,6 +3,7 @@ defmodule Banking.AccountManagement.Fixtures do
 
   alias Banking.AccountManagement
   alias Banking.AccountManagement.Registration
+  alias Banking.Bank
 
   @valid_attrs %Registration{
     name: "User Test",
@@ -28,6 +29,14 @@ defmodule Banking.AccountManagement.Fixtures do
 
       _ ->
         nil
+    end
+
+    case opts[:add_balance] do
+      nil ->
+        nil
+
+      add_balance ->
+        account |> Bank.add_bonus(add_balance)
     end
 
     {:ok, %{user: user, account: account}}

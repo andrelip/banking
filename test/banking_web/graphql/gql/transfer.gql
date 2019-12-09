@@ -1,0 +1,3 @@
+mutation Transfer($amount: Int!, $targetAccountPublicId: String!) {
+  transfer(amount: $amount, targetAccountPublicId: $targetAccountPublicId)
+}

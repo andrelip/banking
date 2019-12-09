@@ -4,6 +4,7 @@ defmodule Banking.Bank.Seeds do
   alias Banking.AccountManagement
   alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.Registration
+  alias Banking.Bank
   alias Banking.Repo
 
   def coldstart do
@@ -37,7 +38,7 @@ defmodule Banking.Bank.Seeds do
   end
 
   defp sample_user_with_account do
-    {:ok, %{user: user}} =
+    {:ok, %{user: user, account: account}} =
       %Registration{
         name: "User Test",
         email: "user@test.com",
@@ -49,6 +50,7 @@ defmodule Banking.Bank.Seeds do
       |> AccountManagement.create()
 
     AccountManagement.validate_email(user)
+    Bank.add_bonus(account, 1000)
   end
 
   defp fix_sequence_id do

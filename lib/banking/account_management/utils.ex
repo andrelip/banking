@@ -11,6 +11,7 @@ defmodule Banking.Utils do
     end)
   end
 
+  @spec inline_errors(Ecto.Changeset.t()) :: String.t()
   def inline_errors(changeset) do
     changeset
     |> translate_errors

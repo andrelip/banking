@@ -52,7 +52,7 @@ defmodule Banking.AccountManagement do
   @doc """
   Get the account by the pending email field
   """
-  @spec users_with_pending_email?(String.t()) :: User.t() | nil
+  @spec users_with_pending_email?(String.t()) :: boolean
   def users_with_pending_email?(email) do
     count = from(u in User, where: u.pending_email == ^email, select: count(u.id)) |> Repo.one()
 
@@ -92,7 +92,7 @@ defmodule Banking.AccountManagement do
   will be activated.
   """
   @spec validate_email(User.t()) ::
-          {:ok, %{account: Account.t(), user: User.t()}} | {:error, <<_::152>>}
+          {:ok, %{account: Account.t(), user: User.t()}} | {:error, Ecto.Changeset.t()}
   def validate_email(user) do
     EmailVerification.validate_email(user)
   end

@@ -2,13 +2,16 @@ defmodule BankingWeb.EmailVerificationController do
   use BankingWeb, :controller
   alias Banking.AccountManagement
   alias Banking.AccountManagement.User
+  alias Banking.Bonus
   alias Banking.Utils
 
   def update(conn, %{"code" => code}) do
     with {:get_user, %User{} = user} <-
            {:get_user, AccountManagement.get_user_by_pending_email_code(code)},
-         {:validate_user, {:ok, _}} <- {:validate_user, AccountManagement.validate_email(user)} do
+         {:validate_user, {:ok, %{account: account}}} <-
+           {:validate_user, AccountManagement.validate_email(user)} do
       # TODO placeholder to a proper flow
+      Bonus.maybe_do_first_access_bonus(account)
       conn |> text(gettext("Email has been validated!"))
     else
       {:get_user, nil} ->

@@ -4,6 +4,8 @@ defmodule Banking.AccountManagement.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Banking.AccountManagement.User
+
   @type t :: %__MODULE__{
           public_id: String.t(),
           status: String.t(),
@@ -14,6 +16,7 @@ defmodule Banking.AccountManagement.Account do
     field :public_id, Ecto.UUID
     field :status, :string
     field :balance, :decimal
+    has_one :user, User
 
     timestamps()
   end
@@ -23,6 +26,7 @@ defmodule Banking.AccountManagement.Account do
     |> change(%{})
     |> put_public_id
     |> put_default_status
+    |> put_change(:balance, 0)
   end
 
   defp put_public_id(changeset) do

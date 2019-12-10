@@ -34,9 +34,7 @@ defmodule Banking.BankTest do
 
     test "should be greater than 0" do
       account = Seeds.create_account(4, 0)
-      {:error, :bank_transaction, changeset, _} = Bank.add_bonus(account, 0)
-
-      assert changeset.errors[:amount]
+      assert {:error, :amount_is_zero} = Bank.add_bonus(account, 0)
     end
   end
 
@@ -58,15 +56,13 @@ defmodule Banking.BankTest do
       SpecialAccounts.cashout()
       account = Seeds.create_account(4, 1000)
 
-      {:error, :bank_transaction, changeset, _} = Bank.withdrawal(account, 0)
-      assert changeset.errors[:amount]
+      assert {:error, :amount_is_zero} = Bank.withdrawal(account, 0)
     end
 
     test "balance should never be negative" do
       account = Seeds.create_account(4, 1000)
 
-      assert {:error, :reduce_from_source, :balance_should_be_positive, _} =
-               Bank.withdrawal(account, 1001)
+      assert {:error, :source_has_no_funds} = Bank.withdrawal(account, 1001)
     end
   end
 
@@ -88,15 +84,14 @@ defmodule Banking.BankTest do
       account1 = Seeds.create_account(4, 1000)
       account2 = Seeds.create_account(5, 1000)
 
-      {:error, :reduce_from_source, :balance_should_be_positive, _} =
-        Bank.transfer(account1, account2, 1001)
+      assert {:error, :source_has_no_funds} = Bank.transfer(account1, account2, 1001)
     end
 
     test "amount should be greater than 0" do
       account1 = Seeds.create_account(4, 1000)
       account2 = Seeds.create_account(5, 1000)
 
-      {:error, :bank_transaction, _changeset, _} = Bank.transfer(account1, account2, 0)
+      {:error, :amount_is_zero} = Bank.transfer(account1, account2, 0)
     end
   end
 end

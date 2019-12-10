@@ -5,7 +5,6 @@ defmodule Banking.Bank.Resolver do
 
   alias Banking.AccountManagement
   alias Banking.Bank
-  alias Banking.Utils
 
   def transfer(data, %{context: %{current_user: user}}) do
     user_account = AccountManagement.account_from_user(user)
@@ -42,16 +41,11 @@ defmodule Banking.Bank.Resolver do
       {:ok, _} ->
         {:ok, true}
 
-      {:error, :reduce_from_source, :balance_should_be_positive, _} ->
+      {:error, :source_has_no_funds} ->
         {:error, gettext("source account do not have enough funds")}
 
-      {:error, :bank_transaction, changeset, _} ->
-        error_msg =
-          Utils.translate_errors(changeset)
-          |> Enum.map(fn {k, v} -> "#{k} #{List.first(v)}" end)
-          |> Enum.join("/n")
-
-        {:error, error_msg}
+      {:error, :amount_is_zero} ->
+        {:error, "amount must be greater than 0"}
     end
   end
 end

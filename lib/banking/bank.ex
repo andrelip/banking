@@ -37,6 +37,18 @@ defmodule Banking.Bank do
     |> Ecto.Multi.run(:reduce_from_source, reduce_from_source)
     |> Ecto.Multi.run(:increment_target, increment_target)
     |> Repo.transaction()
+    |> _transfer
+  end
+
+  defp _transfer({:ok, data}), do: {:ok, data}
+
+  defp _transfer({:error, :reduce_from_source, :balance_should_be_positive, _}),
+    do: {:error, :source_has_no_funds}
+
+  defp _transfer({:error, :bank_transaction, _, _}) do
+    # hardcoded because it's the only point of failure in the changeset.
+    # might need update if validation changes
+    {:error, :amount_is_zero}
   end
 
   @doc """

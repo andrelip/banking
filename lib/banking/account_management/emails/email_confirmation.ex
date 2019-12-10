@@ -4,20 +4,29 @@ defmodule Banking.AccountManagement.Emails.VerifyEmail do
   """
 
   import Bamboo.Email
+  import BankingWeb.Gettext
+
   alias Banking.AccountManagement.User
 
   def email_confirmation(%User{pending_email: nil}, _), do: {:error, :no_email_to_validate}
 
   def email_confirmation(%User{} = user, url) do
+    subject = gettext("Welcome to our banking app! Please verify your account.")
+    please_verify_your_email = gettext("Please verify your email")
+    please_verify_your_email_txt = "Please visit the following link to confirm your email:"
+    thanks_for_joining = gettext("Thanks for joining!")
+    clicking_here = gettext("clicking here")
+
     email =
       [
         to: user.pending_email,
         from: Application.get_env(:banking, Banking.Mailer)[:support_email],
-        subject: "Welcome to our banking app! Please verify your account.",
+        subject: subject,
         html_body:
-          "<strong>Thanks for joining!</strong><p>Please verify your email <a href=\"#{url}\"> clicking here</a>",
-        text_body:
-          "Thanks for joining! Please visit the following link to confirm your email: #{url}"
+          "<strong>#{thanks_for_joining}</strong><p>#{please_verify_your_email} <a href=\"#{url}\"> #{
+            clicking_here
+          }</a>",
+        text_body: "#{thanks_for_joining} #{please_verify_your_email_txt} #{url}"
       ]
       |> new_email()
 

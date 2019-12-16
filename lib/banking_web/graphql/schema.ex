@@ -6,17 +6,28 @@ defmodule BankingWeb.GraphQL.Schema do
   alias Banking.Bank.Resolver, as: BankResolver
   alias Banking.Session.Resolver, as: SessionResolver
 
+  # TODO temporary to prevent timing attack while hardcoding security key.
+  alias Banking.Admin
+
   import_types(Absinthe.Type.Custom)
   import_types(Banking.GraphQL.CommonTypes)
   import_types(Banking.GraphQL.SignUpTypes)
+  import_types(Banking.GraphQL.BankKPITypes)
 
   query do
-    field :example, :string do
-      resolve(fn _, _ -> {:ok, "query placeholder"} end)
-    end
-
     field :me, :user do
       resolve(&AccountsManagementResolver.me/2)
+    end
+
+    field :transactions_kpi, :bank_kpi do
+      arg(:key, non_null(:string))
+
+      resolve(fn %{key: key}, _ ->
+        case Admin.verify_admin_key(key) do
+          true -> {:ok, %{}}
+          false -> {:error, "wrong key"}
+        end
+      end)
     end
   end
 

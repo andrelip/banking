@@ -52,7 +52,7 @@ defmodule Banking.Bank.KPI.AmountVolume do
   The sum of amount from all transactions created in the past n days
   """
   def past_days(days) do
-    min_date = Timex.now() |> Timex.shift(days: -1 * days)
+    min_date = Timex.now() |> Timex.shift(days: -1 * days) |> Timex.beginning_of_day()
     sum_of_amount(min_date: min_date)
   end
 

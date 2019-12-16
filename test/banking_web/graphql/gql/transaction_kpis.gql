@@ -1,0 +1,11 @@
+query TransactionsKpi($key: String!) {
+  transactionsKpi(key: $key) {
+    sumTotal
+    sumCurrentYear
+    sumCurrentMonth
+    sumPreviousYear
+    sumPreviousMonth
+    pastDays1: sumPastDays(days: 1)
+    pastDays1000: sumPastDays(days: 1000)
+  }
+}

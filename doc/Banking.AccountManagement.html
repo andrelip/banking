@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.21.2">
+    <meta name="project" content="banking v0.1.0">
+    <title>Banking.AccountManagement — banking v0.1.0</title>
+    <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
+    <script src="dist/sidebar_items-c10a134d9d.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/html-de2388dc2f8074b0a4db.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+banking      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">banking v0.1.0</small>
+Banking.AccountManagement      </h1>
+
+
+        <section id="moduledoc">
+<p>Works as a public API to handle all the operations regarding user registration
+and account administration.</p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create/1">create(registration)</a>
+  </div>
+    <div class="summary-synopsis"><p>Register a user with the following fields</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#disable/1">disable(account)</a>
+  </div>
+    <div class="summary-synopsis"><p>Block a given account</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#enable/1">enable(account)</a>
+  </div>
+    <div class="summary-synopsis"><p>Enable a given account</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/1">get(account_id)</a>
+  </div>
+    <div class="summary-synopsis"><p>Get an account by his id.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_by_public_id/1">get_by_public_id(uuid)</a>
+  </div>
+    <div class="summary-synopsis"><p>Get the account by the public available UUID</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate_email/1">validate_email(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Validate the email by moving <code class="inline">pending_email</code> to the main <code class="inline">email</code> field.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify_password/2">verify_password(user, password)</a>
+  </div>
+    <div class="summary-synopsis"><p>Verifies the hashed password from the user against the raw password</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="create/1">
+  <div class="detail-header">
+    <a href="#create/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create(registration)</h1>
+      <div class="specs">
+          <pre>create(Banking.AccountManagement.Registration.t()) ::
+  {:ok,
+   %{
+     account: Banking.AccountManagement.Account.t(),
+     user: Banking.AccountManagement.User.t()
+   }}
+  | {:error, <a href="https://hexdocs.pm/ecto/3.2.5/Ecto.Changeset.html#t:t/1">Ecto.Changeset.t</a>(Banking.AccountManagement.Registration.t())}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Register a user with the following fields:</p>
+<ul>
+<li><code class="inline">name</code> - The FULL NAME of the user.
+</li>
+<li><code class="inline">email</code>
+</li>
+<li><code class="inline">password</code> - Must have length between 8 and 128 characters, contains a
+number, an upper-case, a lower-case and a symbol
+</li>
+<li><code class="inline">birthday</code>
+</li>
+<li><code class="inline">document_id</code> with <code class="inline">document_type</code> - The document if for the given type
+that could be of the following: <code class="inline">cpf</code>, <code class="inline">rg</code>, <code class="inline">passport</code> or <code class="inline">cnpj</code>.
+</li>
+</ul>
+  </section>
+</section>
+<section class="detail" id="disable/1">
+  <div class="detail-header">
+    <a href="#disable/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">disable(account)</h1>
+      <div class="specs">
+          <pre>disable(Banking.AccountManagement.Account.t()) ::
+  Banking.AccountManagement.Account.t()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Block a given account</p>
+  </section>
+</section>
+<section class="detail" id="enable/1">
+  <div class="detail-header">
+    <a href="#enable/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">enable(account)</h1>
+      <div class="specs">
+          <pre>enable(Banking.AccountManagement.Account.t()) ::
+  Banking.AccountManagement.Account.t()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Enable a given account</p>
+  </section>
+</section>
+<section class="detail" id="get/1">
+  <div class="detail-header">
+    <a href="#get/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get(account_id)</h1>
+      <div class="specs">
+          <pre>get(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: Banking.AccountManagement.Account.t() | nil</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Get an account by his id.</p>
+  </section>
+</section>
+<section class="detail" id="get_by_public_id/1">
+  <div class="detail-header">
+    <a href="#get_by_public_id/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_by_public_id(uuid)</h1>
+      <div class="specs">
+          <pre>get_by_public_id(<a href="https://hexdocs.pm/ecto/3.2.5/Ecto.UUID.html#t:t/0">Ecto.UUID.t</a>()) :: Banking.AccountManagement.Account.t() | nil</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Get the account by the public available UUID</p>
+  </section>
+</section>
+<section class="detail" id="validate_email/1">
+  <div class="detail-header">
+    <a href="#validate_email/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">validate_email(user)</h1>
+      <div class="specs">
+          <pre>validate_email(Banking.AccountManagement.User.t()) ::
+  {:ok,
+   %{
+     account: Banking.AccountManagement.Account.t(),
+     user: Banking.AccountManagement.User.t()
+   }}
+  | {:error, <<_::152>>}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Validate the email by moving <code class="inline">pending_email</code> to the main <code class="inline">email</code> field.</p>
+<p>If the user has a pending confirmation account associated then this account
+will be activated.</p>
+  </section>
+</section>
+<section class="detail" id="verify_password/2">
+  <div class="detail-header">
+    <a href="#verify_password/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify_password(user, password)</h1>
+      <div class="specs">
+          <pre>verify_password(Banking.AccountManagement.User.t(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: true | false</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Verifies the hashed password from the user against the raw password</p>
+  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.21.2),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.21.2">
+    <meta name="project" content="banking v0.1.0">
+    <title>Banking.Bank — banking v0.1.0</title>
+    <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
+    <script src="dist/sidebar_items-c10a134d9d.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/html-de2388dc2f8074b0a4db.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+banking      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">banking v0.1.0</small>
+Banking.Bank      </h1>
+
+
+        <section id="moduledoc">
+<p>Processes all the financial operations and make an immutable register them as
+transactions.</p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_bonus/2">add_bonus(target, amount)</a>
+  </div>
+    <div class="summary-synopsis"><p>Add funds to a given account</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#transfer/3">transfer(source, target, amount)</a>
+  </div>
+    <div class="summary-synopsis"><p>Transfer money from the source account to the target.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#withdrawal/2">withdrawal(source, amount)</a>
+  </div>
+    <div class="summary-synopsis"><p>Withdrawal money from a given account</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="add_bonus/2">
+  <div class="detail-header">
+    <a href="#add_bonus/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_bonus(target, amount)</h1>
+  </div>
+  <section class="docstring">
+<p>Add funds to a given account</p>
+<p>Example:</p>
+<p>iex&gt; Bank.withdrawal(account, 10)
+{:ok,
+  %{</p>
+<pre><code class="nohighlight makeup elixir"><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p">%</span><span class="nc">Banking.Bank.Transaction</span><span class="err">{</span><span class="w">
+</span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3889828210-1">#</span><span class="nc" data-group-id="3889828210-1">Ecto.Schema.Metadata</span><span class="p" data-group-id="3889828210-1">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="3889828210-1">&gt;</span><span class="p">,</span><span class="w">
+</span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3889828210-2">#</span><span class="nc" data-group-id="3889828210-2">Decimal</span><span class="p" data-group-id="3889828210-2">&lt;</span><span class="mi">1000</span><span class="p" data-group-id="3889828210-2">&gt;</span><span class="p">,</span><span class="w">
+</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+</span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:40:42]</span><span class="p">,</span><span class="w">
+</span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9086a2b5-7f21-494b-9d83-28c2a10d0432&quot;</span><span class="p">,</span><span class="w">
+</span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+</span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:40:42]</span></code></pre>
+<p>  }}</p>
+  </section>
+</section>
+<section class="detail" id="transfer/3">
+  <div class="detail-header">
+    <a href="#transfer/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">transfer(source, target, amount)</h1>
+  </div>
+  <section class="docstring">
+<p>Transfer money from the source account to the target.</p>
+<p>Example:</p>
+<p>iex&gt; Bank.transfer(source_account, target_account, 100)
+{:ok,
+  %{</p>
+<pre><code class="nohighlight makeup elixir"><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3440795649-1">%</span><span class="nc" data-group-id="3440795649-1">Banking.Bank.Transaction</span><span class="p" data-group-id="3440795649-1">{</span><span class="w">
+  </span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3440795649-2">#</span><span class="nc" data-group-id="3440795649-2">Ecto.Schema.Metadata</span><span class="p" data-group-id="3440795649-2">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="3440795649-2">&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3440795649-3">#</span><span class="nc" data-group-id="3440795649-3">Decimal</span><span class="p" data-group-id="3440795649-3">&lt;</span><span class="mi">100</span><span class="p" data-group-id="3440795649-3">&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:36:24]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;54469e74-79da-468c-aafc-6a0bbfb4af8e&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:36:24]</span><span class="w">
+</span><span class="p" data-group-id="3440795649-1">}</span><span class="err">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="withdrawal/2">
+  <div class="detail-header">
+    <a href="#withdrawal/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">withdrawal(source, amount)</h1>
+  </div>
+  <section class="docstring">
+<p>Withdrawal money from a given account</p>
+<p>Example:</p>
+<p>iex&gt; Bank.withdrawal(account, 10)
+{:ok,
+  %{</p>
+<pre><code class="nohighlight makeup elixir"><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p">%</span><span class="nc">Banking.Bank.Transaction</span><span class="err">{</span><span class="w">
+</span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6288807440-1">#</span><span class="nc" data-group-id="6288807440-1">Ecto.Schema.Metadata</span><span class="p" data-group-id="6288807440-1">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="6288807440-1">&gt;</span><span class="p">,</span><span class="w">
+</span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6288807440-2">#</span><span class="nc" data-group-id="6288807440-2">Decimal</span><span class="p" data-group-id="6288807440-2">&lt;</span><span class="mi">10</span><span class="p" data-group-id="6288807440-2">&gt;</span><span class="p">,</span><span class="w">
+</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:37:54]</span><span class="p">,</span><span class="w">
+</span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c5f3e493-11c4-4703-82c7-c001f7294619&quot;</span><span class="p">,</span><span class="w">
+</span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+</span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:37:54]</span></code></pre>
+<p>  }}</p>
+  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.21.2),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

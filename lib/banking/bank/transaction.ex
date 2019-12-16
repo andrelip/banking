@@ -6,6 +6,7 @@ defmodule Banking.Bank.Transaction do
   alias Ecto.UUID
 
   @required_params [:amount, :source_id, :target_id]
+  @timestamps_opts [type: :utc_datetime_usec]
 
   schema "bank_transactions" do
     field :amount, :decimal

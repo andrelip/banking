@@ -14,7 +14,7 @@ jobs:
 
       - restore_cache: &deps_cache
           keys:
-            - &deps_key v1-prod-deps-cache-{{ checksum "mix.lock" }}
+            - &deps_key v2-prod-deps-cache-{{ checksum "mix.lock" }}
       - restore_cache: &build_cache
           keys:
             - &build_key v2-prod-build-cache-{{ .Branch }}
@@ -27,7 +27,7 @@ jobs:
           paths: _build
       - run: mix release
       - save_cache: &release_cache
-          key: v1-prod-compile-cache-{{ .Revision }}
+          key: v2-prod-compile-cache-{{ .Revision }}
           paths: /banking/_build/prod/rel
 
   build_image:
@@ -67,16 +67,16 @@ jobs:
       - run: mix local.rebar --force
       - restore_cache:
           keys:
-            - v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
-            - v1-mix-cache-{{ .Branch }}
-            - v1-mix-cache
+            - v2-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+            - v2-mix-cache-{{ .Branch }}
+            - v2-mix-cache
       - restore_cache:
           keys:
-            - v1-build-cache-{{ .Branch }}
-            - v1-build-cache
+            - v2-build-cache-{{ .Branch }}
+            - v2-build-cache
       - restore_cache:
           keys:
-            - v1-dialyzer
+            - v2-dialyzer
       - run: mix do deps.get, deps.compile, compile --warnings-as-errors
 
       - run:
@@ -84,22 +84,22 @@ jobs:
           command: MIX_ENV=dev mix dialyzer
 
       - save_cache:
-          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+          key: v2-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
           paths: "deps"
       - save_cache:
-          key: v1-mix-cache-{{ .Branch }}
+          key: v2-mix-cache-{{ .Branch }}
           paths: "deps"
       - save_cache:
-          key: v1-mix-cache
+          key: v2-mix-cache
           paths: "deps"
       - save_cache:
-          key: v1-build-cache-{{ .Branch }}
+          key: v2-build-cache-{{ .Branch }}
           paths: "_build"
       - save_cache:
-          key: v1-build-cache
+          key: v2-build-cache
           paths: "_build"
       - save_cache:
-          key: v1-dialyzer
+          key: v2-dialyzer
           paths: "priv/plts"
 
       - run:

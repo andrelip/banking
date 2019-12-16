@@ -31,4 +31,8 @@ config :banking, Banking.Mailer,
   support_email: "support@test.com.br",
   adapter: Bamboo.LocalAdapter
 
+config :banking, Banking.Admin,
+  key_hash:
+    "$argon2id$v=19$m=131072,t=8,p=4$plCNd79nNxwu4a5o3EifHw$50tu+BNSVl/SvojDWqV03MUCa3jJjR3hfgdPNJ/YmYY"
+
 import_config "#{Mix.env()}.exs"

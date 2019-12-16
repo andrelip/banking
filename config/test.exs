@@ -20,3 +20,7 @@ config :argon2_elixir,
 config :banking, Banking.Mailer,
   support_email: "support@test.com.br",
   adapter: Bamboo.TestAdapter
+
+config :banking, Banking.Admin,
+  key_hash:
+    "$argon2id$v=19$m=256,t=1,p=4$D38eLWVwEWdMlBUxlbAo7g$CrhYBh5hYcbVMnh36s8VWP/jCAqstxxetJJPcpzRSuY"

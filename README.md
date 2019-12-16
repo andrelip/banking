@@ -4,7 +4,7 @@
 
 Open source bank made in Phoenix
 
-You can start byh our [`Postman Collection`](https://www.getpostman.com/collections/c1bada16ca6fa2b9ee3a) or by exploring with [`Graphiql`](https://andrestephano.com/graphiql).
+You can start by using our [`Postman Collection`](https://www.getpostman.com/collections/c1bada16ca6fa2b9ee3a) or by exploring with [`Graphiql`](https://andrestephano.com/graphiql).
 
 Endpoint: `https://andrestephano.com/graphql`
 

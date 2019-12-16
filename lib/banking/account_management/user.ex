@@ -52,8 +52,8 @@ defmodule Banking.AccountManagement.User do
     ["cpf", "rg", "passport", "cnpj"]
   end
 
-  # The focus here is to handle the constraints
-  # Avoid duplicating validations that are already present on Registration
+  # Here we are checking the constraints and avoiding duplications on validations
+  # that are  already present on Registration
   def create_changeset(account, attrs) do
     # verify all constraints
     %__MODULE__{}

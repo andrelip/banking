@@ -43,13 +43,16 @@ jobs:
       - setup_remote_docker:
           version: 18.06.0-ce
       - run:
-          name: Build and publish Docker image
+          name: Build and publish docker image
           command: |
             docker build --tag andrelip/banking:$CIRCLE_SHA1 --file DockerfileCI .
             docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
             docker push andrelip/banking:$CIRCLE_SHA1
-            [ "${CIRCLE_BRANCH}" == "master" ] && docker tag andrelip/banking:$CIRCLE_SHA1 andrelip/banking:latest
-            [ "${CIRCLE_BRANCH}" == "master" ] && docker push andrelip/banking:latest
+      - run:
+          name: Set and publish the image as latest if master
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then docker tag andrelip/banking:$CIRCLE_SHA1 andrelip/banking:latest; fi
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then docker push andrelip/banking:latest; fi
 
   test:
     docker:

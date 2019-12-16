@@ -1,13 +1,11 @@
-defmodule BankingWeb.GraphQL.Mutations.WithdrawalTest do
-  @moduledoc false
-
+defmodule BankingWeb.GraphQL.Mutations.WithdrawTest do
   use Banking.DataCase
   use Wormwood.GQLCase
   alias Banking.Bank.Seeds
 
   alias Banking.AccountManagement.Fixtures
 
-  load_gql(BankingWeb.GraphQL.Schema, "test/banking_web/graphql/gql/withdrawal.gql")
+  load_gql(BankingWeb.GraphQL.Schema, "test/banking_web/graphql/gql/withdraw.gql")
 
   test "syntax should be right" do
     result = query_gql()
@@ -26,7 +24,7 @@ defmodule BankingWeb.GraphQL.Mutations.WithdrawalTest do
         variables: %{"amount" => 1000}
       )
 
-    assert data == %{"withdrawal" => true}
+    assert data == %{"withdraw" => true}
   end
 
   test "should give an error if user do not have balance enough balance" do

@@ -1,6 +1,6 @@
 defmodule Banking.Bank.KPI.AmountVolume do
   @moduledoc """
-  Reports the total amount volume that was transfered or wirthdrawed
+  Reports the total amount volume that was transferred or withdraw
   """
   import Ecto.Query
 

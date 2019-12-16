@@ -1,7 +1,6 @@
 defmodule BankingWeb.GraphQL.Plugs.Context do
   @moduledoc """
-  Prepares the context in order to allow Absinthe to handle authentication and
-  authorization
+  Prepares the context to allow Absinthe to handle authentication and authorization
   """
 
   @behaviour Plug

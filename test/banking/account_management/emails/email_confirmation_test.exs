@@ -1,14 +1,14 @@
 defmodule Banking.AccountManagement.EmailConfirmationTest do
   use Banking.DataCase
 
-  alias Banking.AccountManagement.Emails.VerifyEmail
+  alias Banking.AccountManagement.Emails.EmailConfirmation
   alias Banking.AccountManagement.Fixtures
   alias Banking.AccountManagement.User
 
   test "should format email properly if user has pending_email" do
     {:ok, %{user: user}} = Fixtures.create_user_with_account()
     url = "https://www.test.com/my_key"
-    {:ok, email} = VerifyEmail.email_confirmation(user, url)
+    {:ok, email} = EmailConfirmation.email_confirmation(user, url)
 
     assert %Bamboo.Email{} = email
     assert email.from == "support@test.com.br"
@@ -27,6 +27,6 @@ defmodule Banking.AccountManagement.EmailConfirmationTest do
     {:ok, %{user: user}} = Fixtures.create_user_with_account(%{}, validate_email: true)
     user = Repo.get(User, user.id)
     url = "https://www.test.com/my_key"
-    assert {:error, :no_email_to_validate} == VerifyEmail.email_confirmation(user, url)
+    assert {:error, :no_email_to_validate} == EmailConfirmation.email_confirmation(user, url)
   end
 end

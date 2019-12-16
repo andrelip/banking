@@ -1,5 +1,7 @@
 defmodule Banking.Bank.Seeds do
-  @moduledoc false
+  @moduledoc """
+  Provides the initial data necessary for the system to work.
+  """
 
   alias Banking.AccountManagement
   alias Banking.AccountManagement.Account
@@ -7,6 +9,10 @@ defmodule Banking.Bank.Seeds do
   alias Banking.Bank
   alias Banking.Repo
 
+  @doc """
+  In production it creates the special bank accounts and registers.
+  For development it also create some sample accounts.
+  """
   def coldstart do
     production()
 
@@ -50,7 +56,7 @@ defmodule Banking.Bank.Seeds do
       |> AccountManagement.create()
 
     AccountManagement.validate_email(user)
-    Bank.add_bonus(account, 1000)
+    Bank.add_bonus(account, Decimal.new(1000))
   end
 
   defp fix_sequence_id do
@@ -58,7 +64,11 @@ defmodule Banking.Bank.Seeds do
     Repo.query("SELECT setval('accounts_id_seq', #{count}, true);")
   end
 
+  @doc """
+  Used as a helper to create account.
+  """
   def create_account(id, ammount, type \\ "special") do
+    # TODO move to a fixture
     %Account{
       id: id,
       public_id: Ecto.UUID.generate(),

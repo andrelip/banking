@@ -23,13 +23,13 @@ defmodule Banking.BankTest do
       bank = SpecialAccounts.bank_reserves()
       account = Seeds.create_account(4, 0)
 
-      {:ok, _data} = Bank.add_bonus(account, 1000)
+      {:ok, _data} = Bank.add_bonus(account, Decimal.from_float(1000.50))
 
       account_after = Repo.get(Account, account.id)
       bank_after = SpecialAccounts.bank_reserves()
 
-      assert D.eq?(account_after.balance, 1000)
-      assert D.eq?(bank_after.balance, D.sub(bank.balance, 1000))
+      assert D.eq?(account_after.balance, Decimal.from_float(1000.50))
+      assert D.eq?(bank_after.balance, D.sub(bank.balance, Decimal.from_float(1000.50)))
     end
 
     test "should be greater than 0" do
@@ -38,12 +38,12 @@ defmodule Banking.BankTest do
     end
   end
 
-  describe "#withdrawal" do
+  describe "#withdraw" do
     test "should reduce money from account and adds to cashout register" do
       _cashout_register = SpecialAccounts.cashout()
       account = Seeds.create_account(4, 1000)
 
-      {:ok, _data} = Bank.withdrawal(account, 100)
+      {:ok, _data} = Bank.withdraw(account, 100)
 
       account_after = Repo.get(Account, account.id)
       cashout_register_after = SpecialAccounts.cashout()
@@ -56,13 +56,13 @@ defmodule Banking.BankTest do
       SpecialAccounts.cashout()
       account = Seeds.create_account(4, 1000)
 
-      assert {:error, :amount_is_zero} = Bank.withdrawal(account, 0)
+      assert {:error, :amount_is_zero} = Bank.withdraw(account, 0)
     end
 
     test "balance should never be negative" do
       account = Seeds.create_account(4, 1000)
 
-      assert {:error, :source_has_no_funds} = Bank.withdrawal(account, 1001)
+      assert {:error, :source_has_no_funds} = Bank.withdraw(account, 1001)
     end
   end
 

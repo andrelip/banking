@@ -1,35 +1,44 @@
 defmodule Banking.Bank do
   @moduledoc """
-  Processes all the financial operations and make an immutable register them as
-  transactions.
+  Processes all the financial operations
   """
+  alias Banking.AccountManagement.Account
   alias Banking.Bank.SpecialAccounts
+  alias Banking.Bank.Transaction
   alias Banking.Repo
 
   import Banking.Bank.Helper, only: [write_transaction: 3, change_account_balance: 2]
 
+  @type transaction_result ::
+          {:ok, %{bank_transaction: Transaction.t()}}
+          | {:error, :source_has_no_funds}
+          | {:error, :amount_is_zero}
+
   @doc """
-  Transfer money from the source account to the target.
+  Transfer money from the source account to the target one.
 
   Example:
 
-  iex> Bank.transfer(source_account, target_account, 100)
-  {:ok,
-    %{
-      bank_transaction: %Banking.Bank.Transaction{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
-        amount: #Decimal<100>,
-        id: 1,
-        inserted_at: ~N[2019-11-28 04:36:24],
-        public_id: "54469e74-79da-468c-aafc-6a0bbfb4af8e",
-        source_id: 4,
-        target_id: 5,
-        updated_at: ~N[2019-11-28 04:36:24]
-      }}
+      iex> Bank.transfer(source_account, target_account, 100)
+      {:ok,
+        %{
+          bank_transaction: %Banking.Bank.Transaction{
+            __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
+            amount: #Decimal<100>,
+            id: 1,
+            inserted_at: ~N[2019-11-28 04:36:24],
+            public_id: "54469e74-79da-468c-aafc-6a0bbfb4af8e",
+            source_id: 4,
+            target_id: 5,
+            updated_at: ~N[2019-11-28 04:36:24]
+          }}
   """
+  # @spec transfer(Account.t(), Account.t(), Decimal.t()) ::
+  #         {:ok, map()} | {:error, :source_has_no_funds} | {:error, :amount_is_zero}
+  @spec transfer(Account.t(), Account.t(), Decimal.t()) :: transaction_result()
   def transfer(source, target, amount) do
     transaction_changeset = write_transaction(source, target, amount)
-    reduce_from_source = fn _, _ -> change_account_balance(source, -amount) end
+    reduce_from_source = fn _, _ -> change_account_balance(source, Decimal.mult(-1, amount)) end
     increment_target = fn _, _ -> change_account_balance(target, amount) end
 
     Ecto.Multi.new()
@@ -52,25 +61,26 @@ defmodule Banking.Bank do
   end
 
   @doc """
-  Withdrawal money from a given account
+  Withdraw money from a given account
 
   Example:
 
-  iex> Bank.withdrawal(account, 10)
-  {:ok,
-    %{
-      bank_transaction: %Banking.Bank.Transaction{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
-      amount: #Decimal<10>,
-      id: 2,
-      inserted_at: ~N[2019-11-28 04:37:54],
-      public_id: "c5f3e493-11c4-4703-82c7-c001f7294619",
-      source_id: 4,
-      target_id: 2,
-      updated_at: ~N[2019-11-28 04:37:54]
-    }}
+      iex> Bank.withdraw(account, 10)
+      {:ok,
+        %{
+          bank_transaction: %Banking.Bank.Transaction{
+          __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
+          amount: #Decimal<10>,
+          id: 2,
+          inserted_at: ~N[2019-11-28 04:37:54],
+          public_id: "c5f3e493-11c4-4703-82c7-c001f7294619",
+          source_id: 4,
+          target_id: 2,
+          updated_at: ~N[2019-11-28 04:37:54]
+        }}
   """
-  def withdrawal(source, amount) do
+  @spec withdraw(Account.t(), Decimal.t()) :: transaction_result()
+  def withdraw(source, amount) do
     cashout_register = SpecialAccounts.cashout()
     transfer(source, cashout_register, amount)
   end
@@ -80,20 +90,21 @@ defmodule Banking.Bank do
 
   Example:
 
-  iex> Bank.withdrawal(account, 10)
-  {:ok,
-    %{
-      bank_transaction: %Banking.Bank.Transaction{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
-      amount: #Decimal<1000>,
-      id: 3,
-      inserted_at: ~N[2019-11-28 04:40:42],
-      public_id: "9086a2b5-7f21-494b-9d83-28c2a10d0432",
-      source_id: 1,
-      target_id: 4,
-      updated_at: ~N[2019-11-28 04:40:42]
-    }}
+      iex> Bank.withdraw(account, 10)
+      {:ok,
+        %{
+          bank_transaction: %Banking.Bank.Transaction{
+          __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
+          amount: #Decimal<1000>,
+          id: 3,
+          inserted_at: ~N[2019-11-28 04:40:42],
+          public_id: "9086a2b5-7f21-494b-9d83-28c2a10d0432",
+          source_id: 1,
+          target_id: 4,
+          updated_at: ~N[2019-11-28 04:40:42]
+        }}
   """
+  @spec add_bonus(Account.t(), Decimal.t()) :: transaction_result()
   def add_bonus(target, amount) do
     bank_reserves = SpecialAccounts.bank_reserves()
     transfer(bank_reserves, target, amount)

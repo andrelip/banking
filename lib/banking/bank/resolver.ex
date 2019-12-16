@@ -26,15 +26,15 @@ defmodule Banking.Bank.Resolver do
     Bank.transfer(user_account, target_account, amount) |> response()
   end
 
-  def withdrawal(data, %{context: %{current_user: user}}) do
+  def withdraw(data, %{context: %{current_user: user}}) do
     user_account = AccountManagement.account_from_user(user)
     amount = data.amount
 
-    Bank.withdrawal(user_account, amount) |> response()
+    Bank.withdraw(user_account, amount) |> response()
   end
 
-  def withdrawal(_args, %{context: %{auth_error: auth_error}}), do: {:error, auth_error}
-  def withdrawal(_, _), do: {:error, "you must be logged in"}
+  def withdraw(_args, %{context: %{auth_error: auth_error}}), do: {:error, auth_error}
+  def withdraw(_, _), do: {:error, "you must be logged in"}
 
   defp response(transaction) do
     case transaction do

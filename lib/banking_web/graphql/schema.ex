@@ -1,5 +1,7 @@
 defmodule BankingWeb.GraphQL.Schema do
-  @moduledoc false
+  @moduledoc """
+  Defines the main GraphQL's schema used by absinthe.
+  """
 
   use Absinthe.Schema
   alias Banking.AccountManagement.Resolver, as: AccountsManagementResolver
@@ -48,10 +50,10 @@ defmodule BankingWeb.GraphQL.Schema do
       resolve(&BankResolver.transfer/2)
     end
 
-    field :withdrawal, :boolean do
+    field :withdraw, :boolean do
       arg(:amount, :integer)
 
-      resolve(&BankResolver.withdrawal/2)
+      resolve(&BankResolver.withdraw/2)
     end
 
     field :sign_in, :string do

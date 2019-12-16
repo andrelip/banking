@@ -15,7 +15,10 @@ defmodule Banking.Bank.Helper do
     account_id = account.id
 
     try do
-      from(a in Account, where: a.id == ^account_id, update: [inc: [balance: ^amount]])
+      from(a in Account,
+        where: a.id == ^account_id,
+        update: [inc: [balance: ^amount]]
+      )
       |> Repo.update_all([])
 
       {:ok, account_id}

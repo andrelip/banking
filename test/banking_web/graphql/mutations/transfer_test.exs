@@ -1,6 +1,4 @@
 defmodule BankingWeb.GraphQL.Mutations.TransferTest do
-  @moduledoc false
-
   use Banking.DataCase
   use Wormwood.GQLCase
 

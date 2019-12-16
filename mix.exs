@@ -20,7 +20,9 @@ defmodule Banking.MixProject do
       ],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
-      ]
+      ],
+      source_url: "https://github.com/andrelip/banking",
+      homepage_url: "https://github.com/andrelip/banking"
     ]
   end
 
@@ -57,7 +59,8 @@ defmodule Banking.MixProject do
       {:wormwood, "~> 0.1.0", only: [:test], runtime: false},
       {:guardian, "~> 2.0"},
       {:remote_ip, "~> 0.2.0"},
-      {:bamboo, "~> 1.3"}
+      {:bamboo, "~> 1.3"},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 

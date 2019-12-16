@@ -1,7 +1,5 @@
 defmodule Banking.Bonus.Emails.FirstAccess do
-  @moduledoc """
-  Builder for first access bonus notification
-  """
+  @moduledoc false
 
   import Bamboo.Email
   import BankingWeb.Gettext

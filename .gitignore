@@ -39,3 +39,4 @@ cover/excoveralls.html
 /priv/plts/*.plt.hash
 /priv/keys/
 /tmp/
+docker-compose-prod.yml

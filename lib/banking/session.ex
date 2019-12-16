@@ -97,7 +97,7 @@ defmodule Banking.Session do
       where: s.id == ^session_id,
       order_by: [desc: :id],
       limit: 1,
-      preload: [:user]
+      preload: [user: :account]
     )
     |> Repo.one()
   end

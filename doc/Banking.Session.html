@@ -8,7 +8,7 @@
     <meta name="project" content="banking v0.1.0">
     <title>Banking.Session — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
-    <script src="dist/sidebar_items-c10a134d9d.js"></script>
+    <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/html-de2388dc2f8074b0a4db.js"></script>
   </head>
@@ -40,7 +40,7 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="api-reference.html" class="sidebar-projectName">
+      <a href="https://github.com/andrelip/banking" class="sidebar-projectName">
 banking      </a>
       <h2 class="sidebar-projectVersion">
         v0.1.0
@@ -65,9 +65,17 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-Banking.Session      </h1>
+Banking.Session          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
 
 
+        <section id="moduledoc">
+<p>Handles the user session by tracking the IP and device used.</p>
+<p>Here you can put extra behaviors like controlling simultaneous sessions.</p>
+        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -77,6 +85,21 @@ Banking.Session      </h1>
             </a>
             Summary
           </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:jwt/0">jwt()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:session_opts/0">session_opts()</a>
+  </div>
+</div>
+  </div>
   <div class="summary-functions summary">
     <h2>
       <a href="#functions">Functions</a>
@@ -85,25 +108,75 @@ Banking.Session      </h1>
   <div class="summary-signature">
     <a href="#create/3">create(user, ip_address, opts \\ %{})</a>
   </div>
+    <div class="summary-synopsis"><p>Creates a session for a given user</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#create_jwt/3">create_jwt(user, ip_address, opts \\ %{})</a>
   </div>
+    <div class="summary-synopsis"><p>Creates a session for a given user and returns token and claims</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#get/1">get(session_id)</a>
   </div>
+    <div class="summary-synopsis"><p>Get session by id</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#to_jwt/1">to_jwt(session)</a>
   </div>
+    <div class="summary-synopsis"><p>Generates Jason Web Token and claims from an existing session</p></div>
 </div>
   </div>
         </section>
 
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<section class="detail" id="t:jwt/0">
+  <div class="detail-header">
+    <a href="#t:jwt/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">jwt()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L14" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>jwt() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</section>
+<section class="detail" id="t:session_opts/0">
+  <div class="detail-header">
+    <a href="#t:session_opts/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">session_opts()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L15" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>session_opts() :: %{device_type: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), device_id: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()} | %{}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</section>
+          </div>
+        </section>
         <section id="functions" class="details-list">
           <h1 class="section-heading">
             <a class="hover-link" href="#functions">
@@ -120,8 +193,27 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(user, ip_address, opts \\ %{})</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L78" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>create(
+  Banking.AccountManagement.User.t(),
+  Banking.Session.SessionSchema.ip(),
+  <a href="#t:session_opts/0">session_opts</a>()
+) :: {:ok, Banking.Session.SessionSchema.t()} | {:error, <a href="https://hexdocs.pm/ecto/3.2.5/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
+      </div>
   </div>
   <section class="docstring">
+<p>Creates a session for a given user</p>
+<h2 id="create/3-example" class="section-heading">
+  <a href="#create/3-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Session</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="8361096025-1">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">device_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;android&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">device_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1231...&quot;</span><span class="p" data-group-id="8361096025-1">)</span><span class="w">
+</span><span class="p" data-group-id="8361096025-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8361096025-3">%</span><span class="nc" data-group-id="8361096025-3">Banking.Session.SessionSchema</span><span class="p" data-group-id="8361096025-3">{</span><span class="n">...</span><span class="p" data-group-id="8361096025-3">}</span><span class="p" data-group-id="8361096025-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="create_jwt/3">
@@ -132,8 +224,36 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create_jwt(user, ip_address, opts \\ %{})</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L40" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>create_jwt(
+  Banking.AccountManagement.User.t(),
+  Banking.Session.SessionSchema.ip(),
+  <a href="#t:session_opts/0">session_opts</a>()
+) :: {:ok, <a href="#t:jwt/0">jwt</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+      </div>
   </div>
   <section class="docstring">
+<p>Creates a session for a given user and returns token and claims</p>
+<h2 id="create_jwt/3-example" class="section-heading">
+  <a href="#create_jwt/3-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Session</span><span class="o">.</span><span class="n">create_jwt</span><span class="p" data-group-id="2802457169-1">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">device_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;android&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">device_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1231...&quot;</span><span class="p" data-group-id="2802457169-1">)</span><span class="w">
+</span><span class="p" data-group-id="2802457169-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;jwt...&quot;</span><span class="p">,</span><span class="w">  </span><span class="p" data-group-id="2802457169-3">%{</span><span class="w">
+  </span><span class="s">&quot;aud&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;banking&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;exp&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1576646266</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;iat&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1576473466</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;iss&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;banking&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;jti&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;40bf6667-dca9-42b2-92ab-461cfd9c7a67&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;nbf&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1576473465</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;sub&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;3942&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;typ&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;access&quot;</span><span class="w">
+</span><span class="p" data-group-id="2802457169-3">}</span><span class="p" data-group-id="2802457169-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get/1">
@@ -143,8 +263,26 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">get(session_id)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L95" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>get(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: Banking.Session.SessionSchema.t() | nil</pre>
+      </div>
   </div>
   <section class="docstring">
+<p>Get session by id</p>
+<h2 id="get/1-example" class="section-heading">
+  <a href="#get/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Session</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="0782859760-1">(</span><span class="mi">1</span><span class="p" data-group-id="0782859760-1">)</span><span class="w">
+</span><span class="p" data-group-id="0782859760-2">%</span><span class="nc" data-group-id="0782859760-2">Banking.Session.SessionSchema</span><span class="p" data-group-id="0782859760-2">{</span><span class="n">...</span><span class="p" data-group-id="0782859760-2">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Session</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="0782859760-3">(</span><span class="mi">1000</span><span class="p" data-group-id="0782859760-3">)</span><span class="w">
+</span><span class="no">nil</span></code></pre>
   </section>
 </section>
 <section class="detail" id="to_jwt/1">
@@ -154,8 +292,32 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">to_jwt(session)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/session.ex#L64" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>to_jwt(Banking.Session.SessionSchema.t()) :: {:ok, <a href="#t:jwt/0">jwt</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+      </div>
   </div>
   <section class="docstring">
+<p>Generates Jason Web Token and claims from an existing session</p>
+<h2 id="to_jwt/1-example" class="section-heading">
+  <a href="#to_jwt/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Session</span><span class="o">.</span><span class="n">to_jwt</span><span class="p" data-group-id="4820585644-1">(</span><span class="n">session</span><span class="p" data-group-id="4820585644-1">)</span><span class="w">
+</span><span class="p" data-group-id="4820585644-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;jwt...&quot;</span><span class="p">,</span><span class="w">  </span><span class="p" data-group-id="4820585644-3">%{</span><span class="w">
+  </span><span class="s">&quot;aud&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;banking&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;exp&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1576646266</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;iat&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1576473466</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;iss&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;banking&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;jti&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;40bf6667-dca9-42b2-92ab-461cfd9c7a67&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;nbf&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1576473465</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;sub&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;3942&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;typ&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;access&quot;</span><span class="w">
+</span><span class="p" data-group-id="4820585644-3">}</span><span class="p" data-group-id="4820585644-2">}</span></code></pre>
   </section>
 </section>
           </div>

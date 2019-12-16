@@ -8,7 +8,7 @@
     <meta name="project" content="banking v0.1.0">
     <title>Banking.Bank — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
-    <script src="dist/sidebar_items-c10a134d9d.js"></script>
+    <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/html-de2388dc2f8074b0a4db.js"></script>
   </head>
@@ -40,7 +40,7 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="api-reference.html" class="sidebar-projectName">
+      <a href="https://github.com/andrelip/banking" class="sidebar-projectName">
 banking      </a>
       <h2 class="sidebar-projectVersion">
         v0.1.0
@@ -65,12 +65,15 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-Banking.Bank      </h1>
+Banking.Bank          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
 
 
         <section id="moduledoc">
-<p>Processes all the financial operations and make an immutable register them as
-transactions.</p>
+<p>Processes all the financial operations</p>
         </section>
 
         <section id="summary" class="details-list">
@@ -81,6 +84,16 @@ transactions.</p>
             </a>
             Summary
           </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:transaction_result/0">transaction_result()</a>
+  </div>
+</div>
+  </div>
   <div class="summary-functions summary">
     <h2>
       <a href="#functions">Functions</a>
@@ -95,17 +108,48 @@ transactions.</p>
   <div class="summary-signature">
     <a href="#transfer/3">transfer(source, target, amount)</a>
   </div>
-    <div class="summary-synopsis"><p>Transfer money from the source account to the target.</p></div>
+    <div class="summary-synopsis"><p>Transfer money from the source account to the target one.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#withdrawal/2">withdrawal(source, amount)</a>
+    <a href="#withdraw/2">withdraw(source, amount)</a>
   </div>
-    <div class="summary-synopsis"><p>Withdrawal money from a given account</p></div>
+    <div class="summary-synopsis"><p>Withdraw money from a given account</p></div>
 </div>
   </div>
         </section>
 
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<section class="detail" id="t:transaction_result/0">
+  <div class="detail-header">
+    <a href="#t:transaction_result/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">transaction_result()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank.ex#L12" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>transaction_result() ::
+  {:ok, %{bank_transaction: Banking.Bank.Transaction.t()}}
+  | {:error, :source_has_no_funds}
+  | {:error, :amount_is_zero}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</section>
+          </div>
+        </section>
         <section id="functions" class="details-list">
           <h1 class="section-heading">
             <a class="hover-link" href="#functions">
@@ -121,23 +165,31 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">add_bonus(target, amount)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank.ex#L108" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>add_bonus(Banking.AccountManagement.Account.t(), <a href="https://hexdocs.pm/decimal/1.8.0/Decimal.html#t:t/0">Decimal.t</a>()) ::
+  <a href="#t:transaction_result/0">transaction_result</a>()</pre>
+      </div>
   </div>
   <section class="docstring">
 <p>Add funds to a given account</p>
 <p>Example:</p>
-<p>iex&gt; Bank.withdrawal(account, 10)
-{:ok,
-  %{</p>
-<pre><code class="nohighlight makeup elixir"><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p">%</span><span class="nc">Banking.Bank.Transaction</span><span class="err">{</span><span class="w">
-</span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3889828210-1">#</span><span class="nc" data-group-id="3889828210-1">Ecto.Schema.Metadata</span><span class="p" data-group-id="3889828210-1">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="3889828210-1">&gt;</span><span class="p">,</span><span class="w">
-</span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3889828210-2">#</span><span class="nc" data-group-id="3889828210-2">Decimal</span><span class="p" data-group-id="3889828210-2">&lt;</span><span class="mi">1000</span><span class="p" data-group-id="3889828210-2">&gt;</span><span class="p">,</span><span class="w">
-</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-</span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:40:42]</span><span class="p">,</span><span class="w">
-</span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9086a2b5-7f21-494b-9d83-28c2a10d0432&quot;</span><span class="p">,</span><span class="w">
-</span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-</span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-</span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:40:42]</span></code></pre>
-<p>  }}</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p" data-group-id="4525499001-1">(</span><span class="n">account</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p" data-group-id="4525499001-1">)</span><span class="w">
+</span><span class="err">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="4525499001-2">%{</span><span class="w">
+    </span><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4525499001-3">%</span><span class="nc" data-group-id="4525499001-3">Banking.Bank.Transaction</span><span class="p" data-group-id="4525499001-3">{</span><span class="w">
+    </span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4525499001-4">#</span><span class="nc" data-group-id="4525499001-4">Ecto.Schema.Metadata</span><span class="p" data-group-id="4525499001-4">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="4525499001-4">&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4525499001-5">#</span><span class="nc" data-group-id="4525499001-5">Decimal</span><span class="p" data-group-id="4525499001-5">&lt;</span><span class="mi">1000</span><span class="p" data-group-id="4525499001-5">&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:40:42]</span><span class="p">,</span><span class="w">
+    </span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9086a2b5-7f21-494b-9d83-28c2a10d0432&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:40:42]</span><span class="w">
+  </span><span class="p" data-group-id="4525499001-3">}</span><span class="p" data-group-id="4525499001-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="transfer/3">
@@ -147,49 +199,68 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">transfer(source, target, amount)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank.ex#L39" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>transfer(
+  Banking.AccountManagement.Account.t(),
+  Banking.AccountManagement.Account.t(),
+  <a href="https://hexdocs.pm/decimal/1.8.0/Decimal.html#t:t/0">Decimal.t</a>()
+) :: <a href="#t:transaction_result/0">transaction_result</a>()</pre>
+      </div>
   </div>
   <section class="docstring">
-<p>Transfer money from the source account to the target.</p>
+<p>Transfer money from the source account to the target one.</p>
 <p>Example:</p>
-<p>iex&gt; Bank.transfer(source_account, target_account, 100)
-{:ok,
-  %{</p>
-<pre><code class="nohighlight makeup elixir"><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3440795649-1">%</span><span class="nc" data-group-id="3440795649-1">Banking.Bank.Transaction</span><span class="p" data-group-id="3440795649-1">{</span><span class="w">
-  </span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3440795649-2">#</span><span class="nc" data-group-id="3440795649-2">Ecto.Schema.Metadata</span><span class="p" data-group-id="3440795649-2">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="3440795649-2">&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3440795649-3">#</span><span class="nc" data-group-id="3440795649-3">Decimal</span><span class="p" data-group-id="3440795649-3">&lt;</span><span class="mi">100</span><span class="p" data-group-id="3440795649-3">&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:36:24]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;54469e74-79da-468c-aafc-6a0bbfb4af8e&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:36:24]</span><span class="w">
-</span><span class="p" data-group-id="3440795649-1">}</span><span class="err">}</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Bank</span><span class="o">.</span><span class="n">transfer</span><span class="p" data-group-id="2821412328-1">(</span><span class="n">source_account</span><span class="p">,</span><span class="w"> </span><span class="n">target_account</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p" data-group-id="2821412328-1">)</span><span class="w">
+</span><span class="err">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="2821412328-2">%{</span><span class="w">
+    </span><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2821412328-3">%</span><span class="nc" data-group-id="2821412328-3">Banking.Bank.Transaction</span><span class="p" data-group-id="2821412328-3">{</span><span class="w">
+      </span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2821412328-4">#</span><span class="nc" data-group-id="2821412328-4">Ecto.Schema.Metadata</span><span class="p" data-group-id="2821412328-4">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="2821412328-4">&gt;</span><span class="p">,</span><span class="w">
+      </span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2821412328-5">#</span><span class="nc" data-group-id="2821412328-5">Decimal</span><span class="p" data-group-id="2821412328-5">&lt;</span><span class="mi">100</span><span class="p" data-group-id="2821412328-5">&gt;</span><span class="p">,</span><span class="w">
+      </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:36:24]</span><span class="p">,</span><span class="w">
+      </span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;54469e74-79da-468c-aafc-6a0bbfb4af8e&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:36:24]</span><span class="w">
+    </span><span class="p" data-group-id="2821412328-3">}</span><span class="p" data-group-id="2821412328-2">}</span></code></pre>
   </section>
 </section>
-<section class="detail" id="withdrawal/2">
+<section class="detail" id="withdraw/2">
   <div class="detail-header">
-    <a href="#withdrawal/2" class="detail-link" title="Link to this function">
+    <a href="#withdraw/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">withdrawal(source, amount)</h1>
+    <h1 class="signature">withdraw(source, amount)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank.ex#L83" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>withdraw(Banking.AccountManagement.Account.t(), <a href="https://hexdocs.pm/decimal/1.8.0/Decimal.html#t:t/0">Decimal.t</a>()) ::
+  <a href="#t:transaction_result/0">transaction_result</a>()</pre>
+      </div>
   </div>
   <section class="docstring">
-<p>Withdrawal money from a given account</p>
+<p>Withdraw money from a given account</p>
 <p>Example:</p>
-<p>iex&gt; Bank.withdrawal(account, 10)
-{:ok,
-  %{</p>
-<pre><code class="nohighlight makeup elixir"><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p">%</span><span class="nc">Banking.Bank.Transaction</span><span class="err">{</span><span class="w">
-</span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6288807440-1">#</span><span class="nc" data-group-id="6288807440-1">Ecto.Schema.Metadata</span><span class="p" data-group-id="6288807440-1">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="6288807440-1">&gt;</span><span class="p">,</span><span class="w">
-</span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6288807440-2">#</span><span class="nc" data-group-id="6288807440-2">Decimal</span><span class="p" data-group-id="6288807440-2">&lt;</span><span class="mi">10</span><span class="p" data-group-id="6288807440-2">&gt;</span><span class="p">,</span><span class="w">
-</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-</span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:37:54]</span><span class="p">,</span><span class="w">
-</span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c5f3e493-11c4-4703-82c7-c001f7294619&quot;</span><span class="p">,</span><span class="w">
-</span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-</span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-</span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:37:54]</span></code></pre>
-<p>  }}</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p" data-group-id="2869282372-1">(</span><span class="n">account</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p" data-group-id="2869282372-1">)</span><span class="w">
+</span><span class="err">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="2869282372-2">%{</span><span class="w">
+    </span><span class="ss">bank_transaction</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2869282372-3">%</span><span class="nc" data-group-id="2869282372-3">Banking.Bank.Transaction</span><span class="p" data-group-id="2869282372-3">{</span><span class="w">
+    </span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2869282372-4">#</span><span class="nc" data-group-id="2869282372-4">Ecto.Schema.Metadata</span><span class="p" data-group-id="2869282372-4">&lt;</span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bank_transactions&quot;</span><span class="p" data-group-id="2869282372-4">&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2869282372-5">#</span><span class="nc" data-group-id="2869282372-5">Decimal</span><span class="p" data-group-id="2869282372-5">&lt;</span><span class="mi">10</span><span class="p" data-group-id="2869282372-5">&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="ss">inserted_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:37:54]</span><span class="p">,</span><span class="w">
+    </span><span class="ss">public_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;c5f3e493-11c4-4703-82c7-c001f7294619&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">source_id</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="ss">target_id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="ss">updated_at</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2019-11-28 04:37:54]</span><span class="w">
+  </span><span class="p" data-group-id="2869282372-3">}</span><span class="p" data-group-id="2869282372-2">}</span></code></pre>
   </section>
 </section>
           </div>

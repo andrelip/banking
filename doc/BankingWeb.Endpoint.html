@@ -8,7 +8,7 @@
     <meta name="project" content="banking v0.1.0">
     <title>BankingWeb.Endpoint — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
-    <script src="dist/sidebar_items-c10a134d9d.js"></script>
+    <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/html-de2388dc2f8074b0a4db.js"></script>
   </head>
@@ -40,7 +40,7 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="api-reference.html" class="sidebar-projectName">
+      <a href="https://github.com/andrelip/banking" class="sidebar-projectName">
 banking      </a>
       <h2 class="sidebar-projectVersion">
         v0.1.0
@@ -65,9 +65,31 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-BankingWeb.Endpoint      </h1>
+BankingWeb.Endpoint          <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
 
 
+        <section id="moduledoc">
+<p>Defines Banking endpoint.</p>
+<p>The endpoint is the boundary where all requests to your
+web application start. It is also the interface your
+application provides to the underlying web servers.</p>
+<p>Overall, an endpoint has three responsibilities:</p>
+<ul>
+<li><p>to provide a wrapper for starting and stopping the
+endpoint as part of a supervision tree</p>
+</li>
+<li><p>to define an initial plug pipeline for requests
+to pass through</p>
+</li>
+<li><p>to host web specific configuration for your
+application</p>
+</li>
+</ul>
+        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -238,6 +260,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">broadcast(topic, event, msg)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Broadcasts a <code class="inline">msg</code> as <code class="inline">event</code> in the given <code class="inline">topic</code>.</p>
@@ -251,6 +277,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">broadcast!(topic, event, msg)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Broadcasts a <code class="inline">msg</code> as <code class="inline">event</code> in the given <code class="inline">topic</code>.</p>
@@ -265,6 +295,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">broadcast_from(from, topic, event, msg)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Broadcasts a <code class="inline">msg</code> from the given <code class="inline">from</code> as <code class="inline">event</code> in the given <code class="inline">topic</code>.</p>
@@ -278,6 +312,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">broadcast_from!(from, topic, event, msg)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Broadcasts a <code class="inline">msg</code> from the given <code class="inline">from</code> as <code class="inline">event</code> in the given <code class="inline">topic</code>.</p>
@@ -292,6 +330,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">call(conn, opts)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L1" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Callback implementation for <a href="https://hexdocs.pm/plug/1.8.3/Plug.html#c:call/2"><code class="inline">Plug.call/2</code></a>.</p>
@@ -304,6 +346,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">child_spec(opts)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Returns the child specification to start the endpoint
@@ -318,6 +364,10 @@ under a supervision tree.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">config(key, default \\ nil)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Returns the endpoint configuration for <code class="inline">key</code></p>
@@ -331,6 +381,10 @@ under a supervision tree.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">config_change(changed, removed)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Reloads the configuration given the application environment changes.</p>
@@ -343,6 +397,10 @@ under a supervision tree.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">host()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Returns the host for the given endpoint.</p>
@@ -355,6 +413,10 @@ under a supervision tree.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">init(opts)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Callback implementation for <a href="https://hexdocs.pm/plug/1.8.3/Plug.html#c:init/1"><code class="inline">Plug.init/1</code></a>.</p>
@@ -368,6 +430,10 @@ under a supervision tree.</p>
       <span class="sr-only">Link to this macro</span>
     </a>
     <h1 class="signature">instrument(event, runtime \\ Macro.escape(%{}), fun)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L1" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <span class="note">(macro)</span>
   </div>
   <section class="docstring">
@@ -381,9 +447,9 @@ issued if the event to instrument is a DB query).</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup elixir"><span class="n">instrument</span><span class="w"> </span><span class="ss">:render_view</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2021774226-1">%{</span><span class="ss">view</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;index.html&quot;</span><span class="p" data-group-id="2021774226-1">}</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2021774226-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="n">render</span><span class="p" data-group-id="2021774226-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;index.html&quot;</span><span class="p" data-group-id="2021774226-3">)</span><span class="w">
-</span><span class="k" data-group-id="2021774226-2">end</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">instrument</span><span class="w"> </span><span class="ss">:render_view</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2223848810-1">%{</span><span class="ss">view</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;index.html&quot;</span><span class="p" data-group-id="2223848810-1">}</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2223848810-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">render</span><span class="p" data-group-id="2223848810-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;index.html&quot;</span><span class="p" data-group-id="2223848810-3">)</span><span class="w">
+</span><span class="k" data-group-id="2223848810-2">end</span></code></pre>
   </section>
 </section>
 <section class="detail" id="path/1">
@@ -393,6 +459,10 @@ issued if the event to instrument is a DB query).</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">path(path)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates the path information when routing to this endpoint.</p>
@@ -405,6 +475,10 @@ issued if the event to instrument is a DB query).</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">script_name()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates the script name.</p>
@@ -418,6 +492,10 @@ issued if the event to instrument is a DB query).</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">start_link(opts \\ [])</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Starts the endpoint supervision tree.</p>
@@ -430,6 +508,10 @@ issued if the event to instrument is a DB query).</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">static_integrity(path)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates a base64-encoded cryptographic hash (sha512) to a static file
@@ -443,6 +525,10 @@ in <code class="inline">priv/static</code>. Meant to be used for Subresource Int
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">static_lookup(path)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Returns a two item tuple with the first item being the <code class="inline">static_path</code>
@@ -456,6 +542,10 @@ and the second item being the <code class="inline">static_integrity</code>.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">static_path(path)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates a route to a static file in <code class="inline">priv/static</code>.</p>
@@ -468,6 +558,10 @@ and the second item being the <code class="inline">static_integrity</code>.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">static_url()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates the static URL without any path information.</p>
@@ -482,6 +576,10 @@ such. It falls back to <code class="inline">:url</code> if <code class="inline">
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">struct_url()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates the endpoint base URL but as a <a href="https://hexdocs.pm/elixir/URI.html"><code class="inline">URI</code></a> struct.</p>
@@ -497,6 +595,10 @@ URL helpers.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">subscribe(topic)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
   </section>
@@ -508,6 +610,10 @@ URL helpers.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">subscribe(pid, topic, opts)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
   </section>
@@ -519,6 +625,10 @@ URL helpers.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">unsubscribe(topic)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Unsubscribes the caller from the given topic.</p>
@@ -532,6 +642,10 @@ URL helpers.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">url()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/endpoint.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Generates the endpoint base URL without any path information.</p>

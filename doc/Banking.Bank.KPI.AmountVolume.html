@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.21.2">
     <meta name="project" content="banking v0.1.0">
-    <title>Banking.Bank.SpecialAccounts — banking v0.1.0</title>
+    <title>Banking.Bank.KPI.AmountVolume — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
     <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
@@ -65,7 +65,7 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-Banking.Bank.SpecialAccounts          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L1" title="View Source" class="view-source" rel="help">
+Banking.Bank.KPI.AmountVolume          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -73,10 +73,7 @@ Banking.Bank.SpecialAccounts          <a href="https://github.com/andrelip/banki
 
 
         <section id="moduledoc">
-<p>Keep track of the special accounts that are used as registers to share the
-same interface of common transactions. This solution might move to a proper
-table in the database if we starting to interact with different banks and
-sources.</p>
+<p>Reports the total amount volume that was transferred or withdraw</p>
         </section>
 
         <section id="summary" class="details-list">
@@ -93,22 +90,39 @@ sources.</p>
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#bank_reserves/0">bank_reserves()</a>
+    <a href="#current_month/0">current_month()</a>
   </div>
-    <div class="summary-synopsis"><p>Returns the account that represents the bank reserve.</p></div>
+    <div class="summary-synopsis"><p>The sum of amount from all transactions created this month</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#cashout/0">cashout()</a>
+    <a href="#current_year/0">current_year()</a>
   </div>
-    <div class="summary-synopsis"><p>Returns the account that register all the money that was withdrawn in the bank.</p></div>
+    <div class="summary-synopsis"><p>The sum of amount from all transactions created this year</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#fees/0">fees()</a>
+    <a href="#past_days/1">past_days(days)</a>
   </div>
-    <div class="summary-synopsis"><p>Returns the account that register all the money paid as a bank fee. This is
-very useful as placeholder to be placed in the transaction table.</p></div>
+    <div class="summary-synopsis"><p>The sum of amount from all transactions created in the past n days</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#previous_month/0">previous_month()</a>
+  </div>
+    <div class="summary-synopsis"><p>The sum of amount from all transactions created past month</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#previous_year/0">previous_year()</a>
+  </div>
+    <div class="summary-synopsis"><p>The sum of amount from all transactions created past year</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#total/0">total()</a>
+  </div>
+    <div class="summary-synopsis"><p>The sum of amount from all transactions in history</p></div>
 </div>
   </div>
         </section>
@@ -121,71 +135,100 @@ very useful as placeholder to be placed in the transaction table.</p></div>
             </a>
 Functions          </h1>
           <div class="functions-list">
-<section class="detail" id="bank_reserves/0">
+<section class="detail" id="current_month/0">
   <div class="detail-header">
-    <a href="#bank_reserves/0" class="detail-link" title="Link to this function">
+    <a href="#current_month/0" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">bank_reserves()</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L20" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">current_month()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L20" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-      <div class="specs">
-          <pre>bank_reserves() :: Banking.AccountManagement.Account.t()</pre>
-      </div>
   </div>
   <section class="docstring">
-<p>Returns the account that represents the bank reserve.</p>
-<p>Example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bank.SpecialAccounts</span><span class="o">.</span><span class="n">bank_reserves</span><span class="w">
-</span><span class="p" data-group-id="7713279404-1">%</span><span class="nc" data-group-id="7713279404-1">Banking.AccountManagement.Account</span><span class="p" data-group-id="7713279404-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7713279404-1">}</span></code></pre>
+<p>The sum of amount from all transactions created this month</p>
   </section>
 </section>
-<section class="detail" id="cashout/0">
+<section class="detail" id="current_year/0">
   <div class="detail-header">
-    <a href="#cashout/0" class="detail-link" title="Link to this function">
+    <a href="#current_year/0" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">cashout()</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L32" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">current_year()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L37" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-      <div class="specs">
-          <pre>cashout() :: Banking.AccountManagement.Account.t()</pre>
-      </div>
   </div>
   <section class="docstring">
-<p>Returns the account that register all the money that was withdrawn in the bank.</p>
-<p>Example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bank.SpecialAccounts</span><span class="o">.</span><span class="n">cashout</span><span class="w">
-</span><span class="p" data-group-id="8219913011-1">%</span><span class="nc" data-group-id="8219913011-1">Banking.AccountManagement.Account</span><span class="p" data-group-id="8219913011-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="8219913011-1">}</span></code></pre>
+<p>The sum of amount from all transactions created this year</p>
   </section>
 </section>
-<section class="detail" id="fees/0">
+<section class="detail" id="past_days/1">
   <div class="detail-header">
-    <a href="#fees/0" class="detail-link" title="Link to this function">
+    <a href="#past_days/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">fees()</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L45" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">past_days(days)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L54" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-      <div class="specs">
-          <pre>fees() :: Banking.AccountManagement.Account.t()</pre>
-      </div>
   </div>
   <section class="docstring">
-<p>Returns the account that register all the money paid as a bank fee. This is
-very useful as placeholder to be placed in the transaction table.</p>
-<p>Example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bank.SpecialAccounts</span><span class="o">.</span><span class="n">cashout</span><span class="w">
-</span><span class="p" data-group-id="7460935862-1">%</span><span class="nc" data-group-id="7460935862-1">Banking.AccountManagement.Account</span><span class="p" data-group-id="7460935862-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7460935862-1">}</span></code></pre>
+<p>The sum of amount from all transactions created in the past n days</p>
+  </section>
+</section>
+<section class="detail" id="previous_month/0">
+  <div class="detail-header">
+    <a href="#previous_month/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">previous_month()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L28" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+  <section class="docstring">
+<p>The sum of amount from all transactions created past month</p>
+  </section>
+</section>
+<section class="detail" id="previous_year/0">
+  <div class="detail-header">
+    <a href="#previous_year/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">previous_year()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L45" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+  <section class="docstring">
+<p>The sum of amount from all transactions created past year</p>
+  </section>
+</section>
+<section class="detail" id="total/0">
+  <div class="detail-header">
+    <a href="#total/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">total()</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/kpi/amount_volume.ex#L13" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+  <section class="docstring">
+<p>The sum of amount from all transactions in history</p>
   </section>
 </section>
           </div>

@@ -8,7 +8,7 @@
     <meta name="project" content="banking v0.1.0">
     <title>Banking.AccountManagement — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
-    <script src="dist/sidebar_items-c10a134d9d.js"></script>
+    <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/html-de2388dc2f8074b0a4db.js"></script>
   </head>
@@ -40,7 +40,7 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="api-reference.html" class="sidebar-projectName">
+      <a href="https://github.com/andrelip/banking" class="sidebar-projectName">
 banking      </a>
       <h2 class="sidebar-projectVersion">
         v0.1.0
@@ -65,12 +65,15 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-Banking.AccountManagement      </h1>
+Banking.AccountManagement          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
 
 
         <section id="moduledoc">
-<p>Works as a public API to handle all the operations regarding user registration
-and account administration.</p>
+<p>Provide functions to manage accounts and users</p>
         </section>
 
         <section id="summary" class="details-list">
@@ -85,6 +88,12 @@ and account administration.</p>
     <h2>
       <a href="#functions">Functions</a>
     </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#account_from_user/1">account_from_user(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Get the account from a given user</p></div>
+</div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#create/1">create(registration)</a>
@@ -113,7 +122,25 @@ and account administration.</p>
   <div class="summary-signature">
     <a href="#get_by_public_id/1">get_by_public_id(uuid)</a>
   </div>
-    <div class="summary-synopsis"><p>Get the account by the public available UUID</p></div>
+    <div class="summary-synopsis"><p>Get account by the public available UUID</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_user_by_email/1">get_user_by_email(email)</a>
+  </div>
+    <div class="summary-synopsis"><p>Get user by the public available UUID</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_user_by_pending_email_code/1">get_user_by_pending_email_code(email)</a>
+  </div>
+    <div class="summary-synopsis"><p>Get the account by the pending email verification code</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#users_with_pending_email?/1">users_with_pending_email?(email)</a>
+  </div>
+    <div class="summary-synopsis"><p>Verifies if there is users with the given email as pending validation</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -125,7 +152,7 @@ and account administration.</p>
   <div class="summary-signature">
     <a href="#verify_password/2">verify_password(user, password)</a>
   </div>
-    <div class="summary-synopsis"><p>Verifies the hashed password from the user against the raw password</p></div>
+    <div class="summary-synopsis"><p>Compares the raw password against the hashed one presented in user</p></div>
 </div>
   </div>
         </section>
@@ -138,6 +165,29 @@ and account administration.</p>
             </a>
 Functions          </h1>
           <div class="functions-list">
+<section class="detail" id="account_from_user/1">
+  <div class="detail-header">
+    <a href="#account_from_user/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">account_from_user(user)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L171" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+  <section class="docstring">
+<p>Get the account from a given user</p>
+<h2 id="account_from_user/1-example" class="section-heading">
+  <a href="#account_from_user/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">account_from_user</span><span class="p" data-group-id="3316195675-1">(</span><span class="n">user</span><span class="p" data-group-id="3316195675-1">)</span><span class="w">
+</span><span class="p" data-group-id="3316195675-2">%</span><span class="nc" data-group-id="3316195675-2">Banking.AccountManagement.Account</span><span class="p" data-group-id="3316195675-2">{</span><span class="n">...</span><span class="p" data-group-id="3316195675-2">}</span></code></pre>
+  </section>
+</section>
 <section class="detail" id="create/1">
   <div class="detail-header">
     <a href="#create/1" class="detail-link" title="Link to this function">
@@ -145,6 +195,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">create(registration)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L42" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>create(Banking.AccountManagement.Registration.t()) ::
   {:ok,
@@ -168,9 +222,24 @@ number, an upper-case, a lower-case and a symbol
 <li><code class="inline">birthday</code>
 </li>
 <li><code class="inline">document_id</code> with <code class="inline">document_type</code> - The document if for the given type
-that could be of the following: <code class="inline">cpf</code>, <code class="inline">rg</code>, <code class="inline">passport</code> or <code class="inline">cnpj</code>.
+that could be of the following: [&quot;cpf&quot;, &quot;rg&quot;, &quot;passport&quot; or &quot;cnpj&quot;].
 </li>
 </ul>
+<h2 id="create/1-example" class="section-heading">
+  <a href="#create/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6667411484-1">%</span><span class="nc" data-group-id="6667411484-1">Registration</span><span class="p" data-group-id="6667411484-1">{</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;User Test&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;user@test.com&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="ss">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;veRylonGAnd$Tr0ngPasSwrd&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="ss">birthdate</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2000-01-01]</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="ss">document_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;000.000.000-00&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="ss">document_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpf&quot;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="6667411484-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">AccountManagement</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="6667411484-2">(</span><span class="n">attrs</span><span class="p" data-group-id="6667411484-2">)</span><span class="w">
+</span><span class="p" data-group-id="6667411484-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6667411484-4">%{</span><span class="ss">account</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6667411484-5">%</span><span class="nc" data-group-id="6667411484-5">Banking.AccountManagement.Account</span><span class="p" data-group-id="6667411484-5">{</span><span class="n">...</span><span class="p" data-group-id="6667411484-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6667411484-6">%</span><span class="nc" data-group-id="6667411484-6">Banking.AccountManagement.User</span><span class="p" data-group-id="6667411484-6">{</span><span class="n">...</span><span class="p" data-group-id="6667411484-6">}</span><span class="p" data-group-id="6667411484-4">}</span><span class="p" data-group-id="6667411484-3">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="disable/1">
@@ -180,6 +249,10 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">disable(account)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L114" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>disable(Banking.AccountManagement.Account.t()) ::
   Banking.AccountManagement.Account.t()</pre>
@@ -187,6 +260,13 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
   </div>
   <section class="docstring">
 <p>Block a given account</p>
+<h2 id="disable/1-example" class="section-heading">
+  <a href="#disable/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">disable</span><span class="p" data-group-id="6155029112-1">(</span><span class="n">account</span><span class="p" data-group-id="6155029112-1">)</span><span class="w">
+</span><span class="p" data-group-id="6155029112-2">%</span><span class="nc" data-group-id="6155029112-2">Banking.AccountManagement.Account</span><span class="p" data-group-id="6155029112-2">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;inactive&quot;</span><span class="p" data-group-id="6155029112-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="enable/1">
@@ -196,6 +276,10 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">enable(account)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L126" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>enable(Banking.AccountManagement.Account.t()) ::
   Banking.AccountManagement.Account.t()</pre>
@@ -203,6 +287,13 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
   </div>
   <section class="docstring">
 <p>Enable a given account</p>
+<h2 id="enable/1-example" class="section-heading">
+  <a href="#enable/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">enable</span><span class="p" data-group-id="8998871425-1">(</span><span class="n">account</span><span class="p" data-group-id="8998871425-1">)</span><span class="w">
+</span><span class="p" data-group-id="8998871425-2">%</span><span class="nc" data-group-id="8998871425-2">Banking.AccountManagement.Account</span><span class="p" data-group-id="8998871425-2">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;active&quot;</span><span class="p" data-group-id="8998871425-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get/1">
@@ -212,12 +303,23 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">get(account_id)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L54" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>get(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: Banking.AccountManagement.Account.t() | nil</pre>
       </div>
   </div>
   <section class="docstring">
 <p>Get an account by his id.</p>
+<h2 id="get/1-example" class="section-heading">
+  <a href="#get/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">AccountManagement</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="9587616384-1">(</span><span class="mi">1</span><span class="p" data-group-id="9587616384-1">)</span><span class="w">
+</span><span class="p" data-group-id="9587616384-2">%</span><span class="nc" data-group-id="9587616384-2">Banking.AccountManagement.Account</span><span class="p" data-group-id="9587616384-2">{</span><span class="n">...</span><span class="p" data-group-id="9587616384-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get_by_public_id/1">
@@ -227,12 +329,103 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">get_by_public_id(uuid)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L64" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>get_by_public_id(<a href="https://hexdocs.pm/ecto/3.2.5/Ecto.UUID.html#t:t/0">Ecto.UUID.t</a>()) :: Banking.AccountManagement.Account.t() | nil</pre>
       </div>
   </div>
   <section class="docstring">
-<p>Get the account by the public available UUID</p>
+<p>Get account by the public available UUID</p>
+<h2 id="get_by_public_id/1-example" class="section-heading">
+  <a href="#get_by_public_id/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p" data-group-id="6158967653-1">(</span><span class="s">&quot;6e91802b-0f5c-43ac-bbb8-adae12ec6b62&quot;</span><span class="p" data-group-id="6158967653-1">)</span><span class="w">
+</span><span class="p" data-group-id="6158967653-2">%</span><span class="nc" data-group-id="6158967653-2">Banking.AccountManagement.Account</span><span class="p" data-group-id="6158967653-2">{</span><span class="n">...</span><span class="p" data-group-id="6158967653-2">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_user_by_email/1">
+  <div class="detail-header">
+    <a href="#get_user_by_email/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_user_by_email(email)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L74" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>get_user_by_email(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: Banking.AccountManagement.User.t() | nil</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Get user by the public available UUID</p>
+<h2 id="get_user_by_email/1-example" class="section-heading">
+  <a href="#get_user_by_email/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p" data-group-id="9073439581-1">(</span><span class="s">&quot;user@test.com&quot;</span><span class="p" data-group-id="9073439581-1">)</span><span class="w">
+</span><span class="p" data-group-id="9073439581-2">%</span><span class="nc" data-group-id="9073439581-2">Banking.AccountManagement.User</span><span class="p" data-group-id="9073439581-2">{</span><span class="n">...</span><span class="p" data-group-id="9073439581-2">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_user_by_pending_email_code/1">
+  <div class="detail-header">
+    <a href="#get_user_by_pending_email_code/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_user_by_pending_email_code(email)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L103" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>get_user_by_pending_email_code(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  Banking.AccountManagement.User.t() | nil</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Get the account by the pending email verification code</p>
+<h2 id="get_user_by_pending_email_code/1-example" class="section-heading">
+  <a href="#get_user_by_pending_email_code/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;3Ujd31gpI6DuB8IVB2k7ahJJFKqfl0ybSa5khMQ0cVKtQFsNRWSHKEzwftpsV9T4&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">get_user_by_pending_email_code</span><span class="p" data-group-id="1774313334-1">(</span><span class="n">code</span><span class="p" data-group-id="1774313334-1">)</span><span class="w">
+</span><span class="p" data-group-id="1774313334-2">%</span><span class="nc" data-group-id="1774313334-2">Banking.AccountManagement.User</span><span class="p" data-group-id="1774313334-2">{</span><span class="n">...</span><span class="p" data-group-id="1774313334-2">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="users_with_pending_email?/1">
+  <div class="detail-header">
+    <a href="#users_with_pending_email?/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">users_with_pending_email?(email)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L84" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+      <div class="specs">
+          <pre>users_with_pending_email?(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Verifies if there is users with the given email as pending validation</p>
+<h2 id="users_with_pending_email?/1-example" class="section-heading">
+  <a href="#users_with_pending_email?/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">users_with_pending_email</span><span class="p" data-group-id="8625156205-1">(</span><span class="s">&quot;user@test.com&quot;</span><span class="p" data-group-id="8625156205-1">)</span><span class="w">
+</span><span class="no">true</span></code></pre>
   </section>
 </section>
 <section class="detail" id="validate_email/1">
@@ -242,6 +435,10 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">validate_email(user)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L143" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>validate_email(Banking.AccountManagement.User.t()) ::
   {:ok,
@@ -249,13 +446,20 @@ that could be of the following: <code class="inline">cpf</code>, <code class="in
      account: Banking.AccountManagement.Account.t(),
      user: Banking.AccountManagement.User.t()
    }}
-  | {:error, <<_::152>>}</pre>
+  | {:error, <a href="https://hexdocs.pm/ecto/3.2.5/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
       </div>
   </div>
   <section class="docstring">
 <p>Validate the email by moving <code class="inline">pending_email</code> to the main <code class="inline">email</code> field.</p>
 <p>If the user has a pending confirmation account associated then this account
 will be activated.</p>
+<h2 id="validate_email/1-example" class="section-heading">
+  <a href="#validate_email/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">validate_email</span><span class="p" data-group-id="4083165575-1">(</span><span class="n">user</span><span class="p" data-group-id="4083165575-1">)</span><span class="w">
+</span><span class="p" data-group-id="4083165575-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4083165575-3">%{</span><span class="ss">account</span><span class="p">:</span><span class="w"> </span><span class="nc">Banking.AccountManagement.Account</span><span class="p" data-group-id="4083165575-4">{</span><span class="n">...</span><span class="p" data-group-id="4083165575-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="nc">Banking.AccountManagement.User</span><span class="p" data-group-id="4083165575-5">{</span><span class="n">...</span><span class="p" data-group-id="4083165575-5">}</span><span class="p" data-group-id="4083165575-3">}</span><span class="p" data-group-id="4083165575-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="verify_password/2">
@@ -265,12 +469,26 @@ will be activated.</p>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">verify_password(user, password)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management.ex#L159" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
       <div class="specs">
           <pre>verify_password(Banking.AccountManagement.User.t(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: true | false</pre>
       </div>
   </div>
   <section class="docstring">
-<p>Verifies the hashed password from the user against the raw password</p>
+<p>Compares the raw password against the hashed one presented in user</p>
+<h2 id="verify_password/2-examples" class="section-heading">
+  <a href="#verify_password/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples:
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">verify_password</span><span class="p" data-group-id="2681795866-1">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;correct password&quot;</span><span class="p" data-group-id="2681795866-1">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement</span><span class="o">.</span><span class="n">verify_password</span><span class="p" data-group-id="2681795866-2">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad password&quot;</span><span class="p" data-group-id="2681795866-2">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
   </section>
 </section>
           </div>

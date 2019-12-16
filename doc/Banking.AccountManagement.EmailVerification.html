@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.21.2">
     <meta name="project" content="banking v0.1.0">
-    <title>Banking.Bank.SpecialAccounts — banking v0.1.0</title>
+    <title>Banking.AccountManagement.EmailVerification — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
     <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
@@ -65,7 +65,7 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-Banking.Bank.SpecialAccounts          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L1" title="View Source" class="view-source" rel="help">
+Banking.AccountManagement.EmailVerification          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management/email_verification.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -73,10 +73,7 @@ Banking.Bank.SpecialAccounts          <a href="https://github.com/andrelip/banki
 
 
         <section id="moduledoc">
-<p>Keep track of the special accounts that are used as registers to share the
-same interface of common transactions. This solution might move to a proper
-table in the database if we starting to interact with different banks and
-sources.</p>
+<p>Provides functions to generate email verification code and their validation</p>
         </section>
 
         <section id="summary" class="details-list">
@@ -93,22 +90,15 @@ sources.</p>
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#bank_reserves/0">bank_reserves()</a>
+    <a href="#random_token/1">random_token(length \\ 64)</a>
   </div>
-    <div class="summary-synopsis"><p>Returns the account that represents the bank reserve.</p></div>
+    <div class="summary-synopsis"><p>Generates a URL safe token with the given length (defaults to 64).</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#cashout/0">cashout()</a>
+    <a href="#validate_email/1">validate_email(user)</a>
   </div>
-    <div class="summary-synopsis"><p>Returns the account that register all the money that was withdrawn in the bank.</p></div>
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#fees/0">fees()</a>
-  </div>
-    <div class="summary-synopsis"><p>Returns the account that register all the money paid as a bank fee. This is
-very useful as placeholder to be placed in the transaction table.</p></div>
+    <div class="summary-synopsis"><p>Receives an user and validate his email.</p></div>
 </div>
   </div>
         </section>
@@ -121,71 +111,63 @@ very useful as placeholder to be placed in the transaction table.</p></div>
             </a>
 Functions          </h1>
           <div class="functions-list">
-<section class="detail" id="bank_reserves/0">
+<section class="detail" id="random_token/1">
+    <span id="random_token/0"></span>
   <div class="detail-header">
-    <a href="#bank_reserves/0" class="detail-link" title="Link to this function">
+    <a href="#random_token/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">bank_reserves()</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L20" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">random_token(length \\ 64)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management/email_verification.ex#L20" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-      <div class="specs">
-          <pre>bank_reserves() :: Banking.AccountManagement.Account.t()</pre>
-      </div>
   </div>
   <section class="docstring">
-<p>Returns the account that represents the bank reserve.</p>
-<p>Example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bank.SpecialAccounts</span><span class="o">.</span><span class="n">bank_reserves</span><span class="w">
-</span><span class="p" data-group-id="7713279404-1">%</span><span class="nc" data-group-id="7713279404-1">Banking.AccountManagement.Account</span><span class="p" data-group-id="7713279404-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7713279404-1">}</span></code></pre>
+<p>Generates a URL safe token with the given length (defaults to 64).</p>
+<h2 id="random_token/1-example" class="section-heading">
+  <a href="#random_token/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement.EmailVerification</span><span class="o">.</span><span class="n">random_token</span><span class="p" data-group-id="8680907258-1">(</span><span class="p" data-group-id="8680907258-1">)</span><span class="w">
+</span><span class="s">&quot;21lmv5X7m15cDm8YADnFm-Drg8W55eaJCvUOO35BFS_Vmt5Q2dQFtIbKKZqUDO-d&quot;</span></code></pre>
   </section>
 </section>
-<section class="detail" id="cashout/0">
+<section class="detail" id="validate_email/1">
   <div class="detail-header">
-    <a href="#cashout/0" class="detail-link" title="Link to this function">
+    <a href="#validate_email/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">cashout()</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L32" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">validate_email(user)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/account_management/email_verification.ex#L40" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
       <div class="specs">
-          <pre>cashout() :: Banking.AccountManagement.Account.t()</pre>
+          <pre>validate_email(Banking.AccountManagement.User.t()) ::
+  {:ok,
+   %{
+     account: Banking.AccountManagement.Account.t(),
+     user: Banking.AccountManagement.User.t()
+   }}
+  | {:error, <<_::152>>}</pre>
       </div>
   </div>
   <section class="docstring">
-<p>Returns the account that register all the money that was withdrawn in the bank.</p>
-<p>Example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bank.SpecialAccounts</span><span class="o">.</span><span class="n">cashout</span><span class="w">
-</span><span class="p" data-group-id="8219913011-1">%</span><span class="nc" data-group-id="8219913011-1">Banking.AccountManagement.Account</span><span class="p" data-group-id="8219913011-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="8219913011-1">}</span></code></pre>
-  </section>
-</section>
-<section class="detail" id="fees/0">
-  <div class="detail-header">
-    <a href="#fees/0" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">fees()</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bank/special_accounts.ex#L45" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-      <div class="specs">
-          <pre>fees() :: Banking.AccountManagement.Account.t()</pre>
-      </div>
-  </div>
-  <section class="docstring">
-<p>Returns the account that register all the money paid as a bank fee. This is
-very useful as placeholder to be placed in the transaction table.</p>
-<p>Example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bank.SpecialAccounts</span><span class="o">.</span><span class="n">cashout</span><span class="w">
-</span><span class="p" data-group-id="7460935862-1">%</span><span class="nc" data-group-id="7460935862-1">Banking.AccountManagement.Account</span><span class="p" data-group-id="7460935862-1">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7460935862-1">}</span></code></pre>
+<p>Receives an user and validate his email.</p>
+<p>If this account is brand new (have the status of pending) then it would change it&#39;s value to active.</p>
+<h2 id="validate_email/1-examples" class="section-heading">
+  <a href="#validate_email/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement.EmailVerification</span><span class="o">.</span><span class="n">validate_email</span><span class="p" data-group-id="5429111383-1">(</span><span class="n">user</span><span class="p" data-group-id="5429111383-1">)</span><span class="w">
+</span><span class="p" data-group-id="5429111383-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5429111383-3">%{</span><span class="ss">account</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5429111383-4">%</span><span class="nc" data-group-id="5429111383-4">Account</span><span class="p" data-group-id="5429111383-4">{</span><span class="n">...</span><span class="p" data-group-id="5429111383-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5429111383-5">%</span><span class="nc" data-group-id="5429111383-5">User</span><span class="p" data-group-id="5429111383-5">{</span><span class="n">...</span><span class="p" data-group-id="5429111383-5">}</span><span class="p" data-group-id="5429111383-3">}</span><span class="p" data-group-id="5429111383-2">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.AccountManagement.EmailVerification</span><span class="o">.</span><span class="n">validate_email</span><span class="p" data-group-id="5429111383-6">(</span><span class="n">already_confirmed_user</span><span class="p" data-group-id="5429111383-6">)</span><span class="w">
+</span><span class="p" data-group-id="5429111383-7">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;no email to confirm&quot;</span><span class="p" data-group-id="5429111383-7">}</span></code></pre>
   </section>
 </section>
           </div>

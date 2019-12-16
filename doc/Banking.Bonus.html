@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.21.2">
     <meta name="project" content="banking v0.1.0">
-    <title>BankingWeb.Router — banking v0.1.0</title>
+    <title>Banking.Bonus — banking v0.1.0</title>
     <link rel="stylesheet" href="dist/html-de2388dc2f8074b0a4db.css" />
     <script src="dist/sidebar_items-8580b65e48.js"></script>
       <script src="docs_config.js"></script>
@@ -65,13 +65,16 @@ banking      </a>
 
       <h1>
         <small class="app-vsn">banking v0.1.0</small>
-BankingWeb.Router          <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/router.ex#L1" title="View Source" class="view-source" rel="help">
+Banking.Bonus          <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bonus.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
       </h1>
 
 
+        <section id="moduledoc">
+<p>Handles bonus and promotions</p>
+        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -87,31 +90,9 @@ BankingWeb.Router          <a href="https://github.com/andrelip/banking/blob/mas
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#api/2">api(conn, _)</a>
+    <a href="#maybe_do_first_access_bonus/1">maybe_do_first_access_bonus(account)</a>
   </div>
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#browser/2">browser(conn, _)</a>
-  </div>
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#call/2">call(conn, opts)</a>
-  </div>
-    <div class="summary-synopsis"><p>Callback invoked by Plug on every request.</p></div>
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#graphql/2">graphql(conn, _)</a>
-  </div>
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#init/1">init(opts)</a>
-  </div>
-    <div class="summary-synopsis"><p>Callback required by Plug that initializes the router
-for serving web requests.</p></div>
+    <div class="summary-synopsis"><p>Applies the <code class="inline">First Access Bonus</code> if the account is eligible.</p></div>
 </div>
   </div>
         </section>
@@ -124,82 +105,36 @@ for serving web requests.</p></div>
             </a>
 Functions          </h1>
           <div class="functions-list">
-<section class="detail" id="api/2">
+<section class="detail" id="maybe_do_first_access_bonus/1">
   <div class="detail-header">
-    <a href="#api/2" class="detail-link" title="Link to this function">
+    <a href="#maybe_do_first_access_bonus/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">api(conn, _)</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/router.ex#L12" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">maybe_do_first_access_bonus(account)</h1>
+      <a href="https://github.com/andrelip/banking/blob/master/lib/banking/bonus.ex#L30" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
+      <div class="specs">
+          <pre>maybe_do_first_access_bonus(Banking.AccountManagement.Account.t()) ::
+  :ok | {:error, :account_not_eligible} | {:error, :source_has_no_funds}</pre>
+      </div>
   </div>
   <section class="docstring">
-  </section>
-</section>
-<section class="detail" id="browser/2">
-  <div class="detail-header">
-    <a href="#browser/2" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">browser(conn, _)</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/router.ex#L4" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-  </div>
-  <section class="docstring">
-  </section>
-</section>
-<section class="detail" id="call/2">
-  <div class="detail-header">
-    <a href="#call/2" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">call(conn, opts)</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/router.ex#L2" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-  </div>
-  <section class="docstring">
-<p>Callback invoked by Plug on every request.</p>
-  </section>
-</section>
-<section class="detail" id="graphql/2">
-  <div class="detail-header">
-    <a href="#graphql/2" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">graphql(conn, _)</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/router.ex#L16" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-  </div>
-  <section class="docstring">
-  </section>
-</section>
-<section class="detail" id="init/1">
-  <div class="detail-header">
-    <a href="#init/1" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">init(opts)</h1>
-      <a href="https://github.com/andrelip/banking/blob/master/lib/banking_web/router.ex#L2" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-  </div>
-  <section class="docstring">
-<p>Callback required by Plug that initializes the router
-for serving web requests.</p>
+<p>Applies the <code class="inline">First Access Bonus</code> if the account is eligible.</p>
+<p>This gift is a 1,000.00 credit given to fresh Accounts as soon as the user
+verifies his email address.</p>
+<h2 id="maybe_do_first_access_bonus/1-example" class="section-heading">
+  <a href="#maybe_do_first_access_bonus/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bonus</span><span class="o">.</span><span class="n">maybe_do_first_access_bonus</span><span class="p" data-group-id="0885747451-1">(</span><span class="n">account</span><span class="p" data-group-id="0885747451-1">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Banking.Bonus</span><span class="o">.</span><span class="n">maybe_do_first_access_bonus</span><span class="p" data-group-id="0885747451-2">(</span><span class="n">not_eligible_account</span><span class="p" data-group-id="0885747451-2">)</span><span class="w">
+</span><span class="p" data-group-id="0885747451-3">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:account_not_eligible</span><span class="p" data-group-id="0885747451-3">}</span></code></pre>
   </section>
 </section>
           </div>

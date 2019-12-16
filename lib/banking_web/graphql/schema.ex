@@ -3,11 +3,9 @@ defmodule BankingWeb.GraphQL.Schema do
 
   use Absinthe.Schema
   alias Banking.AccountManagement.Resolver, as: AccountsManagementResolver
+  alias Banking.Admin
   alias Banking.Bank.Resolver, as: BankResolver
   alias Banking.Session.Resolver, as: SessionResolver
-
-  # TODO temporary to prevent timing attack while hardcoding security key.
-  alias Banking.Admin
 
   import_types(Absinthe.Type.Custom)
   import_types(Banking.GraphQL.CommonTypes)

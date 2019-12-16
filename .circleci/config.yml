@@ -14,10 +14,10 @@ jobs:
 
       - restore_cache: &deps_cache
           keys:
-            - &deps_key v2-prod-deps-cache-{{ checksum "mix.lock" }}
+            - &deps_key v3-prod-deps-cache-{{ checksum "mix.lock" }}
       - restore_cache: &build_cache
           keys:
-            - &build_key v2-prod-build-cache-{{ .Branch }}
+            - &build_key v3-prod-build-cache-{{ .Branch }}
       - run: mix do deps.get --only prod, deps.compile, compile
       - save_cache:
           key: *deps_key
@@ -27,7 +27,7 @@ jobs:
           paths: _build
       - run: mix release
       - save_cache: &release_cache
-          key: v2-prod-compile-cache-{{ .Revision }}
+          key: v3-prod-compile-cache-{{ .Revision }}
           paths: /banking/_build/prod/rel
 
   publish_image:
@@ -70,16 +70,16 @@ jobs:
       - run: mix local.rebar --force
       - restore_cache:
           keys:
-            - v2-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
-            - v2-mix-cache-{{ .Branch }}
-            - v2-mix-cache
+            - v3-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+            - v3-mix-cache-{{ .Branch }}
+            - v3-mix-cache
       - restore_cache:
           keys:
-            - v2-build-cache-{{ .Branch }}
-            - v2-build-cache
+            - v3-build-cache-{{ .Branch }}
+            - v3-build-cache
       - restore_cache:
           keys:
-            - v2-dialyzer
+            - v3-dialyzer
       - run: mix do deps.get, deps.compile, compile --warnings-as-errors
 
       - run:
@@ -87,22 +87,22 @@ jobs:
           command: MIX_ENV=dev mix dialyzer
 
       - save_cache:
-          key: v2-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+          key: v3-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
           paths: "deps"
       - save_cache:
-          key: v2-mix-cache-{{ .Branch }}
+          key: v3-mix-cache-{{ .Branch }}
           paths: "deps"
       - save_cache:
-          key: v2-mix-cache
+          key: v3-mix-cache
           paths: "deps"
       - save_cache:
-          key: v2-build-cache-{{ .Branch }}
+          key: v3-build-cache-{{ .Branch }}
           paths: "_build"
       - save_cache:
-          key: v2-build-cache
+          key: v3-build-cache
           paths: "_build"
       - save_cache:
-          key: v2-dialyzer
+          key: v3-dialyzer
           paths: "priv/plts"
 
       - run:

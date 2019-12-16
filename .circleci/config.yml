@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build_release:
+  prepare_release:
     docker:
       - image: elixir:1.9.4-alpine
         environment:
@@ -30,7 +30,7 @@ jobs:
           key: v2-prod-compile-cache-{{ .Revision }}
           paths: /banking/_build/prod/rel
 
-  build_image:
+  publish_image:
     docker:
       - image: docker:18.06.0-ce
     working_directory: /banking
@@ -124,10 +124,12 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  test:
     jobs:
-      - build_release
-      - build_image:
-          requires:
-            - build_release
       - test
+  build_and_publish:
+    jobs:
+      - prepare_release
+      - publish_image:
+          requires:
+            - prepare_release

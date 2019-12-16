@@ -4,13 +4,11 @@
 
 Open source bank made in Phoenix
 
-Try online using [`Graphiql`](https://andrestephano.com/graphiql) or direct into the endpoint:
+You can start byh our [`Postman Collection`](https://www.getpostman.com/collections/c1bada16ca6fa2b9ee3a) or by exploring with [`Graphiql`](https://andrestephano.com/graphiql).
 
-```
-https://andrestephano.com/graphql
-```
+Endpoint: `https://andrestephano.com/graphql`
 
-[`Queries and Mutations`](https://github.com/andrelip/banking/tree/master/test/banking_web/graphql/gql)
+[`Example of Queries and Mutations`](https://github.com/andrelip/banking/tree/master/test/banking_web/graphql/gql)
 
 [`Documentation`](https://andrelip.github.io/banking/doc/api-reference.html)
 
@@ -64,3 +62,4 @@ There are some conveniences. Please check them before using in production:
     * Double-entry accounting system in a single database row. You may need to change that into an item table to perform split operations and fees.
     * There is no human approval of new accounts.
     * There is no document validation.
+    * No react event handle. Implementing this would be useful to decouple modules, for example the email notification and bonuses from the source that generated event generator.

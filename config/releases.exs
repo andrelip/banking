@@ -68,3 +68,11 @@ config :banking, Banking.Mailer,
   adapter: Bamboo.SendGridAdapter,
   support_email: sender_email,
   api_key: send_api_key
+
+admin_api_key =
+  System.get_env("ADMIN_KEY_HASH") ||
+    raise """
+    Specify the admin KEY HASH. You can generate one by using Argon2.hash_pwd_salt(admin_key)
+    """
+
+config :banking, Banking.Admin, key_hash: admin_api_key

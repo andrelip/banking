@@ -4,13 +4,15 @@
 
 Open source bank made in Phoenix
 
-Documentation: https://andrelip.github.io/banking/doc/api-reference.html
-
 Try online using [`Graphiql`](https://andrestephano.com/graphiql) or direct into the endpoint:
 
 ```
 https://andrestephano.com/graphql
 ```
+
+[`Queries and Mutations`](https://github.com/andrelip/banking/tree/master/test/banking_web/graphql/gql)
+
+[`Documentation`](https://andrelip.github.io/banking/doc/api-reference.html)
 
 ## Features
 

@@ -8,7 +8,7 @@ defmodule Banking.Bank do
   import Banking.Bank.Helper, only: [write_transaction: 3, change_account_balance: 2]
 
   @doc """
-  Transfer money from the source account to the target.
+  Transfer money from the source account to the target one.
 
   Example:
 
@@ -51,11 +51,11 @@ defmodule Banking.Bank do
   end
 
   @doc """
-  Withdrawal money from a given account
+  Withdraw money from a given account
 
   Example:
 
-      iex> Bank.withdrawal(account, 10)
+      iex> Bank.withdraw(account, 10)
       {:ok,
         %{
           bank_transaction: %Banking.Bank.Transaction{
@@ -69,7 +69,7 @@ defmodule Banking.Bank do
           updated_at: ~N[2019-11-28 04:37:54]
         }}
   """
-  def withdrawal(source, amount) do
+  def withdraw(source, amount) do
     cashout_register = SpecialAccounts.cashout()
     transfer(source, cashout_register, amount)
   end
@@ -79,7 +79,7 @@ defmodule Banking.Bank do
 
   Example:
 
-      iex> Bank.withdrawal(account, 10)
+      iex> Bank.withdraw(account, 10)
       {:ok,
         %{
           bank_transaction: %Banking.Bank.Transaction{

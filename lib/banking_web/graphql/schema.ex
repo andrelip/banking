@@ -50,10 +50,10 @@ defmodule BankingWeb.GraphQL.Schema do
       resolve(&BankResolver.transfer/2)
     end
 
-    field :withdrawal, :boolean do
+    field :withdraw, :boolean do
       arg(:amount, :integer)
 
-      resolve(&BankResolver.withdrawal/2)
+      resolve(&BankResolver.withdraw/2)
     end
 
     field :sign_in, :string do

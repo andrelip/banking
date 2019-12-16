@@ -1,6 +1,4 @@
 defmodule BankingWeb.EmailVerificationControllerTest do
-  @moduledoc false
-
   use BankingWeb.ConnCase
   alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.Fixtures

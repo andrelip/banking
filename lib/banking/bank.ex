@@ -1,7 +1,6 @@
 defmodule Banking.Bank do
   @moduledoc """
-  Processes all the financial operations and make an immutable register them as
-  transactions.
+  Processes all the financial operations
   """
   alias Banking.Bank.SpecialAccounts
   alias Banking.Repo
@@ -13,19 +12,19 @@ defmodule Banking.Bank do
 
   Example:
 
-  iex> Bank.transfer(source_account, target_account, 100)
-  {:ok,
-    %{
-      bank_transaction: %Banking.Bank.Transaction{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
-        amount: #Decimal<100>,
-        id: 1,
-        inserted_at: ~N[2019-11-28 04:36:24],
-        public_id: "54469e74-79da-468c-aafc-6a0bbfb4af8e",
-        source_id: 4,
-        target_id: 5,
-        updated_at: ~N[2019-11-28 04:36:24]
-      }}
+      iex> Bank.transfer(source_account, target_account, 100)
+      {:ok,
+        %{
+          bank_transaction: %Banking.Bank.Transaction{
+            __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
+            amount: #Decimal<100>,
+            id: 1,
+            inserted_at: ~N[2019-11-28 04:36:24],
+            public_id: "54469e74-79da-468c-aafc-6a0bbfb4af8e",
+            source_id: 4,
+            target_id: 5,
+            updated_at: ~N[2019-11-28 04:36:24]
+          }}
   """
   def transfer(source, target, amount) do
     transaction_changeset = write_transaction(source, target, amount)
@@ -56,19 +55,19 @@ defmodule Banking.Bank do
 
   Example:
 
-  iex> Bank.withdrawal(account, 10)
-  {:ok,
-    %{
-      bank_transaction: %Banking.Bank.Transaction{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
-      amount: #Decimal<10>,
-      id: 2,
-      inserted_at: ~N[2019-11-28 04:37:54],
-      public_id: "c5f3e493-11c4-4703-82c7-c001f7294619",
-      source_id: 4,
-      target_id: 2,
-      updated_at: ~N[2019-11-28 04:37:54]
-    }}
+      iex> Bank.withdrawal(account, 10)
+      {:ok,
+        %{
+          bank_transaction: %Banking.Bank.Transaction{
+          __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
+          amount: #Decimal<10>,
+          id: 2,
+          inserted_at: ~N[2019-11-28 04:37:54],
+          public_id: "c5f3e493-11c4-4703-82c7-c001f7294619",
+          source_id: 4,
+          target_id: 2,
+          updated_at: ~N[2019-11-28 04:37:54]
+        }}
   """
   def withdrawal(source, amount) do
     cashout_register = SpecialAccounts.cashout()
@@ -80,19 +79,19 @@ defmodule Banking.Bank do
 
   Example:
 
-  iex> Bank.withdrawal(account, 10)
-  {:ok,
-    %{
-      bank_transaction: %Banking.Bank.Transaction{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
-      amount: #Decimal<1000>,
-      id: 3,
-      inserted_at: ~N[2019-11-28 04:40:42],
-      public_id: "9086a2b5-7f21-494b-9d83-28c2a10d0432",
-      source_id: 1,
-      target_id: 4,
-      updated_at: ~N[2019-11-28 04:40:42]
-    }}
+      iex> Bank.withdrawal(account, 10)
+      {:ok,
+        %{
+          bank_transaction: %Banking.Bank.Transaction{
+          __meta__: #Ecto.Schema.Metadata<:loaded, "bank_transactions">,
+          amount: #Decimal<1000>,
+          id: 3,
+          inserted_at: ~N[2019-11-28 04:40:42],
+          public_id: "9086a2b5-7f21-494b-9d83-28c2a10d0432",
+          source_id: 1,
+          target_id: 4,
+          updated_at: ~N[2019-11-28 04:40:42]
+        }}
   """
   def add_bonus(target, amount) do
     bank_reserves = SpecialAccounts.bank_reserves()

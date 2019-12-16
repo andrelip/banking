@@ -2,6 +2,7 @@ defmodule Banking.Bonus do
   @moduledoc """
   Handles bonus and promotions
   """
+  alias Banking.AccountManagement.Account
   alias Banking.Bank
   alias Banking.Bonus.Emails.FirstAccess, as: FirstAccessEmail
   alias Banking.Bonus.FirstAccess, as: FirstAccessBonus
@@ -11,8 +12,21 @@ defmodule Banking.Bonus do
   @first_access_bonus_amount 1000
 
   @doc """
-  Idempotently receives an account and credit the bonus if it's elegible
+  Applies the `First Access Bonus` if the account is eligible.
+
+  This gift is a 1,000.00 credit given to fresh Accounts as soon as the user
+  verifies his email address.
+
+  ## Example
+
+      iex> Banking.Bonus.maybe_do_first_access_bonus(account)
+      :ok
+
+      iex> Banking.Bonus.maybe_do_first_access_bonus(not_eligible_account)
+      {:error, :account_not_eligible}
   """
+  @spec maybe_do_first_access_bonus(Account.t()) ::
+          :ok | {:error, :account_not_eligible} | {:error, :source_has_no_funds}
   def maybe_do_first_access_bonus(account) do
     flag_account_changeset = FirstAccessBonus.create_changeset(account)
     add_bonus = fn _, _ -> Bank.add_bonus(account, @first_access_bonus_amount) end

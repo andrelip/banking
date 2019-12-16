@@ -1,5 +1,7 @@
 defmodule BankingWeb.GraphQL.Schema do
-  @moduledoc false
+  @moduledoc """
+  Defines the main GraphQL's schema used by absinthe.
+  """
 
   use Absinthe.Schema
   alias Banking.AccountManagement.Resolver, as: AccountsManagementResolver

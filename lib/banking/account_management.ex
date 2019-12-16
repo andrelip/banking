@@ -1,7 +1,6 @@
 defmodule Banking.AccountManagement do
   @moduledoc """
-  Works as a public API to handle all the operations regarding user registration
-  and account administration.
+  Handles operations regarding user registration and account administration.
   """
   alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.EmailVerification

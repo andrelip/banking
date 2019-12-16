@@ -6,6 +6,14 @@ defmodule Banking.Session.SessionSchema do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @type ip :: String.t()
+
+  @type t :: %__MODULE__{
+          device_id: String.t(),
+          device_type: String.t(),
+          ip_address: ip()
+        }
+
   schema "sessions" do
     field :device_id, :string
     field :device_type, :string

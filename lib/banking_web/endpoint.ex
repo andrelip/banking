@@ -1,4 +1,23 @@
 defmodule BankingWeb.Endpoint do
+  @moduledoc """
+  Defines Banking endpoint.
+
+  The endpoint is the boundary where all requests to your
+  web application start. It is also the interface your
+  application provides to the underlying web servers.
+
+  Overall, an endpoint has three responsibilities:
+
+    * to provide a wrapper for starting and stopping the
+      endpoint as part of a supervision tree
+
+    * to define an initial plug pipeline for requests
+      to pass through
+
+    * to host web specific configuration for your
+      application
+  """
+
   use Phoenix.Endpoint, otp_app: :banking
 
   socket "/socket", BankingWeb.UserSocket,

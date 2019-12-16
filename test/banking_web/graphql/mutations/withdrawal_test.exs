@@ -1,6 +1,4 @@
 defmodule BankingWeb.GraphQL.Mutations.WithdrawalTest do
-  @moduledoc false
-
   use Banking.DataCase
   use Wormwood.GQLCase
   alias Banking.Bank.Seeds

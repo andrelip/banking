@@ -1,5 +1,5 @@
 defmodule Banking do
   @moduledoc """
-  The entrypoint to define macros and common behaviour of the Banking application (if any).
+  The entry point to define macros and common behavior of the Banking application (if any).
   """
 end

@@ -1,26 +1,64 @@
-# Banking [![CircleCI](https://circleci.com/gh/andrelip/banking.svg?style=svg)](https://circleci.com/gh/andrelip/banking) [![Coverage Status](https://coveralls.io/repos/github/andrelip/banking/badge.svg?branch=master)](https://coveralls.io/github/andrelip/banking?branch=master)
+# Banking
 
-To start your Phoenix server:
+[![CircleCI](https://circleci.com/gh/andrelip/banking.svg?style=svg)](https://circleci.com/gh/andrelip/banking) [![Coverage Status](https://coveralls.io/repos/github/andrelip/banking/badge.svg?branch=master)](https://coveralls.io/github/andrelip/banking?branch=master)
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+Open source bank made in Phoenix
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Documentation: https://andrelip.github.io/banking/doc/api-reference.html
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Try online using [`Graphiql`](https://andrestephano.com/graphiql) or direct into the endpoint:
 
-## Conveniences
+```
+https://andrestephano.com/graphql
+```
 
-For the propose of this project, there are some conveniences. Please check them before using in production:
+## Features
 
-    * Single account per user
-    * Single document requirement per use
-    * Accounts status are enabled just after creation
-    * No document validation
-    * No distinction between business and personal account
+- Money transfer between users
+- Deposit and withdrawal
+- Registration gift
+- GraphQL interface
 
+# Getting started
 
-## Assumptions
-    * Password Confirmation should be handled by the client.
+## Development
+
+To get started with docker
+
+- Install dependencies with `mix deps.get`
+- Create and migrate your database with `mix ecto.setup`
+- Start Phoenix endpoint with `mix phx.server`
+
+Now you can send your requests to [`localhost:4000/graphql`](http://localhost:4000) or [`interact with Graphiql`](<[`localhost:4000/graphql`](http://localhost:4000)>) from your browser to explore the API.
+
+## Production
+
+The preferred way to run in production is using Elixir Release. You can build a release by yourself by running `MIX_ENV=prod mix release` or use our [`public docker image`](https://hub.docker.com/r/andrelip/banking)
+
+You will need to set the following environment variables:
+
+- PG_USERNAME
+- PG_PASSWORD
+- PG_HOSTNAME
+- PG_DATABASE
+- SECRET_KEY_BASE
+- GUARDIAN_SECRET_KEY
+- ADMIN_KEY_HASH
+- BANKING_DOMAIN
+- BANKING_SUPPORT_EMAIL
+- SENDGRID_API_KEY
+- BANKING_SSL_KEY_PATH
+- BANKING_INTERMEDIATE_CERTFILE_PATH
+- BANKING_SSL_CERT_PATH
+
+You can generate the secrets using `mix phx.gen.secret`.
+
+You will need to mount a volume or create another layer to place your SSL keys if you are using our Docker image.
+
+## Conveniences and TODO's
+
+There are some conveniences. Please check them before using in production:
+
+    * Double-entry accounting system in a single database row. You may need to change that into an item table to perform split operations and fees.
+    * There is no human approval of new accounts.
+    * There is no document validation.

@@ -39,7 +39,7 @@ banking_domain =
     """
 
 config :banking, BankingWeb.Endpoint,
-  url: [host: banking_domain, port: String.to_integer(System.get_env("HTTP_PORT") || "4000")],
+  url: [host: banking_domain],
   cache_static_manifest: "priv/static/cache_manifest.json",
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   http: [port: String.to_integer(System.get_env("HTTP_PORT") || "4000")],

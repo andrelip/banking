@@ -16,14 +16,11 @@ defmodule BankingWeb.GraphQL.MeTest do
 
     {:ok, %{data: data}} = query_gql(context: %{:remote_ip => "127.0.0.1", current_user: user})
 
-    assert data == %{
-             "me" => %{
-               "birthdate" => "2000-01-01",
-               "email" => nil,
-               "name" => "User Test",
-               "pendingEmail" => "user@test.com"
-             }
-           }
+    assert get_in(data, ["me", "birthdate"]) == "2000-01-01"
+    assert get_in(data, ["me", "email"]) == nil
+    assert get_in(data, ["me", "name"]) == "User Test"
+    assert get_in(data, ["me", "pendingEmail"]) == "user@test.com"
+    assert get_in(data, ["me", "account", "publicId"]) |> String.length() > 10
   end
 
   test "should not return user when not authenticated" do

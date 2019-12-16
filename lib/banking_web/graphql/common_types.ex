@@ -21,5 +21,10 @@ defmodule Banking.GraphQL.CommonTypes do
     field :email, :string
     field :pending_email, :string
     field :birthdate, :string
+    field :account, :account
+  end
+
+  object :account do
+    field :public_id, :string
   end
 end

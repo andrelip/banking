@@ -2,7 +2,10 @@ defmodule Banking.AccountManagement.Resolver do
   @moduledoc false
 
   alias Banking.AccountManagement
+  alias Banking.AccountManagement.Emails.EmailConfirmation
   alias Banking.AccountManagement.Registration
+  alias Banking.Mailer
+  alias BankingWeb.Router.Helpers, as: Routes
 
   import BankingWeb.ErrorHelpers, only: [translate_error: 1]
 
@@ -11,6 +14,16 @@ defmodule Banking.AccountManagement.Resolver do
 
     case AccountManagement.create(registration_data) do
       {:ok, %{user: user}} ->
+        url =
+          Routes.email_verification_url(
+            BankingWeb.Endpoint,
+            :update,
+            user.email_verification_code
+          )
+
+        {:ok, email} = EmailConfirmation.email_confirmation(user, url)
+        Mailer.deliver_later(email)
+
         {:ok, user}
 
       {:error, %Ecto.Changeset{} = changeset} ->

@@ -12,7 +12,7 @@ defmodule BankingWeb.EmailVerificationController do
            {:validate_user, AccountManagement.validate_email(user)} do
       # TODO placeholder to a proper flow
       Bonus.maybe_do_first_access_bonus(account)
-      conn |> text(gettext("Email has been validated!"))
+      conn |> text(gettext("Email has been validated! You can use sign in into your API now."))
     else
       {:get_user, nil} ->
         conn |> put_status(401) |> text(gettext("This code is invalid code or have expired"))

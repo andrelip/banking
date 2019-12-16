@@ -48,8 +48,8 @@ jobs:
             docker build --tag andrelip/banking:$CIRCLE_SHA1 --file DockerfileCI .
             docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
             docker push andrelip/banking:$CIRCLE_SHA1
-            docker tag andrelip/banking:$CIRCLE_SHA1 andrelip/banking:latest
-            docker push andrelip/banking:latest
+            [ "${CIRCLE_BRANCH}" == "master" ] && docker tag andrelip/banking:$CIRCLE_SHA1 andrelip/banking:latest
+            [ "${CIRCLE_BRANCH}" == "master" ] && docker push andrelip/banking:latest
 
   test:
     docker:

@@ -3,6 +3,8 @@ defmodule Banking.Bank.Transaction do
 
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Banking.AccountManagement.Account
   alias Ecto.UUID
 
   @required_params [:amount, :source_id, :target_id]
@@ -17,8 +19,8 @@ defmodule Banking.Bank.Transaction do
 
   schema "bank_transactions" do
     field :amount, :decimal
-    field :source_id, :id
-    field :target_id, :id
+    belongs_to :source, Account, foreign_key: :source_id
+    belongs_to :target, Account, foreign_key: :target_id
     field :public_id, UUID
 
     timestamps()

@@ -3,6 +3,7 @@ defmodule Banking.Bank do
   Processes all the financial operations
   """
   alias Banking.AccountManagement.Account
+  alias Banking.Bank.Emails.Transference
   alias Banking.Bank.SpecialAccounts
   alias Banking.Bank.Transaction
   alias Banking.Repo

@@ -5,6 +5,8 @@ defmodule Banking.Bank.Resolver do
 
   alias Banking.AccountManagement
   alias Banking.Bank
+  alias Banking.Bank.Emails.Transference, as: TransferenceNotifier
+  alias Banking.Mailer
 
   def transfer(data, %{context: %{current_user: user}}) do
     user_account = AccountManagement.account_from_user(user)
@@ -23,7 +25,20 @@ defmodule Banking.Bank.Resolver do
   def transfer(_, _), do: {:error, "you must be logged in"}
 
   defp _transfer(user_account, target_account, amount) do
-    Bank.transfer(user_account, target_account, amount) |> response()
+    case Bank.transfer(user_account, target_account, amount) do
+      {:ok, %{bank_transaction: bank_transaction}} ->
+        bank_transaction
+        |> TransferenceNotifier.build_email()
+        |> Mailer.deliver_later()
+
+        {:ok, true}
+
+      {:error, :source_has_no_funds} ->
+        {:error, gettext("source account do not have enough funds")}
+
+      {:error, :amount_is_zero} ->
+        {:error, "amount must be greater than 0"}
+    end
   end
 
   def withdraw(data, %{context: %{current_user: user}}) do

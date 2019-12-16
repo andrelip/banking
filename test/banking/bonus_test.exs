@@ -16,7 +16,7 @@ defmodule Banking.BonusTest do
     {:ok, %{account: account}} = Fixtures.create_user_with_account(%{}, validate_email: true)
     :ok = Bonus.maybe_do_first_access_bonus(account)
     account = Repo.get(Account, account.id)
-    assert Decimal.eq?(account.balance, 1000)
+    assert Decimal.eq?(account.balance, Decimal.new(1000))
   end
 
   test "should not give bonus twice" do
@@ -28,7 +28,7 @@ defmodule Banking.BonusTest do
   test "should not give bonus when reserve is empty" do
     {:ok, %{account: account}} = Fixtures.create_user_with_account()
     reserve = SpecialAccounts.bank_reserves()
-    reserve |> change(%{balance: 0}) |> Repo.update!()
+    reserve |> change(%{balance: Decimal.new(0)}) |> Repo.update!()
 
     assert {:error, :source_has_no_funds} = Bonus.maybe_do_first_access_bonus(account)
   end

@@ -23,13 +23,13 @@ defmodule Banking.BankTest do
       bank = SpecialAccounts.bank_reserves()
       account = Seeds.create_account(4, 0)
 
-      {:ok, _data} = Bank.add_bonus(account, 1000)
+      {:ok, _data} = Bank.add_bonus(account, Decimal.from_float(1000.50))
 
       account_after = Repo.get(Account, account.id)
       bank_after = SpecialAccounts.bank_reserves()
 
-      assert D.eq?(account_after.balance, 1000)
-      assert D.eq?(bank_after.balance, D.sub(bank.balance, 1000))
+      assert D.eq?(account_after.balance, Decimal.from_float(1000.50))
+      assert D.eq?(bank_after.balance, D.sub(bank.balance, Decimal.from_float(1000.50)))
     end
 
     test "should be greater than 0" do

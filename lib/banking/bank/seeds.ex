@@ -56,7 +56,7 @@ defmodule Banking.Bank.Seeds do
       |> AccountManagement.create()
 
     AccountManagement.validate_email(user)
-    Bank.add_bonus(account, 1000)
+    Bank.add_bonus(account, Decimal.new(1000))
   end
 
   defp fix_sequence_id do

@@ -1,0 +1,3 @@
+mutation Withdraw($amount: Int!) {
+  withdraw(amount: $amount)
+}

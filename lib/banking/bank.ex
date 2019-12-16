@@ -2,10 +2,17 @@ defmodule Banking.Bank do
   @moduledoc """
   Processes all the financial operations
   """
+  alias Banking.AccountManagement.Account
   alias Banking.Bank.SpecialAccounts
+  alias Banking.Bank.Transaction
   alias Banking.Repo
 
   import Banking.Bank.Helper, only: [write_transaction: 3, change_account_balance: 2]
+
+  @type transaction_result ::
+          {:ok, %{bank_transaction: Transaction.t()}}
+          | {:error, :source_has_no_funds}
+          | {:error, :amount_is_zero}
 
   @doc """
   Transfer money from the source account to the target one.
@@ -26,9 +33,12 @@ defmodule Banking.Bank do
             updated_at: ~N[2019-11-28 04:36:24]
           }}
   """
+  # @spec transfer(Account.t(), Account.t(), Decimal.t()) ::
+  #         {:ok, map()} | {:error, :source_has_no_funds} | {:error, :amount_is_zero}
+  @spec transfer(Account.t(), Account.t(), Decimal.t()) :: transaction_result()
   def transfer(source, target, amount) do
     transaction_changeset = write_transaction(source, target, amount)
-    reduce_from_source = fn _, _ -> change_account_balance(source, -amount) end
+    reduce_from_source = fn _, _ -> change_account_balance(source, Decimal.mult(-1, amount)) end
     increment_target = fn _, _ -> change_account_balance(target, amount) end
 
     Ecto.Multi.new()
@@ -69,6 +79,7 @@ defmodule Banking.Bank do
           updated_at: ~N[2019-11-28 04:37:54]
         }}
   """
+  @spec withdraw(Account.t(), Decimal.t()) :: transaction_result()
   def withdraw(source, amount) do
     cashout_register = SpecialAccounts.cashout()
     transfer(source, cashout_register, amount)
@@ -93,6 +104,7 @@ defmodule Banking.Bank do
           updated_at: ~N[2019-11-28 04:40:42]
         }}
   """
+  @spec add_bonus(Account.t(), Decimal.t()) :: transaction_result()
   def add_bonus(target, amount) do
     bank_reserves = SpecialAccounts.bank_reserves()
     transfer(bank_reserves, target, amount)

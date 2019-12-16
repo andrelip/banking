@@ -9,7 +9,7 @@ defmodule Banking.Bonus do
   alias Banking.Mailer
   alias Banking.Repo
 
-  @first_access_bonus_amount 1000
+  @first_access_bonus_amount Decimal.new(1000)
 
   @doc """
   Applies the `First Access Bonus` if the account is eligible.

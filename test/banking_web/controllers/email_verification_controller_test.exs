@@ -19,11 +19,11 @@ defmodule BankingWeb.EmailVerificationControllerTest do
 
     test "GET should give bonus credit when code is valid", %{conn: conn} do
       {:ok, %{user: user, account: account}} = Fixtures.create_user_with_account()
-      assert Decimal.eq?(account.balance, 0)
+      assert Decimal.eq?(account.balance, Decimal.new(0))
 
       get(conn, "/verify_email/#{user.email_verification_code}")
       account_updated = Repo.get(Account, account.id)
-      assert Decimal.eq?(account_updated.balance, 1000)
+      assert Decimal.eq?(account_updated.balance, Decimal.new(1000))
     end
 
     test "GET when code is invalid", %{conn: conn} do

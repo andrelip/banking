@@ -1,7 +1,5 @@
-defmodule Banking.AccountManagement.Emails.VerifyEmail do
-  @moduledoc """
-  Builder for email confirmation
-  """
+defmodule Banking.AccountManagement.Emails.EmailConfirmation do
+  @moduledoc false
 
   import Bamboo.Email
   import BankingWeb.Gettext

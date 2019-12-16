@@ -1,11 +1,10 @@
 defmodule Banking.Admin do
   @moduledoc """
-  Handles the Admin operations.
-
-  This is an early implementation that handles those limited features provided
-  in this module. It should be improved and moved to the database to implement
-  TTL keys and make it more dynamic allowing multiple accounts and other features.
+  Provides the functions to verify admin identity.
   """
+  # This is a basic and limited implementation for our limited needs.
+  # You should consider moving to a database implementation if the application
+  # complexity grows.
 
   @doc """
   Fetches the key in runtime
@@ -15,6 +14,7 @@ defmodule Banking.Admin do
       iex> Banking.Admin.key_hash
       "$argon2id$v=19$m=131072,t=8,p=4$plCNd79nNxwu4a5o3EifHw$50tu+BNSVl/SvojDW"
   """
+  @spec key_hash :: String.t()
   def key_hash do
     Application.get_env(:banking, Banking.Admin)[:key_hash]
   end
@@ -33,6 +33,7 @@ defmodule Banking.Admin do
       iex> Banking.Admin.verify_admin_key("badkey")
       false
   """
+  @spec verify_admin_key(String.t()) :: boolean()
   def verify_admin_key(key) do
     Argon2.verify_pass(key, key_hash())
   end

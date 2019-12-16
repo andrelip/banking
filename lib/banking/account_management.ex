@@ -1,6 +1,6 @@
 defmodule Banking.AccountManagement do
   @moduledoc """
-  Handles operations regarding user registration and account administration.
+  Provide functions to manage accounts and users
   """
   alias Banking.AccountManagement.Account
   alias Banking.AccountManagement.EmailVerification
@@ -21,7 +21,20 @@ defmodule Banking.AccountManagement do
     number, an upper-case, a lower-case and a symbol
     * `birthday`
     * `document_id` with `document_type` - The document if for the given type
-     that could be of the following: `cpf`, `rg`, `passport` or `cnpj`.
+     that could be of the following: ["cpf", "rg", "passport" or "cnpj"].
+
+  ## Example:
+      iex> attrs = %Registration{
+      ...>     name: "User Test",
+      ...>     email: "user@test.com",
+      ...>     password: "veRylonGAnd$Tr0ngPasSwrd",
+      ...>     birthdate: ~D[2000-01-01],
+      ...>     document_id: "000.000.000-00",
+      ...>     document_type: "cpf"
+      ...>   }
+      iex> AccountManagement.create(attrs)
+      {:ok, %{account: %Banking.AccountManagement.Account{...}, user: %Banking.AccountManagement.User{...}}}
+
   """
   @spec create(Registration.t()) ::
           {:ok, %{account: Account.t(), user: User.t()}}
@@ -32,24 +45,40 @@ defmodule Banking.AccountManagement do
 
   @doc """
   Get an account by his id.
+
+  ## Example:
+      iex> AccountManagement.get(1)
+      %Banking.AccountManagement.Account{...}
   """
   @spec get(integer()) :: Account.t() | nil
   def get(account_id), do: Repo.get(Account, account_id)
 
   @doc """
-  Get the account by the public available UUID
+  Get account by the public available UUID
+
+  ## Example:
+      iex> Banking.AccountManagement.get_user_by_email("6e91802b-0f5c-43ac-bbb8-adae12ec6b62")
+      %Banking.AccountManagement.Account{...}
   """
   @spec get_by_public_id(Ecto.UUID.t()) :: Account.t() | nil
   def get_by_public_id(uuid), do: Repo.get_by(Account, %{public_id: uuid})
 
   @doc """
-  Get the account by the public available UUID
+  Get user by the public available UUID
+
+  ## Example:
+      iex> Banking.AccountManagement.get_user_by_email("user@test.com")
+      %Banking.AccountManagement.User{...}
   """
   @spec get_user_by_email(String.t()) :: User.t() | nil
   def get_user_by_email(email), do: Repo.get_by(User, %{email: email})
 
   @doc """
-  Get the account by the pending email field
+  Verifies if there is users with the given email as pending validation
+
+  ## Example:
+      iex> Banking.AccountManagement.users_with_pending_email("user@test.com")
+      true
   """
   @spec users_with_pending_email?(String.t()) :: boolean
   def users_with_pending_email?(email) do
@@ -63,6 +92,12 @@ defmodule Banking.AccountManagement do
 
   @doc """
   Get the account by the pending email verification code
+
+  ## Example:
+
+      iex> code = "3Ujd31gpI6DuB8IVB2k7ahJJFKqfl0ybSa5khMQ0cVKtQFsNRWSHKEzwftpsV9T4"
+      iex> Banking.AccountManagement.get_user_by_pending_email_code(code)
+      %Banking.AccountManagement.User{...}
   """
   @spec get_user_by_pending_email_code(String.t()) :: User.t() | nil
   def get_user_by_pending_email_code(email),
@@ -70,6 +105,10 @@ defmodule Banking.AccountManagement do
 
   @doc """
   Block a given account
+
+  ## Example:
+      iex> Banking.AccountManagement.disable(account)
+      %Banking.AccountManagement.Account{status: "inactive"}
   """
   @spec disable(Account.t()) :: Account.t()
   def disable(account) do
@@ -78,6 +117,10 @@ defmodule Banking.AccountManagement do
 
   @doc """
   Enable a given account
+
+  ## Example:
+      iex> Banking.AccountManagement.enable(account)
+      %Banking.AccountManagement.Account{status: "active"}
   """
   @spec enable(Account.t()) :: Account.t()
   def enable(account) do
@@ -89,6 +132,11 @@ defmodule Banking.AccountManagement do
 
   If the user has a pending confirmation account associated then this account
   will be activated.
+
+  ## Example:
+
+      iex> Banking.AccountManagement.validate_email(user)
+      {:ok, %{account: Banking.AccountManagement.Account{...}, user: Banking.AccountManagement.User{...}}}
   """
   @spec validate_email(User.t()) ::
           {:ok, %{account: Account.t(), user: User.t()}} | {:error, Ecto.Changeset.t()}
@@ -97,7 +145,15 @@ defmodule Banking.AccountManagement do
   end
 
   @doc """
-  Verifies the hashed password from the user against the raw password
+  Compares the raw password against the hashed one presented in user
+
+  ## Examples:
+
+      iex> Banking.AccountManagement.verify_password(user, "correct password")
+      true
+
+      iex> Banking.AccountManagement.verify_password(user, "bad password")
+      false
   """
   @spec verify_password(User.t(), String.t()) :: true | false
   def verify_password(user, password) do
@@ -105,7 +161,12 @@ defmodule Banking.AccountManagement do
   end
 
   @doc """
-  Get account of a given User
+  Get the account from a given user
+
+  ## Example:
+
+      iex> Banking.AccountManagement.account_from_user(user)
+      %Banking.AccountManagement.Account{...}
   """
   def account_from_user(user) do
     user |> Repo.preload([:account]) |> Map.get(:account)
